@@ -1,0 +1,26 @@
+一、基础
+1、泛型、反射，预计2-3天
+    这两部分主要是有一些细节不清，需要仔细看一下
+2、集合，预计1-2天
+    主要了解相关功能，暂时不读具体实现代码
+3、多线程相关，预计15天
+    了解常用并发工作框架，预计一周
+4、IO+NIO，预计10天
+    读apacheIO相关源代码，时长不确定
+5、JAVAWEB方面按 http://gitlab.alibaba-inc.com/sellerhome/portal/wikis/new_staff_java 这里提到的进行学习，内容如下
+    （1）java web编程基础（这是基础，应该掌握）
+    Http协议基础知识：协议、GET/POST、Header、Http Cache、跨域
+    Cookie、Session原理及区别
+    Servlet工作原理
+    Velocity基础
+    Tomcat基础知识
+    （2）java 编程进阶：框架相关
+    （首先要学会使用这些框架的基本功能以及一些在某些场合需要用到的高级功能，然后再逐步有针对性的熟悉其原理）
+    MVC、设计模式
+    Spring 框架：IOC、AOP、注解、配置文件、Beanfactory、spring jdbc
+    Spring MVC:Controller、Request Mapping、ResponseBody、请求接收处理流程
+    ibatis基础：与spring jdbc配合、配置文件、语法、执行流程
+
+这部分具体需要的时长还需要确定
+
+阅读spring和tomcat的源代码，了解具体的工作方式
