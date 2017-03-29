@@ -1,1 +1,2 @@
 net.sf.cglib.core.KeyFactory
+多键生成key，key1.hashCode()==key2.hashCode()当且仅当key1.equals(key2)
