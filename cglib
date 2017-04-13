@@ -1,2 +1,6 @@
 net.sf.cglib.core.KeyFactory
-多键生成key，key1.hashCode()==key2.hashCode()当且仅当key1.equals(key2)
+  多键生成key，key1.hashCode()==key2.hashCode()当且仅当key1.equals(key2)
+net.sf.cglib.proxy.Enhancer
+  生成一个类的子类对象，并设置一个拦截器拦截调用方法
+net.sf.cglib.proxy.MethodInterceptor
+  一种回调拦截接口，如果Enhancer设置的callback是这种对象，则不会执行实际的方法而是执行接口里的intercept方法
