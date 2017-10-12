@@ -3,14 +3,15 @@
 	大H
 	大EX
 	天空璋梦秋LNM
+	地梦（A/C）LNM
 	WHT
 	WHTDS
 	庙L妖梦残8
-	风E梦A15.1e
-	风N梦B16e
+	风E梦A15.4e
+	风N梦A16e
 	庙E妖梦9e
 	红N梦b2.5e
-	风EX梦b9e
+	风EX梦B9e
 	庙H妖梦35e
 	庙H妖梦nm31e
 	庙L妖梦30e
