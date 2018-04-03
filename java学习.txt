@@ -10,3 +10,10 @@ IO
 httpclient
 spring
 tomcat
+apache反射工具
+apacheIO
+dubbo
+=====应用实现=====
+分布式任务
+RPC调用
+分布式配置管理
