@@ -7,6 +7,7 @@
 IO
 网络
 数据库
+虚拟机
 =====框架、工具、容器=====
 httpclient
 servlet
