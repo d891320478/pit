@@ -11,15 +11,24 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(new File("E:\\3.txt"));
-        BufferedWriter out = new BufferedWriter(new FileWriter(new File("E:\\4.txt")));
+        File f1 = new File("E:\\123.txt");
+        File f2 = new File("E:\\4.txt");
+        Scanner in = new Scanner(f1);
+        BufferedWriter out = new BufferedWriter(new FileWriter(f2));
         while (in.hasNextLine()) {
-            String s = "update buy_order set refund_price = " + in.nextLine() + " where order_id = " + in.nextLine() + ";";
-            out.write(s);
-            out.flush();
+            String s = in.nextLine();
+            String[] t = s.split("#");
+            String rlt = "INSERT INTO send_msg_to_leader ('gmt_create', 'gmt_modified', 'scope_id', 'app_type', 'from_uid', "
+                    + "'from_uname', 'from_mobile', 'to_uid', 'to_uname', 'to_mobile') VALUES (now(), now(), "
+                    + "'26', '1', " + "'" + t[2] + "', '" + t[0] + "', '" + t[1] + "', '" + t[5] + "', '" + t[3]
+                    + "', '" + t[4] + "');";
+            System.out.println(rlt);
+            out.write(rlt + "\n");
         }
         in.close();
+        out.flush();
         out.close();
+        
     }
 
 }
