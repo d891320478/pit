@@ -18,8 +18,8 @@ public class Main {
         while (in.hasNextLine()) {
             String s = in.nextLine();
             String[] t = s.split("#");
-            String rlt = "INSERT INTO send_msg_to_leader ('gmt_create', 'gmt_modified', 'scope_id', 'app_type', 'from_uid', "
-                    + "'from_uname', 'from_mobile', 'to_uid', 'to_uname', 'to_mobile') VALUES (now(), now(), "
+            String rlt = "INSERT INTO send_msg_to_leader (`gmt_create`, `gmt_modified`, `scope_id`, `app_type`, `from_uid`, "
+                    + "`from_uname`, `from_mobile`, `to_uid`, `to_uname`, `to_mobile`) VALUES (now(), now(), "
                     + "'26', '1', " + "'" + t[2] + "', '" + t[0] + "', '" + t[1] + "', '" + t[5] + "', '" + t[3]
                     + "', '" + t[4] + "');";
             System.out.println(rlt);
