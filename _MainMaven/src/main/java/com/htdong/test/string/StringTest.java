@@ -1,4 +1,4 @@
-package com.htdong.string;
+package com.htdong.test.string;
 
 import java.util.regex.Pattern;
 
