@@ -5,6 +5,7 @@
 类加载器classloader
 多线程
 IO
+XML
 网络
 数据库
 虚拟机
