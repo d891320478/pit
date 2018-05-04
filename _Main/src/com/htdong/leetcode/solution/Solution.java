@@ -1,5 +1,12 @@
 package com.htdong.leetcode.solution;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
+
+import com.htdong.leetcode.domain.Interval;
+
 /**
  *
  * @author htdong
@@ -8,36 +15,31 @@ package com.htdong.leetcode.solution;
 
 public class Solution {
 
-    public boolean splitArraySameAverage(int[] a) {
-        if (a.length == 1) {
-            return false;
+    public String reorganizeString(String s) {
+        int[] a = new int[256];
+        for (int i = 0; i < s.length(); ++i) {
+            ++a[s.charAt(i)];
         }
-        int ans = 0;
-        int n = a.length;
-        for (int i = 0; i < n; ++i) {
-            ans += a[i];
-        }
-        for (int i = 1; i <= (n + 1) / 2; ++i) {
-            if (ans * i % n == 0) {
-                if (check(a, i, ans * i / n)) {
-                    System.out.println(ans * i / n);
-                    return true;
+        StringBuilder t = new StringBuilder();
+        int lst = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            int max = -1;
+            int ind = -1;
+            for (int j = 0; j < 256; ++j) {
+                if (j != lst && a[j] > 0 && a[j] > max) {
+                    max = a[j];
+                    ind = j;
                 }
             }
+            if (ind != -1) {
+                t.append((char) ind);
+                --a[ind];
+                lst = ind;
+            } else {
+                return "";
+            }
         }
-        return false;
-    }
-
-    private boolean check(int[] a, int n, int sum) {
-        boolean[][] d = new boolean[n + 5][sum + 5];
-        d[0][0] = true;
-        for (int i = 0; i < a.length; ++i)
-            for (int j = Math.min(n, i + 1); j > 0; --j)
-                for (int k = a[i]; k <= sum; ++k)
-                    if (d[j - 1][k - a[i]]) {
-                        d[j][k] = true;
-                    }
-        return d[n][sum];
+        return t.toString();
     }
 
 }

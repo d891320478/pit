@@ -10,7 +10,6 @@ import com.htdong.leetcode.solution.Solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        int[] a = { 2, 12, 18, 16, 19, 3 };
-        System.out.println(new Solution().splitArraySameAverage(a));
+        System.out.println(new Solution().reorganizeString("aaba"));
     }
 }
