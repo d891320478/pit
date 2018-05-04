@@ -30,7 +30,7 @@ public class GaoDe {
 		File f2 = new File("D:/out.txt");
 		out = new BufferedWriter(new FileWriter(f2));
 		String s = HttpConnectionUtil.httpGet(
-				"http://restapi.amap.com/v3/config/district?subdistrict=3&key=7879c61f23bb5ab2dd050353c779898a",
+				"http://restapi.amap.com/v3/config/district?subdistrict=3&key=",
 				String.class);
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
