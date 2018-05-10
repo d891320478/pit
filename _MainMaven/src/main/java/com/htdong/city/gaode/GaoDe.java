@@ -22,41 +22,41 @@ import com.shinemo.client.http.HttpConnectionUtil;
  * @author htdong
  */
 public class GaoDe {
-	private static BufferedWriter out;
-	public static final String SPLIT = "##";
+    private static BufferedWriter out;
+    public static final String SPLIT = "##";
 
-	public static void main(String[] args)
-			throws JsonParseException, JsonMappingException, IOException, PinyinException {
-		File f2 = new File("D:/out.txt");
-		out = new BufferedWriter(new FileWriter(f2));
-		String s = HttpConnectionUtil.httpGet(
-				"http://restapi.amap.com/v3/config/district?subdistrict=3&key=",
-				String.class);
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		Result rlt = objectMapper.readValue(s.toString(), Result.class);
-		write(rlt.getDistricts(), "", 0);
-		out.flush();
-		out.close();
-	}
+    public static void main(String[] args)
+            throws JsonParseException, JsonMappingException, IOException, PinyinException {
+        File f2 = new File("D:/out.txt");
+        out = new BufferedWriter(new FileWriter(f2));
+        String s = HttpConnectionUtil.httpGet(
+                "http://restapi.amap.com/v3/config/district?subdistrict=1&key=27ce3284b1b642a12c28df9c438b8531",
+                String.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        Result rlt = objectMapper.readValue(s.toString(), Result.class);
+        write(rlt.getDistricts(), "", 0);
+        out.flush();
+        out.close();
+    }
 
-	private static void write(List<City> d, String p, int level) throws IOException, PinyinException {
-		for (City i : d) {
-			if ("street".equals(i.getLevel())) {
-				continue;
-			}
-			StringBuilder sb = new StringBuilder();
-			String[] ss = i.getCenter().split(",");
-			sb.append(i.getAdcode()).append(SPLIT).append(i.getName()).append(SPLIT).append(p).append(SPLIT)
-					.append(ss[0]).append(SPLIT).append(ss[1]).append(SPLIT).append(level).append(SPLIT)
-					.append(PinyinHelper.convertToPinyinString(i.getName(), "", PinyinFormat.WITHOUT_TONE))
-					.append(SPLIT).append(PinyinHelper.getShortPinyin(i.getName())).append("\r\n");
-			out.write(sb.toString());
-			if (StringUtils.isBlank(p)) {
-				write(i.getDistricts(), i.getAdcode(), level + 1);
-			} else {
-				write(i.getDistricts(), p + "," + i.getAdcode(), level + 1);
-			}
-		}
-	}
+    private static void write(List<City> d, String p, int level) throws IOException, PinyinException {
+        for (City i : d) {
+            if ("street".equals(i.getLevel())) {
+                continue;
+            }
+            StringBuilder sb = new StringBuilder();
+            String[] ss = i.getCenter().split(",");
+            sb.append(i.getAdcode()).append(SPLIT).append(i.getName()).append(SPLIT).append(p).append(SPLIT)
+                    .append(ss[0]).append(SPLIT).append(ss[1]).append(SPLIT).append(level).append(SPLIT)
+                    .append(PinyinHelper.convertToPinyinString(i.getName(), "", PinyinFormat.WITHOUT_TONE))
+                    .append(SPLIT).append(PinyinHelper.getShortPinyin(i.getName())).append("\r\n");
+            out.write(sb.toString());
+            if (StringUtils.isBlank(p)) {
+                write(i.getDistricts(), i.getAdcode(), level + 1);
+            } else {
+                write(i.getDistricts(), p + "," + i.getAdcode(), level + 1);
+            }
+        }
+    }
 }

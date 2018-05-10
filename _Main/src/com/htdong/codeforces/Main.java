@@ -1,7 +1,5 @@
 package com.htdong.codeforces;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -12,31 +10,32 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static boolean[] flag;
-    private static int ans;
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int m = in.nextInt();
-        List<List<Integer>> e = new ArrayList<>(n + 2);
-        for (int i = 0; i < m; ++i) {
-            int u = in.nextInt();
-            int v = in.nextInt();
-            if (e.get(u) == null) {
-                e.set(u, new ArrayList<>());
+        String n = in.nextLine();
+        int m = Integer.parseInt(n);
+        for (int i = (int) Math.sqrt(m) + 5; i > 0; --i) {
+            if (i * i > m) {
+                continue;
             }
-            if (e.get(v) == null) {
-                e.set(v, new ArrayList<>());
+            String c = (i * i) + "";
+            if (check(n, c)) {
+                System.out.println(n.length() - c.length());
+                in.close();
+                return;
             }
-            e.get(u).add(v);
-            e.get(v).add(u);
         }
-        flag = new boolean[n + 2];
-        ans = 0;
-        for (int i = 1; i <= n; ++i) {
-            flag[i] = true;
-        }
+        System.out.println(-1);
         in.close();
+    }
+
+    private static boolean check(String n, String c) {
+        int i = 0, j = 0;
+        for (; i < c.length() && j < n.length(); ++j) {
+            if (n.charAt(j) == c.charAt(i)) {
+                ++i;
+            }
+        }
+        return i >= c.length();
     }
 }

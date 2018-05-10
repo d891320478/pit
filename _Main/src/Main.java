@@ -1,6 +1,4 @@
 import java.io.IOException;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * 
@@ -9,10 +7,12 @@ import java.util.TreeSet;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Set<String> set = new TreeSet<>();
-        set.add("1");
-        set.remove("2");
-        System.out.println(set.size());
+        Integer a = 1;
+        Integer b = 10000;
+        Integer c = null;
+        System.out.println(a == 1);
+        System.out.println(b == 10000);
+        System.out.println(c == 0);
     }
 
 }
