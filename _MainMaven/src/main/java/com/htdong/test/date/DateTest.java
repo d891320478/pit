@@ -1,8 +1,6 @@
 package com.htdong.test.date;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.ZoneId;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -10,10 +8,8 @@ import java.util.Date;
  * @author htdong
  */
 public class DateTest {
-	public static void main(String[] args) {
-	    LocalDate now = LocalDate.now();
-	    ZoneId zoneId = ZoneId.systemDefault();
-	    Date checkOut = new Date(now.plus(Period.ofDays(90)).atStartOfDay(zoneId).toEpochSecond() * 1000);
-		System.out.println(checkOut);
-	}
+    public static void main(String[] args) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.FFFFFFFXXX");
+        System.err.println(format.format(new Date()));
+    }
 }
