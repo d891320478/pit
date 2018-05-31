@@ -6,13 +6,21 @@ import java.io.IOException;
  */
 public class Main {
 
+    interface Test {
+        boolean check(int x);
+    }
+
+    private static void print(int[] a, Test b) {
+        for (int i : a) {
+            if (b.check(i)) {
+                System.err.println(i);
+            }
+        }
+    }
+
     public static void main(String[] args) throws IOException {
-        Integer a = 1;
-        Integer b = 10000;
-        Integer c = null;
-        System.out.println(a == 1);
-        System.out.println(b == 10000);
-        System.out.println(c == 0);
+        int[] a = { 1, 2, 3, 4, 5 };
+        print(a, (int x) -> x > 2);
     }
 
 }

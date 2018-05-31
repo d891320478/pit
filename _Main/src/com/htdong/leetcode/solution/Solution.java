@@ -1,12 +1,5 @@
 package com.htdong.leetcode.solution;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.List;
-
-import com.htdong.leetcode.domain.Interval;
-
 /**
  *
  * @author htdong
