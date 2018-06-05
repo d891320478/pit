@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Result {
     public static void main(String[] args) throws IOException {
         Scanner in1 = new Scanner(new File("E:\\5.txt"));
-        BufferedWriter out1 = new BufferedWriter(new FileWriter(new File("E:\\6.txt")));
+        BufferedWriter out1 = new BufferedWriter(new FileWriter(new File("E:\\7.txt")));
 
         while (in1.hasNextLine()) {
             String s = in1.nextLine();

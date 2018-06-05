@@ -18,19 +18,19 @@ import java.util.Scanner;
 
 public class Merge {
     public static void main(String[] args) throws IOException {
-        Scanner in1 = new Scanner(new File("E:\\1.txt"));
+        Scanner in1 = new Scanner(new File("E:\\4.txt"));
         Scanner in2 = new Scanner(new File("E:\\2.txt"));
-        BufferedWriter out1 = new BufferedWriter(new FileWriter(new File("E:\\3.txt")));
-        BufferedWriter out2 = new BufferedWriter(new FileWriter(new File("E:\\4.txt")));
+        BufferedWriter out1 = new BufferedWriter(new FileWriter(new File("E:\\5.txt")));
+        BufferedWriter out2 = new BufferedWriter(new FileWriter(new File("E:\\6.txt")));
 
         List<A> la = new ArrayList<>();
         Map<Long, A> map = new HashMap<>();
 
         while (in1.hasNextLine()) {
             String ss = in1.nextLine();
-            String[] s = ss.split("##");
+            String[] s = ss.split("\\$");
             Long preId = s.length > 4 ? Long.parseLong(s[4]) : null;
-            la.add(new A(Long.parseLong(s[1]), s[2], null, Long.parseLong(s[0]), preId, Integer.parseInt(s[3])));
+            la.add(new A(Long.parseLong(s[1]), s[2], null, Long.parseLong(s[0]), preId, Integer.parseInt(s[3]), s[5]));
         }
         for (A j : la) {
             map.put(j.id, j);
@@ -49,15 +49,13 @@ public class Merge {
                 if (j.level == i) {
                     boolean flag = false;
                     for (B k : lb) {
-                        if (k.level == i) {
-                            if (k.name.startsWith(j.name)) {
-                                if (!flag) {
-                                    flag = true;
-                                    out1.write(j.id + "$" + j.code + "$" + j.name + "$" + j.level + "$" + j.preId);
-                                    out1.write("$" + getPre(j, map));
-                                }
-                                out1.write("#" + k.code + "$" + k.name + "$" + k.parent);
+                        if (k.name.startsWith(j.name)) {
+                            if (!flag) {
+                                flag = true;
+                                out1.write(j.id + "$" + j.code + "$" + j.name + "$" + j.level + "$" + j.preId);
+                                out1.write("$" + getPre(j, map));
                             }
+                            out1.write("#" + k.code + "$" + k.name + "$" + k.parent);
                         }
                     }
                     if (!flag) {
@@ -79,9 +77,6 @@ public class Merge {
     }
 
     private static String getPre(A j, Map<Long, A> map) {
-        if (!map.containsKey(j.preId)) {
-            return "";
-        }
-        return getPre(map.get(j.preId), map) + j.name;
+        return j.addr;
     }
 }
