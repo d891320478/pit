@@ -1,6 +1,6 @@
 package com.htdong.leetcode.main;
 
-import com.htdong.leetcode.solution.Solution;
+import com.htdong.leetcode.solution.ExamRoom;
 
 /**
  * 
@@ -10,9 +10,12 @@ import com.htdong.leetcode.solution.Solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        String[] s = { "oath", "pea", "eat", "rain" };
-        char[][] board = { { 'o', 'a', 'a', 'n' }, { 'e', 't', 'a', 'e' }, { 'i', 'h', 'k', 'r' },
-                { 'i', 'f', 'l', 'v' } };
-        System.out.println(new Solution().findWords(board, s));
+        ExamRoom er = new ExamRoom(10);
+        System.out.println(er.seat());
+        System.out.println(er.seat());
+        System.out.println(er.seat());
+        System.out.println(er.seat());
+        er.leave(4);
+        System.out.println(er.seat());
     }
 }
