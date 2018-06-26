@@ -1,6 +1,6 @@
 package com.htdong.leetcode.main;
 
-import com.htdong.leetcode.solution.ExamRoom;
+import com.htdong.leetcode.solution.Solution;
 
 /**
  * 
@@ -10,12 +10,9 @@ import com.htdong.leetcode.solution.ExamRoom;
 
 public class LeetCode {
     public static void main(String[] args) {
-        ExamRoom er = new ExamRoom(10);
-        System.out.println(er.seat());
-        System.out.println(er.seat());
-        System.out.println(er.seat());
-        System.out.println(er.seat());
-        er.leave(4);
-        System.out.println(er.seat());
+        int[] q = { 10, 20, 5 };
+        int[] w = { 70, 50, 30 };
+        int m = 2;
+        System.out.println(new Solution().mincostToHireWorkers(q, w, m));
     }
 }
