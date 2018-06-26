@@ -10,9 +10,11 @@ import com.htdong.leetcode.solution.Solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        int[] q = { 10, 20, 5 };
-        int[] w = { 70, 50, 30 };
-        int m = 2;
-        System.out.println(new Solution().mincostToHireWorkers(q, w, m));
+        int n = 6;
+        int[][] e = { { 0, 1 }, { 0, 2 }, { 2, 3 }, { 2, 4 }, { 2, 5 } };
+        int[] ans = new Solution().sumOfDistancesInTree(n, e);
+        for (int i : ans) {
+            System.out.println(i);
+        }
     }
 }
