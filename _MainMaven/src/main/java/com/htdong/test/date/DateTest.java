@@ -1,7 +1,10 @@
 package com.htdong.test.date;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
+
+import com.shinemo.client.util.DateUtils;
 
 /**
  * 
@@ -9,7 +12,7 @@ import java.util.Date;
  */
 public class DateTest {
     public static void main(String[] args) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.FFFFFFFXXX");
-        System.err.println(format.format(new Date()));
+        System.out.println(DateUtils.getDayBegin(System.currentTimeMillis()));
+        System.out.println(DateUtils.getDayEnd(new Date().getTime()) + 1);
     }
 }
