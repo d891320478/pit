@@ -10,11 +10,7 @@ import com.htdong.leetcode.solution.Solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        int n = 6;
-        int[][] e = { { 0, 1 }, { 0, 2 }, { 2, 3 }, { 2, 4 }, { 2, 5 } };
-        int[] ans = new Solution().sumOfDistancesInTree(n, e);
-        for (int i : ans) {
-            System.out.println(i);
-        }
+        int[] a = { 2, -1, 2 };
+        System.out.println(new Solution().shortestSubarray(a, 3));
     }
 }
