@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ class A {
 public class Main {
 
     public static void main(String[] args) throws IOException {
+        System.out.println(new Date().getTime());
+        System.out.println(new Date().getTime() + 86400000);
         List<A> list = Arrays.asList(new A(), new A(), new A(), new A(), new A());
         Integer[] s = list.stream().map(A::get).toArray(Integer[]::new);
         for (Integer i : s) {
