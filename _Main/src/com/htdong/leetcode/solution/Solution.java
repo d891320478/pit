@@ -15,7 +15,15 @@ public class Solution {
             b[i + 1] = b[i] + a[i];
         }
         int ans = -1;
-        
+
         return ans;
+    }
+
+    public int[][] transpose(int[][] A) {
+        int[][] b = new int[A[0].length][A.length];
+        for (int i = 0; i < A.length; ++i)
+            for (int j = 0; j < A[0].length; ++j)
+                b[j][i] = A[i][j];
+        return b;
     }
 }
