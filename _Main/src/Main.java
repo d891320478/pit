@@ -1,36 +1,32 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 /**
  * 
  * @author htdong
  */
 
-class A {
-    static int x = 1;
-    int a;
-
-    public A() {
-        this.a = ++A.x;
-    }
-
-    public int get() {
-        return a;
-    }
-}
-
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        System.out.println(new Date().getTime());
-        System.out.println(new Date().getTime() + 86400000);
-        List<A> list = Arrays.asList(new A(), new A(), new A(), new A(), new A());
-        Integer[] s = list.stream().map(A::get).toArray(Integer[]::new);
-        for (Integer i : s) {
-            System.out.println(i);
+        Scanner in = new Scanner(new File("E:\\1.txt"));
+        BufferedWriter out = new BufferedWriter(new FileWriter(new File("E:\\2.txt")));
+        Map<String, String> map = new HashMap<>();
+        while (in.hasNextLine()) {
+            String s = in.nextLine();
+            String[] ss = s.split(",");
+            map.put(ss[0], ss[1]);
         }
+        for (Map.Entry<String, String> iter : map.entrySet()) {
+            out.write(iter.getKey() + "," + iter.getValue() + "\n");
+        }
+        out.close();
+        in.close();
     }
 
 }
