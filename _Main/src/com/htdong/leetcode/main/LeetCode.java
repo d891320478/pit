@@ -10,7 +10,6 @@ import com.htdong.leetcode.solution.Solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        int[] a = { 2, -1, 2 };
-        System.out.println(new Solution().shortestSubarray(a, 3));
+        System.out.println(new Solution().minWindow("a", "aa"));
     }
 }
