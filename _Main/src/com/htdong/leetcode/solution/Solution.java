@@ -1,9 +1,7 @@
 package com.htdong.leetcode.solution;
 
 import java.util.LinkedList;
-import java.util.List;
-
-import com.htdong.leetcode.domain.Node;
+import java.util.Queue;
 
 /**
  *
@@ -12,56 +10,53 @@ import com.htdong.leetcode.domain.Node;
  */
 
 public class Solution {
-    private int[] heap;
-    private int lh;
-    private int la;
 
-    private void addHeap(int v, int i) {
-        if (i <= lh) {
-            heap[i] = v;
-            while (i / 2 >= 1) {
-                if (heap[i] < heap[i / 2]) {
-                    int tmp = heap[i];
-                    heap[i] = heap[i / 2];
-                    heap[i / 2] = tmp;
-                    i /= 2;
-                } else {
-                    break;
+    int[] dx = { 1, 0, -1, 0 };
+    int[] dy = { 0, 1, 0, -1 };
+
+    public int largestIsland(int[][] g) {
+        int ans = cnt(g);
+        for (int i = 0; i < g.length; ++i)
+            for (int j = 0; j < g[i].length; ++j)
+                if (g[i][j] == 0) {
+                    g[i][j] = 1;
+                    ans = Math.max(ans, cnt(g));
+                    g[i][j] = 0;
                 }
-            }
-        } else {
-            i = 1;
-            if (heap[i] < v) {
-                heap[i] = v;
-                while (i * 2 <= lh) {
-                    i *= 2;
-                    if (i + 1 <= lh && heap[i + 1] < heap[i]) {
-                        ++i;
-                    }
-                    if (heap[i] < heap[i / 2]) {
-                        int tmp = heap[i];
-                        heap[i] = heap[i / 2];
-                        heap[i / 2] = tmp;
-                    } else {
-                        break;
-                    }
-                }
-            }
-        }
+        return ans;
     }
 
-    public Solution(int k, int[] nums) {
-        heap = new int[k + 2];
-        lh = k;
-        la = nums.length;
-        for (int i = 0; i < nums.length; ++i) {
-            addHeap(nums[i], i + 1);
-        }
-    }
-
-    public int add(int val) {
-        ++la;
-        addHeap(val, la);
-        return heap[1];
+    private int cnt(int[][] g) {
+        boolean[][] vis = new boolean[g.length][g[0].length];
+        int ans = 0;
+        for (int i = 0; i < g.length; ++i)
+            for (int j = 0; j < g[i].length; ++j)
+                if (!vis[i][j] && g[i][j] == 1) {
+                    vis[i][j] = true;
+                    int cnt = 0;
+                    Queue<int[]> q = new LinkedList<>();
+                    int[] z = new int[2];
+                    z[0] = i;
+                    z[1] = j;
+                    q.add(z);
+                    while (!q.isEmpty()) {
+                        ++cnt;
+                        int[] x = q.poll();
+                        for (int k = 0; k < 4; ++k) {
+                            if (x[0] + dx[k] >= 0 && x[0] + dx[k] < g.length)
+                                if (x[1] + dy[k] >= 0 && x[1] + dy[k] < g[0].length)
+                                    if (g[x[0] + dx[k]][x[1] + dy[k]] == 1)
+                                        if (!vis[x[0] + dx[k]][x[1] + dy[k]]) {
+                                            z = new int[2];
+                                            z[0] = x[0] + dx[k];
+                                            z[1] = x[1] + dy[k];
+                                            q.add(z);
+                                            vis[z[0]][z[1]] = true;
+                                        }
+                        }
+                    }
+                    ans = Math.max(ans, cnt);
+                }
+        return ans;
     }
 }
