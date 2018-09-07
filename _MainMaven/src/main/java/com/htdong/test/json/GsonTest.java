@@ -1,12 +1,9 @@
 package com.htdong.test.json;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -20,14 +17,17 @@ import lombok.Setter;
 public class GsonTest {
 
     public static void main(String[] args) {
-        Gson gson = new GsonBuilder().create();
-        String c = "[{\"roomName\":\"房间\",\"roomDesc\":\"房间\",\"photoURL\":[\"http://dimg04.c-ctrip.com/images/200u0b0000005y57nAE8E_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/200c0b0000005y4sq8211_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/200v0b0000005scyv82F2_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/t1/hotel/458/080/846/d39aff301adb4bbfa9d82b182afcebb9_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/200u0b0000005y57mDEEB_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/2007050000000s3gf4FE5_R_550_412.jpg\"]}]";
-        String d = "[{\"roomName\":\"房间\",\"roomDesc\":\"房间\",\"photoURL\":[\"http://dimg04.c-ctrip.com/images/200u0b0000005y57nAE8E_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/200c0b0000005y4sq8211_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/200v0b0000005scyv82F2_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/t1/hotel/458/080/846/d39aff301adb4bbfa9d82b182afcebb9_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/200u0b0000005y57mDEEB_R_550_412.jpg\",\"http://dimg04.c-ctrip.com/images/2007050000000s3gf4FE5_R_550_412.jpg\"]}]___"
-                .substring(0, c.length());
-        System.out.println(c == d);
-        System.out.println(c.equals(d));
-        System.out.println(gson.toJsonTree(c).equals(gson.toJsonTree(d)));
-
+        String json1 = "[{\"id\":1,\"name\":\"eric\"},{\"id\":2,\"name\":\"eric2\"}]";
+        String json2 = "[{\"id\":2,\"name\":\"eric2\"},{\"name\":\"eric\",\"id\":1}]";
+        JsonParser parser = new JsonParser();
+        JsonElement obj = parser.parse(json1);
+        JsonParser parser1 = new JsonParser();
+        JsonElement obj1 = parser1.parse(json2);
+        System.out.println(obj.equals(obj1));
+        Gson gson = new GsonBuilder().create(); 
+        JsonElement e1 = gson.toJsonTree(json1);
+        JsonElement e2 = gson.toJsonTree(json2);  
+        System.out.println(e1.equals(e2));
     }
 }
 
