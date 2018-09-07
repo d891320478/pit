@@ -1,6 +1,11 @@
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * 
@@ -10,24 +15,24 @@ import java.util.TreeMap;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        int[][] a = new int[1001][1001];
-        a[1][0] = 1;
-        for (int i = 2; i <= 1000; ++i) {
-            for (int j = 0, cnt = 0, k = 0; j <= 1000; ++j) {
-                cnt += a[i - 1][j];
-                if (k <= j - i) {
-                    cnt -= a[i - 1][k];
-                    ++k;
-                }
-                a[i][j] = cnt;
-            }
+        Scanner in = new Scanner(new File("E:\\5.txt"));
+        BufferedWriter out = new BufferedWriter(new FileWriter(new File("E:\\6.txt")));
+        List<String> list = new ArrayList<>();
+        while (in.hasNextLine()) {
+            String s = in.nextLine();
+            list.add(s);
         }
-        for (int i = 1; i <= 10; ++i) {
-            for (int j = 0; j <= 10; ++j) {
-                System.out.print(a[i][j] + " ");
-            }
-            System.out.println();
+        list.sort((o1, o2) -> {
+            String[] s1 = o1.split(",");
+            String[] s2 = o2.split(",");
+            return s1[1].compareTo(s2[1]);
+        });
+        for (String s : list) {
+            out.write(s + "\n");
         }
+        out.flush();
+        out.close();
+        in.close();
     }
 
 }
