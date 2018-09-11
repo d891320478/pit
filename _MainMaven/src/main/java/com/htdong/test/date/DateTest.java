@@ -1,7 +1,5 @@
 package com.htdong.test.date;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 import com.shinemo.client.util.DateUtils;
@@ -12,7 +10,6 @@ import com.shinemo.client.util.DateUtils;
  */
 public class DateTest {
     public static void main(String[] args) {
-        System.out.println(DateUtils.getDayBegin(System.currentTimeMillis()));
-        System.out.println(DateUtils.getDayEnd(new Date().getTime()) + 1);
+        System.out.println(new Date(DateUtils.getDayBegin(DateUtils.plusDays(System.currentTimeMillis(), -7))));
     }
 }
