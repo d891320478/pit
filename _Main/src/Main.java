@@ -15,24 +15,26 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(new File("E:\\5.txt"));
-        BufferedWriter out = new BufferedWriter(new FileWriter(new File("E:\\6.txt")));
-        List<String> list = new ArrayList<>();
-        while (in.hasNextLine()) {
-            String s = in.nextLine();
-            list.add(s);
-        }
-        list.sort((o1, o2) -> {
-            String[] s1 = o1.split(",");
-            String[] s2 = o2.split(",");
-            return s1[1].compareTo(s2[1]);
-        });
-        for (String s : list) {
-            out.write(s + "\n");
-        }
-        out.flush();
-        out.close();
-        in.close();
+        T t = new T(2);
+        t.print();
     }
 
+}
+
+class T {
+    private int i = 1;
+    
+    {
+        System.out.println("-" + i);
+        i = 3;
+        System.out.println("--" + i);
+    }
+    
+    public T(int i) {
+        this.i = i;
+    }
+    
+    public void print() {
+        System.out.println(i);
+    }
 }
