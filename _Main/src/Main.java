@@ -15,26 +15,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        T t = new T(2);
-        t.print();
+        System.out.println("复式房, 1 张特大床, 无烟房 (Two-Story Spiral Loft Suite)".length());
     }
 
-}
-
-class T {
-    private int i = 1;
-    
-    {
-        System.out.println("-" + i);
-        i = 3;
-        System.out.println("--" + i);
-    }
-    
-    public T(int i) {
-        this.i = i;
-    }
-    
-    public void print() {
-        System.out.println(i);
-    }
 }
