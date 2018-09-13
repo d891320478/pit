@@ -1,12 +1,7 @@
 package com.htdong.leetcode.solution;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
-
 import com.htdong.leetcode.domain.ListNode;
+import com.htdong.leetcode.domain.TreeNode;
 
 /**
  *
@@ -15,6 +10,8 @@ import com.htdong.leetcode.domain.ListNode;
  */
 
 public class Solution {
+
+    
 
     public boolean isPalindrome(ListNode head) {
         int len = 0;
