@@ -1,7 +1,5 @@
 package com.htdong.leetcode.solution;
 
-import java.util.Arrays;
-
 /**
  *
  * @author htdong
