@@ -17,7 +17,7 @@ public class ProxyMain {
         Class<?>[] cla = new Class<?>[] { TestService.class };
         Object proxy = Proxy.newProxyInstance(TestService.class.getClassLoader(), cla,
                 new TestServiceProxyHandler(new TestServiceImpl()));
-        ((TestService) proxy).test(1);
+        ((TestService) proxy).test1(1);
 
     }
 }

@@ -8,4 +8,9 @@ package com.htdong.proxy.service;
 
 public interface TestService {
     void test(Integer a);
+    
+    default void test1(Integer a) {
+        System.out.println("test1");
+        test(a);
+    }
 }

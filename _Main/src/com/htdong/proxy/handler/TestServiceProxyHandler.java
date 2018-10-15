@@ -24,7 +24,8 @@ public class TestServiceProxyHandler implements InvocationHandler {
         for (Object iter : args) {
             System.err.println(iter);
         }
-        return method.invoke(testService, args);
+        // return method.invoke(testService, args);
+        return null;
     }
 
 }
