@@ -10,8 +10,5 @@ import com.htdong.leetcode.solution.Solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        String[] a = { "amazon", "apple", "facebook", "google", "leetcode" };
-        String[] b = { "e", "o" };
-        System.out.println(new Solution().wordSubsets(a, b));
     }
 }
