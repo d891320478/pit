@@ -2,7 +2,9 @@ package com.htdong.cglib.test;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 import org.objectweb.asm.Type;
 
@@ -17,48 +19,50 @@ public class CGLibExample {
     @SuppressWarnings("rawtypes")
     public static void main(String[] args) {
 
-        // 定义一个参数是字符串类型的setCreatedAt方法
+        Method[] methods = TestInterface.class.getDeclaredMethods();
         InterfaceMaker im = new InterfaceMaker();
-        im.add(new Signature("setCreatedAt", Type.getType(Date.class), new Type[] { Type.getType(String.class) }), null);
-
+        // 新增方法
+        for (Method iter : methods) {
+            Type[] exceptionTypes = new Type[iter.getExceptionTypes().length];
+            Arrays.asList(iter.getExceptionTypes()).stream().map(Type::getType).collect(Collectors.toList())
+                    .toArray(exceptionTypes);
+            Type[] paramTypes = Arrays.copyOf(Type.getArgumentTypes(iter), iter.getParameterTypes().length + 1);
+            paramTypes[paramTypes.length - 1] = Type.getType(AppType.class);
+            im.add(new Signature(iter.getName(), Type.getType(iter.getReturnType()), paramTypes),
+                    exceptionTypes.length == 0 ? null : exceptionTypes);
+        }
         Class myInterface = im.create();
 
+        Method[] ms = myInterface.getMethods();
+        for (Method iter : ms) {
+            System.out.print(iter.getReturnType().getName());
+            System.out.print(" " + iter.getName() + "(");
+            for (int i = 0; i < iter.getParameterTypes().length; ++i) {
+                if (i > 0) {
+                    System.out.print(", ");
+                }
+                System.out.print(iter.getParameterTypes()[i].getName());
+            }
+            System.out.println(");");
+        }
+
         Enhancer enhancer = new Enhancer();
-        // enhancer.setSuperclass(ExampleBean.class);
+        enhancer.setSuperclass(TestInterface.class);
         enhancer.setInterfaces(new Class[] { myInterface });
         enhancer.setCallback(new MethodInterceptor() {
             @Override
             public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-
-                // ExampleBean bean = (ExampleBean) obj;
-
-                // 调用字符串类型的setCreatedAt方法时，转换成Date型后调用Setter
-                if (method.getName().startsWith("setCreatedAt") && args[0] != null && args[0] instanceof String) {
-
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-                    Date date = null;
-                    try {
-                        date = sdf.parse((String) args[0]);
-                    } catch (final Exception e) {
-                        /* nop */ }
-                    // bean.setCreatedAt(date);
-                    System.err.println(args[0]);
-                    return date;
-
+                for (Object i : args) {
+                    System.err.println(i.getClass().getName());
                 }
-                return proxy.invokeSuper(obj, args);
-
+                return null;
             }
         });
 
-        // 生成一个Bean
-        // ExampleBean bean = (ExampleBean) enhancer.create();
-        // bean.setId(999);
         Object obj = enhancer.create();
         try {
-            Method method = obj.getClass().getMethod("setCreatedAt", new Class[] { String.class });
-            Date rlt = (Date)method.invoke(obj, new Object[] { "20160531" });
-            System.out.println(rlt);
+            Method method = obj.getClass().getMethod("f", new Class[] { AppType.class });
+            method.invoke(obj, new Object[] { new AppType() });
         } catch (final Exception e) {
             e.printStackTrace();
         }
