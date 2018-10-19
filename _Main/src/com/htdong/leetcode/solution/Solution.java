@@ -1,10 +1,9 @@
 package com.htdong.leetcode.solution;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import java.util.Queue;
 
 /**
  *
@@ -14,22 +13,50 @@ import java.util.Set;
 
 public class Solution {
 
-    double r, x, y;
+    private final static int MOD = 1000000007;
 
-    public Solution(double radius, double x_center, double y_center) {
-        this.r = radius;
-        this.x = x_center;
-        this.y = y_center;
+    public int profitableSchemes(int n, int m, int[] group, int[] profit) {
+        Map<String, Abc> map = new HashMap<>();
+        Queue<Abc> q = new LinkedList<>();
+
+        Abc abc = new Abc(0, 0, 1);
+        map.put(getKey(0, 0), abc);
+        q.add(abc);
+
+        int ans = 0;
+        while (!q.isEmpty()) {
+            Abc head = q.poll();
+            if (head.b >= m) {
+                ans = (ans + head.c) % MOD;
+            }
+            for (int i = 0; i < group.length; ++i) {
+                if (head.a + group[i] > n) {
+                    continue;
+                }
+                String key = getKey(head.a + group[i], head.b + profit[i]);
+                Abc val = map.get(key);
+                if (val == null) {
+                    val = new Abc(head.a + group[i], head.b + profit[i], 0);
+                    map.put(key, val);
+                    q.add(val);
+                }
+                val.c = (val.c + head.c) % MOD;
+            }
+        }
+        return ans;
     }
 
-    public double[] randPoint() {
-        double[] ret = new double[2];
-        double xx = Math.random() * r;
-        ret[0] = this.x + xx * (Math.random() < 0.5 ? -1 : 1);
-        ret[1] = this.y + Math.random() * Math.sqrt(r * r - xx * xx) * (Math.random() < 0.5 ? -1 : 1);
-        if (Math.pow(ret[0] - this.x, 2.0) + Math.pow(ret[1] - this.y, 2.0) > r * r) {
-            return randPoint();
+    private String getKey(int a, int b) {
+        return a + "_" + b;
+    }
+
+    class Abc {
+        int a, b, c;
+
+        public Abc(int a, int b, int c) {
+            this.a = a;
+            this.b = b;
+            this.c = c;
         }
-        return ret;
     }
 }
