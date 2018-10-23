@@ -1,9 +1,8 @@
 package com.htdong.leetcode.solution;
 
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.Stack;
 
 /**
  *
@@ -13,50 +12,65 @@ import java.util.Queue;
 
 public class Solution {
 
-    private final static int MOD = 1000000007;
+    private static int MOD = 1000000007;
 
-    public int profitableSchemes(int n, int m, int[] group, int[] profit) {
-        Map<String, Abc> map = new HashMap<>();
-        Queue<Abc> q = new LinkedList<>();
+    private static int idx(int l, int r) {
+        return (l + r) | (l != r ? 1 : 0);
+    }
 
-        Abc abc = new Abc(0, 0, 1);
-        map.put(getKey(0, 0), abc);
-        q.add(abc);
+    int[] tr;
 
+    public void build(int[] tr, int l, int r, int[] a) {
+        if (l == r) {
+            tr[idx(l, r)] = a[l];
+            return;
+        }
+        int mid = l + r >> 1;
+        build(tr, l, mid, a);
+        build(tr, mid + 1, r, a);
+        tr[idx(l, r)] = Math.min(tr[idx(l, mid)], tr[idx(mid + 1, r)]);
+    }
+
+    public int query(int l, int r, int s, int t) {
+        if (s <= l && r >= t) {
+            return tr[idx(l, r)];
+        }
+        int mid = l + r >> 1;
+        if (t <= mid) {
+            return query(l, mid, s, t);
+        } else if (s > mid) {
+            return query(mid + 1, r, s, t);
+        } else {
+            return Math.min(query(l, mid, s, t), query(mid + 1, r, s, t));
+        }
+    }
+
+    public int sumSubarrayMins(int[] a) {
+        int n = a.length;
+        tr = new int[n * 2 + 5];
+        build(tr, 0, n - 1, a);
         int ans = 0;
-        while (!q.isEmpty()) {
-            Abc head = q.poll();
-            if (head.b >= m) {
-                ans = (ans + head.c) % MOD;
+        for (int i = 0; i < n; ++i) {
+            int l = 0, r = i - 1;
+            while (l < r) {
+                int mid = l + r + 1 >> 1;
+                if (query(0, n - 1, mid, i - 1) > a[i]) {
+                    r = mid - 1;
+                } else {
+                    l = mid;
+                }
             }
-            for (int i = 0; i < group.length; ++i) {
-                if (head.a + group[i] > n) {
-                    continue;
+            int x = l;
+            l = i + 1;
+            r = n - 1;
+            while (l < r) {
+                int mid = l + r + 1 >> 1;
+                if (query(0, n - 1, i + 1, mid) > a[i]) {
+                    l = mid;
                 }
-                String key = getKey(head.a + group[i], head.b + profit[i]);
-                Abc val = map.get(key);
-                if (val == null) {
-                    val = new Abc(head.a + group[i], head.b + profit[i], 0);
-                    map.put(key, val);
-                    q.add(val);
-                }
-                val.c = (val.c + head.c) % MOD;
             }
         }
-        return ans;
-    }
-
-    private String getKey(int a, int b) {
-        return a + "_" + b;
-    }
-
-    class Abc {
-        int a, b, c;
-
-        public Abc(int a, int b, int c) {
-            this.a = a;
-            this.b = b;
-            this.c = c;
-        }
+        // TODO
+        return 0;
     }
 }
