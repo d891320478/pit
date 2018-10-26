@@ -1,9 +1,5 @@
 package com.htdong.leetcode.solution;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Stack;
-
 /**
  *
  * @author htdong
@@ -12,9 +8,9 @@ import java.util.Stack;
 
 public class Solution {
 
-    private static int MOD = 1000000007;
+    public static int MOD = 1000000007;
 
-    private static int idx(int l, int r) {
+    public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
     }
 

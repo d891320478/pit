@@ -1,7 +1,5 @@
 package com.htdong.leetcode.main;
 
-import com.htdong.leetcode.solution.Solution;
-
 /**
  * 
  * @author htdong

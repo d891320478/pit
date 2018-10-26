@@ -24,10 +24,10 @@ public class TestClass {
 
     public int executeInternal() {
         System.out.println("shihuan executeInternal...");
-        if (true) {
-            System.out.println(this.sql);
-            return 2;
-        }
-        return 3;
+        // if (true) {
+        System.out.println(this.sql);
+        return 2;
+        // }
+        // return 3;
     }
 }
