@@ -1,7 +1,7 @@
 package com.htdong.leetcode.solution;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -12,27 +12,29 @@ import java.util.List;
 public class Solution {
 
     public static int MOD = 1000000007;
+    public static int[] dx = { 1, 0, -1, 0 };
+    public static int[] dy = { 0, -1, 0, 1 };
 
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
     }
 
-    public int maxProfit(int[] p) {
-        int n = p.length;
-        // System.out.println(n);
-        int[] dp = new int[n + 5];
-        int[] tr = new int[n + 5];
-        int ans = 0;
-        for (int i = 1; i <= n; ++i) {
-            for (int j = 1; j < i; ++j) {
-                dp[i] = Math.max(dp[i], p[i - 1] - p[j - 1]);
-                if (j - 2 >= 0) {
-                    dp[i] = Math.max(dp[i], p[i - 1] - p[j - 1] + tr[j - 2]);
+    public int numUniqueEmails(String[] emails) {
+        Set<String> set = new TreeSet<>();
+        for (String i : emails) {
+            String[] s = i.split("@");
+            String k = "";
+            for (int j = 0; j < s[0].length(); ++j) {
+                if (s[0].charAt(j) == '.') {
+                    continue;
                 }
+                if (s[0].charAt(j) == '+') {
+                    break;
+                }
+                k += s[0].charAt(j);
             }
-            ans = Math.max(ans, dp[i]);
-            tr[i] = ans;
+            set.add(k + "@" + s[1]);
         }
-        return ans;
+        return set.size();
     }
 }
