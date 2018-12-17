@@ -1,7 +1,6 @@
 package com.htdong.leetcode.solution;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.TreeSet;
 
 /**
  *
@@ -19,23 +18,21 @@ public class Solution {
         return (l + r) | (l != r ? 1 : 0);
     }
 
-    public List<Integer> partitionLabels(String s) {
-        List<Integer> ans = new LinkedList<>();
-        int[] a = new int[26];
+    public int[] diStringMatch(String s) {
+        TreeSet<Integer> set = new TreeSet<>();
+        for (int i = 0; i <= s.length(); ++i) {
+            set.add(i);
+        }
+        int[] ans = new int[s.length() + 1];
         for (int i = 0; i < s.length(); ++i) {
-            a[s.charAt(i) - 'a'] = i;
-        }
-        s += "0";
-        for (int st = 0, i = 0, lst = 0; i < s.length(); ++i) {
-            if (i > lst) {
-                ans.add(lst - st + 1);
-                st = i;
-                lst = i;
+            if (s.charAt(i) == 'I') {
+                ans[i] = set.first();
+            } else {
+                ans[i] = set.last();
             }
-            if (s.charAt(i) != '0') {
-                lst = Math.max(lst, a[s.charAt(i) - 'a']);
-            }
+            set.remove(ans[i]);
         }
+        ans[s.length()] = set.first();
         return ans;
     }
 }
