@@ -1,6 +1,6 @@
 package com.htdong.leetcode.solution;
 
-import java.util.TreeSet;
+import java.util.List;
 
 /**
  *
@@ -10,29 +10,34 @@ import java.util.TreeSet;
 
 public class Solution {
 
+    public static class Point {
+        int x, y;
+
+        public Point(int[] o) {
+            this.x = o[0];
+            this.y = o[1];
+        }
+
+        @Override
+        public String toString() {
+            return x + " " + y;
+        }
+    }
+
     public static int MOD = 1000000007;
     public static int[] dx = { 1, 0, -1, 0 };
     public static int[] dy = { 0, -1, 0, 1 };
+
+    public static int dot(Point a, Point b, Point c) {
+        return (b.x - a.x) * (c.x - a.x) + (b.y - a.y) * (c.y - a.y);
+    }
+
+    public static int xmult(Point a, Point b, Point c) {
+        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x);
+    }
 
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
     }
 
-    public int[] diStringMatch(String s) {
-        TreeSet<Integer> set = new TreeSet<>();
-        for (int i = 0; i <= s.length(); ++i) {
-            set.add(i);
-        }
-        int[] ans = new int[s.length() + 1];
-        for (int i = 0; i < s.length(); ++i) {
-            if (s.charAt(i) == 'I') {
-                ans[i] = set.first();
-            } else {
-                ans[i] = set.last();
-            }
-            set.remove(ans[i]);
-        }
-        ans[s.length()] = set.first();
-        return ans;
-    }
 }

@@ -1,5 +1,6 @@
 package com.htdong.test.verifyutil;
 
+import com.shinemo.client.util.AESUtil;
 import com.shinemo.client.util.VerifyUtils;
 
 /**
@@ -10,6 +11,6 @@ import com.shinemo.client.util.VerifyUtils;
 
 public class Test {
     public static void main(String[] args) {
-        System.out.println(VerifyUtils.isGe(0L, 1L));
+        System.out.println(AESUtil.md5("123"));
     }
 }
