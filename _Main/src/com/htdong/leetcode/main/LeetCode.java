@@ -1,5 +1,7 @@
 package com.htdong.leetcode.main;
 
+import com.htdong.leetcode.domain.TreeNode;
+
 /**
  * 
  * @author htdong
@@ -8,24 +10,13 @@ package com.htdong.leetcode.main;
 
 public class LeetCode {
     public static void main(String[] args) {
-        long ans = 0;
-        for (long i = 9990000; i < 10000000; ++i) {
-            for (long j = 9990000; j < 10000000; ++j) {
-                if (check(i * j)) {
-                    ans = Math.max(i * j, ans);
-                    if (i * j == 9966006699L) {
-                        System.out.println(i + " " + j);
-                    }
-                }
-            }
-        }
-        System.out.println(ans);
-    }
-
-    private static boolean check(Long k) {
-        if (k.toString().equals(new StringBuffer().append(k.toString()).reverse().toString())) {
-            return true;
-        }
-        return false;
+        TreeNode rt = new TreeNode(0);
+        rt.left = new TreeNode(0);
+        rt.left.left = new TreeNode(0);
+        rt.left.right = new TreeNode(0);
+        // rt.right = new TreeNode(0);
+        // rt.right.left = new TreeNode(0);
+        // rt.right.right = new TreeNode(0);
+        // System.err.println(new Solution().minCameraCover(rt));
     }
 }

@@ -1,5 +1,8 @@
 package com.htdong.leetcode.solution;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -40,4 +43,31 @@ public class Solution {
         return (l + r) | (l != r ? 1 : 0);
     }
 
+    class Edge {
+        int next, v, w;
+
+        public Edge(int next, int v, int w) {
+            this.next = next;
+            this.v = v;
+            this.w = w;
+        }
+    }
+
+    int[] head;
+    Edge[] e;
+    int cnt;
+
+    public void init(int n) {
+        head = new int[n];
+        for (int i = 0; i < n; ++i) {
+            head[i] = -1;
+        }
+        e = new Edge[n << 1];
+        cnt = 0;
+    }
+
+    public void addEdge(int u, int v, int w) {
+        e[cnt] = new Edge(head[u], v, w);
+        head[u] = cnt++;
+    }
 }
