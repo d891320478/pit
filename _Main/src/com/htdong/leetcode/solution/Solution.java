@@ -3,7 +3,9 @@ package com.htdong.leetcode.solution;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 /**
@@ -72,19 +74,37 @@ public class Solution {
         head[u] = cnt++;
     }
 
-    public int findLength(int[] a, int[] b) {
-        int[][] d = new int[a.length][b.length];
-        int ans = 0;
-        for (int i = 0; i < a.length; ++i) {
-            for (int j = 0; j < b.length; ++j) {
-                if (a[i] == b[j]) {
-                    d[i][j] = i - 1 >= 0 && j - 1 >= 0 ? d[i - 1][j - 1] + 1 : 1;
-                } else {
-                    d[i][j] = 0;
-                }
-                ans = Math.max(ans, d[i][j]);
+    public int deleteAndEarn(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        TreeMap<Integer, Integer> map = new TreeMap<>();
+        for (int i = 0; i < nums.length; ++i) {
+            if (map.containsKey(nums[i])) {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            } else {
+                map.put(nums[i], 1);
             }
         }
-        return ans;
+        int[][] d = new int[map.size() + 1][2];
+        int[] a = new int[map.size()];
+        int[] b = new int[map.size()];
+        int j = 0;
+        for (Map.Entry<Integer, Integer> iter : map.entrySet()) {
+            a[j] = iter.getKey();
+            b[j] = iter.getValue();
+            ++j;
+        }
+        d[0][0] = 0;
+        d[0][1] = a[0] * b[0];
+        for (int i = 1; i < map.size(); ++i) {
+            d[i][0] = Math.max(d[i - 1][0], d[i - 1][1]);
+            if (a[i] == a[i - 1] + 1) {
+                d[i][1] = d[i - 1][0] + a[i] * b[i];
+            } else {
+                d[i][1] = Math.max(d[i - 1][0], d[i - 1][1]) + a[i] * b[i];
+            }
+        }
+        return Math.max(d[map.size() - 1][0], d[map.size() - 1][1]);
     }
 }
