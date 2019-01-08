@@ -1,6 +1,6 @@
 package com.htdong.leetcode.main;
 
-import com.htdong.leetcode.domain.TreeNode;
+import com.htdong.leetcode.solution.Solution;
 
 /**
  * 
@@ -10,10 +10,10 @@ import com.htdong.leetcode.domain.TreeNode;
 
 public class LeetCode {
     public static void main(String[] args) {
-        TreeNode rt = new TreeNode(0);
-        rt.left = new TreeNode(0);
-        rt.left.left = new TreeNode(0);
-        rt.left.right = new TreeNode(0);
+        // TreeNode rt = new TreeNode(0);
+        // rt.left = new TreeNode(0);
+        // rt.left.left = new TreeNode(0);
+        // rt.left.right = new TreeNode(0);
         // rt.right = new TreeNode(0);
         // rt.right.left = new TreeNode(0);
         // rt.right.right = new TreeNode(0);

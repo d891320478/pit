@@ -1,9 +1,10 @@
 package com.htdong.leetcode.solution;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  *
@@ -69,5 +70,21 @@ public class Solution {
     public void addEdge(int u, int v, int w) {
         e[cnt] = new Edge(head[u], v, w);
         head[u] = cnt++;
+    }
+
+    public int findLength(int[] a, int[] b) {
+        int[][] d = new int[a.length][b.length];
+        int ans = 0;
+        for (int i = 0; i < a.length; ++i) {
+            for (int j = 0; j < b.length; ++j) {
+                if (a[i] == b[j]) {
+                    d[i][j] = i - 1 >= 0 && j - 1 >= 0 ? d[i - 1][j - 1] + 1 : 1;
+                } else {
+                    d[i][j] = 0;
+                }
+                ans = Math.max(ans, d[i][j]);
+            }
+        }
+        return ans;
     }
 }
