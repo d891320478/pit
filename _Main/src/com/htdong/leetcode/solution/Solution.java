@@ -1,12 +1,6 @@
 package com.htdong.leetcode.solution;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import com.htdong.leetcode.domain.TreeNode;
 
 /**
  *
@@ -74,37 +68,16 @@ public class Solution {
         head[u] = cnt++;
     }
 
-    public int deleteAndEarn(int[] nums) {
-        if (nums.length == 0) {
+    public int rangeSumBST(TreeNode rt, int l, int r) {
+        if (rt == null) {
             return 0;
         }
-        TreeMap<Integer, Integer> map = new TreeMap<>();
-        for (int i = 0; i < nums.length; ++i) {
-            if (map.containsKey(nums[i])) {
-                map.put(nums[i], map.get(nums[i]) + 1);
-            } else {
-                map.put(nums[i], 1);
-            }
+        if (rt.val < l) {
+            return rangeSumBST(rt.right, l, r);
         }
-        int[][] d = new int[map.size() + 1][2];
-        int[] a = new int[map.size()];
-        int[] b = new int[map.size()];
-        int j = 0;
-        for (Map.Entry<Integer, Integer> iter : map.entrySet()) {
-            a[j] = iter.getKey();
-            b[j] = iter.getValue();
-            ++j;
+        if (rt.val > r) {
+            return rangeSumBST(rt.left, l, r);
         }
-        d[0][0] = 0;
-        d[0][1] = a[0] * b[0];
-        for (int i = 1; i < map.size(); ++i) {
-            d[i][0] = Math.max(d[i - 1][0], d[i - 1][1]);
-            if (a[i] == a[i - 1] + 1) {
-                d[i][1] = d[i - 1][0] + a[i] * b[i];
-            } else {
-                d[i][1] = Math.max(d[i - 1][0], d[i - 1][1]) + a[i] * b[i];
-            }
-        }
-        return Math.max(d[map.size() - 1][0], d[map.size() - 1][1]);
+        return rt.val + rangeSumBST(rt.left, l, r) + rangeSumBST(rt.right, l, r);
     }
 }
