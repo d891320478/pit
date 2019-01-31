@@ -1,6 +1,7 @@
 package com.htdong.leetcode.solution;
 
-import com.htdong.leetcode.domain.TreeNode;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  *
@@ -68,16 +69,20 @@ public class Solution {
         head[u] = cnt++;
     }
 
-    public int rangeSumBST(TreeNode rt, int l, int r) {
-        if (rt == null) {
-            return 0;
+    public int[][] kClosest(int[][] points, int K) {
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                int a = o1[0] * o1[0] + o1[1] * o1[1];
+                int b = o2[0] * o2[0] + o2[1] * o2[1];
+                return a < b ? -1 : a == b ? 0 : 1;
+            }
+        });
+        int[][] a = new int[K][2];
+        for (int i = 0; i < K; ++i) {
+            a[i][0] = points[i][0];
+            a[i][1] = points[i][1];
         }
-        if (rt.val < l) {
-            return rangeSumBST(rt.right, l, r);
-        }
-        if (rt.val > r) {
-            return rangeSumBST(rt.left, l, r);
-        }
-        return rt.val + rangeSumBST(rt.left, l, r) + rangeSumBST(rt.right, l, r);
+        return a;
     }
 }
