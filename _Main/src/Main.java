@@ -1,5 +1,3 @@
-import java.util.Date;
-
 /**
  * 
  * @author htdong
@@ -8,6 +6,11 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(new Date(1548916625800L));
+        Long a = 1L;
+        long b = 1L;
+        a -= a;
+        b -= 10;
+        System.out.println(a);
+        System.out.println(b);
     }
 }

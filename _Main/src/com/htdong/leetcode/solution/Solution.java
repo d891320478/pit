@@ -1,7 +1,7 @@
 package com.htdong.leetcode.solution;
 
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  *
@@ -67,22 +67,5 @@ public class Solution {
     public void addEdge(int u, int v, int w) {
         e[cnt] = new Edge(head[u], v, w);
         head[u] = cnt++;
-    }
-
-    public int[][] kClosest(int[][] points, int K) {
-        Arrays.sort(points, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                int a = o1[0] * o1[0] + o1[1] * o1[1];
-                int b = o2[0] * o2[0] + o2[1] * o2[1];
-                return a < b ? -1 : a == b ? 0 : 1;
-            }
-        });
-        int[][] a = new int[K][2];
-        for (int i = 0; i < K; ++i) {
-            a[i][0] = points[i][0];
-            a[i][1] = points[i][1];
-        }
-        return a;
     }
 }
