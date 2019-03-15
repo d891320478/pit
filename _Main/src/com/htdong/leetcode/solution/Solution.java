@@ -1,9 +1,7 @@
 package com.htdong.leetcode.solution;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -73,27 +71,37 @@ public class Solution {
         head[u] = cnt++;
     }
 
+    public Interval[] intervalIntersection(Interval[] a, Interval[] b) {
+        List<Interval> list = new LinkedList<>();
+        for (int i = 0, j = 0; i < a.length && j < b.length;) {
+            Interval x = a[i];
+            Interval y = b[j];
+            int u = Math.max(x.start, y.start);
+            int v = Math.min(x.end, y.end);
+            if (u <= v) {
+                list.add(new Interval(u, v));
+            }
+            if (x.end < y.end) {
+                ++i;
+            } else if (x.end > y.end) {
+                ++j;
+            } else {
+                ++i;
+                ++j;
+            }
+        }
+        Interval[] ans = new Interval[list.size()];
+        list.toArray(ans);
+        return ans;
+    }
+
     public int mergeStones(int[] a, int k) {
+        // TODO leetcode 1000
         int n = a.length;
         if ((n - 1) % (k - 1) > 0) {
             return -1;
         }
-        int[][] d = new int[n][n];
-        for (int i = 0; i + k - 1 < n; ++i) {
-            for (int j = i; j <= i + k - 1; ++j) {
-                d[i][i + k - 1] += a[j];
-            }
-        }
-        for (int i = k; i < n; ++i) {
-            for (int j = 0; j + i - 1 < n; ++j) {
-                for (int l = j; l < j + i - 1; ++l) {
-                    if (d[j][l] > 0 && d[l + 1][j + i - 1] > 0) {
-                        d[j][j + i - 1] = d[j][j + i - 1] == 0 ? d[j][l] + d[l + 1][j + i - 1]
-                                : Math.min(d[j][j + i - 1], d[j][l] + d[l + 1][j + i - 1]);
-                    }
-                }
-            }
-        }
-        return d[0][n - 1];
+        int ans = 0;
+        return ans;
     }
 }

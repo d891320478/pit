@@ -1,6 +1,6 @@
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Period;
 
 /**
  * 
@@ -10,13 +10,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws FileNotFoundException {
-        Scanner in = new Scanner(new File("E:/1.txt"));
-        while (in.hasNextLine()) {
-            String s = in.nextLine();
-            String[] ss = s.split("###");
-            System.out.println("// " + ss[2]);
-            System.out.println("private " + ss[1] + " " + ss[0] + ";");
-        }
-        in.close();
+        LocalDate a = LocalDate.now();
+        LocalDate b = LocalDate.of(2019, 3, 25);
+        System.out.println(Period.between(a, b).getDays());
     }
 }
