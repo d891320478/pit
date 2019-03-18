@@ -1,7 +1,6 @@
 package com.htdong.test.verifyutil;
 
 import com.shinemo.client.util.AESUtil;
-import com.shinemo.client.util.VerifyUtils;
 
 /**
  *
