@@ -1,9 +1,7 @@
 package com.htdong.cglib.test;
 
 import java.lang.reflect.Method;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.stream.Collectors;
 
 import org.objectweb.asm.Type;

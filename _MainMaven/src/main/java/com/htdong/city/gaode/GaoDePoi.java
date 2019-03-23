@@ -22,5 +22,6 @@ public class GaoDePoi {
         map.put("extensions", "all");
         String s = HttpConnectionUtil.httpGet(
                 "https://restapi.amap.com/v3/place/text?key=27ce3284b1b642a12c28df9c438b8531", map, String.class);
+        System.out.println(s);
     }
 }

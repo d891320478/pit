@@ -55,7 +55,7 @@ public class AsmTest {
             super(new URL[0], MemoryClassLoader.class.getClassLoader());
         }
 
-        public Class<?> defineClass(Class clazz, byte[] buf) {
+        public Class<?> defineClass(Class<?> clazz, byte[] buf) {
             return defineClass(clazz.getName(), buf, 0, buf.length);
         }
     }
