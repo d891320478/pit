@@ -1,7 +1,9 @@
 package com.htdong.leetcode.solution;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
+
+import com.htdong.leetcode.domain.TreeNode;
 
 /**
  *
@@ -71,28 +73,39 @@ public class Solution {
         head[u] = cnt++;
     }
 
-    public Interval[] intervalIntersection(Interval[] a, Interval[] b) {
-        List<Interval> list = new LinkedList<>();
-        for (int i = 0, j = 0; i < a.length && j < b.length;) {
-            Interval x = a[i];
-            Interval y = b[j];
-            int u = Math.max(x.start, y.start);
-            int v = Math.min(x.end, y.end);
-            if (u <= v) {
-                list.add(new Interval(u, v));
+    int dep;
+
+    public List<List<String>> printTree(TreeNode root) {
+        dep = 0;
+        dfsDep(root, 1);
+        List<List<String>> ans = new ArrayList<>();
+        for (int i = 0; i < dep; ++i) {
+            List<String> list = new ArrayList<>((1 << dep) - 1);
+            for (int j = 0; j < (1 << dep) - 1; ++j) {
+                list.add("");
             }
-            if (x.end < y.end) {
-                ++i;
-            } else if (x.end > y.end) {
-                ++j;
-            } else {
-                ++i;
-                ++j;
-            }
+            ans.add(list);
         }
-        Interval[] ans = new Interval[list.size()];
-        list.toArray(ans);
+        dfs(root, ans, dep, 0, 1 << (dep - 1));
         return ans;
+    }
+
+    private void dfs(TreeNode rt, List<List<String>> ans, int dep, int index, int set) {
+        if (rt == null) {
+            return;
+        }
+        ans.get(index).set(set - 1, rt.val + "");
+        dfs(rt.left, ans, dep - 1, index + 1, set - (1 << (dep - 1)));
+        dfs(rt.right, ans, dep - 1, index + 1, set + (1 << (dep - 1)));
+    }
+
+    private void dfsDep(TreeNode rt, int index) {
+        if (rt == null) {
+            return;
+        }
+        dep = Math.max(dep, index);
+        dfsDep(rt.left, index + 1);
+        dfsDep(rt.right, index + 1);
     }
 
     public int mergeStones(int[] a, int k) {

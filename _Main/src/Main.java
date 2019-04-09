@@ -1,7 +1,3 @@
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.Period;
-
 /**
  * 
  * @author htdong
@@ -9,10 +5,14 @@ import java.time.Period;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        LocalDate a = LocalDate.now();
-        LocalDate b = LocalDate.of(2019, 3, 25);
-        System.out.println(Period.between(a, b).getDays());
-        System.out.println((Integer.MAX_VALUE - System.currentTimeMillis()/1000)/86400/365);
+    static class Test {
+        Integer a, b;
     }
+
+    public static void main(String[] args) {
+        Test t = new Test();
+        t.a = 0;
+        System.out.println(t.b != null ? t.a - t.b : t.a);
+    }
+
 }
