@@ -1,12 +1,8 @@
 package com.htdong.city.ly;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 
-import org.apache.commons.lang.StringUtils;
+import com.shinemo.client.util.AESUtil;
 
 /**
  * 
@@ -14,17 +10,8 @@ import org.apache.commons.lang.StringUtils;
  */
 public class Ly {
 
-	public static void main(String[] args) throws IOException {
-		Scanner in = new Scanner(new File("D:\\1.txt"));
-		BufferedWriter out = new BufferedWriter(new FileWriter(new File("D:\\2.txt")));
-		while (in.hasNextLine()) {
-			String s = in.nextLine();
-			if (!StringUtils.isBlank(s)) {
-				out.write("##" + s + "\r\n");
-			}
-		}
-		out.flush();
-		out.close();
-		in.close();
-	}
+    public static void main(String[] args) throws IOException {
+        System.out.println(AESUtil.md5(
+                "access_token=Rdzg3//38kqHJkEVl42Vv+U6/NNsHz8bVefXl2+bvBIk+mHAf4RqWKT7UF0lmCPC&format=json&method=project_sync&partner_id=149EFA21CF&post_body={\"chineseDesc\":\"出差项目1\",\"code\":\"project1\",\"orgId\":\"TEST001\",\"status\":1}&requestid=aeb5961ea03e485fb6d3525ef9deebf6&signature_method=md5&timestamp=2019-02-13 13:43:49&version=v2&signature_key=ea03e485fb6d3525ef9d"));
+    }
 }
