@@ -1,7 +1,3 @@
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
-
 /**
  * 
  * @author htdong
@@ -10,8 +6,7 @@ import java.util.Date;
 public class Main {
 
     public static void main(String[] args) {
-        String s = "翻译";
-        System.out.println();
+        System.out.println(String.format("%08d", 123));
     }
 
 }
