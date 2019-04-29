@@ -7,6 +7,6 @@ package com.htdong.leetcode.main;
  */
 
 public class LeetCode {
-    public static void main(String[] args) {
-    }
+	public static void main(String[] args) {
+	}
 }
