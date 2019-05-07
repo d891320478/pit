@@ -1,5 +1,6 @@
 package com.htdong.codeforces;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -12,30 +13,254 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        String n = in.nextLine();
-        int m = Integer.parseInt(n);
-        for (int i = (int) Math.sqrt(m) + 5; i > 0; --i) {
-            if (i * i > m) {
-                continue;
-            }
-            String c = (i * i) + "";
-            if (check(n, c)) {
-                System.out.println(n.length() - c.length());
-                in.close();
-                return;
-            }
+        int n = in.nextInt();
+        int m = in.nextInt();
+        Treap t1 = new Treap();
+        Treap t2 = new Treap();
+        for (int i = 0; i < n; ++i) {
+            int a = in.nextInt();
+            t1.insert(i, a);
+            t2.insert(a, i);
         }
-        System.out.println(-1);
+        int[] ans = new int[n];
+        int v = 1;
+        while (t2.size() > 0) {
+            int key = t2.maxKey();
+            int val = t2.find(key);
+            ans[val] = v;
+            t1.remove(val);
+            t2.remove(key);
+            for (int i = 0; i < m; ++i) {
+                int k = t1.findLowerOrEqual(val);
+                if (k != -1) {
+                    ans[k] = v;
+                    t2.remove(t1.find(k));
+                    t1.remove(k);
+                }
+                k = t1.findUpperOrEqual(val);
+                if (k != -1) {
+                    ans[k] = v;
+                    t2.remove(t1.find(k));
+                    t1.remove(k);
+                }
+            }
+            v = 3 - v;
+        }
+        for (int i = 0; i < n; ++i) {
+            System.out.print(ans[i]);
+        }
+        System.out.println();
         in.close();
     }
 
-    private static boolean check(String n, String c) {
-        int i = 0, j = 0;
-        for (; i < c.length() && j < n.length(); ++j) {
-            if (n.charAt(j) == c.charAt(i)) {
-                ++i;
+    static class TreapNode {
+        int key, val;
+        int wht, sz;
+        TreapNode[] ch;
+        private static TreapNode LEAF = null;
+        private static final Random RAND = new Random(System.currentTimeMillis());
+
+        public static TreapNode leaf() {
+            if (LEAF != null) {
+                return LEAF;
+            }
+            LEAF = new TreapNode();
+            LEAF.ch = new TreapNode[2];
+            LEAF.ch[0] = LEAF.ch[1] = LEAF;
+            LEAF.sz = 0;
+            LEAF.key = -1;
+            LEAF.val = -1;
+            LEAF.wht = -2147483648;
+            return LEAF;
+        }
+
+        private TreapNode() {
+        }
+
+        public TreapNode(int key, int val) {
+            ch = new TreapNode[2];
+            ch[0] = ch[1] = leaf();
+            this.key = key;
+            this.val = val;
+            this.sz = 1;
+            this.wht = RAND.nextInt(2147483647);
+        }
+
+        @Override
+        public String toString() {
+            return "key= " + key + ", val = " + val;
+        }
+    }
+
+    static class Treap {
+
+        private TreapNode root, leaf;
+
+        public Treap() {
+            leaf = TreapNode.leaf();
+            root = leaf;
+        }
+
+        public void insert(int key, int val) {
+            insert(root, key, val, null, 0);
+        }
+
+        public void remove(int key) {
+            remove(root, key, null, 0);
+        }
+
+        public int find(int key) {
+            return find(root, key);
+        }
+
+        public int findLowerOrEqual(int key) {
+            TreapNode rlt = findLowerOrEqual(root, key);
+            return rlt == leaf ? -1 : rlt.key;
+        }
+
+        public int findUpperOrEqual(int key) {
+            TreapNode rlt = findUpperOrEqual(root, key);
+            return rlt == leaf ? -1 : rlt.key;
+        }
+
+        public int maxKey() {
+            TreapNode t = root;
+            while (t.ch[1] != leaf) {
+                t = t.ch[1];
+            }
+            return t.key;
+        }
+
+        public int size() {
+            return root.sz;
+        }
+
+        private void insert(TreapNode x, int key, int val, TreapNode px, int pt) {
+            if (x == leaf) {
+                x = new TreapNode(key, val);
+                if (px != null) {
+                    px.ch[pt] = x;
+                } else {
+                    root = x;
+                }
+                return;
+            }
+            if (key == x.key) {
+                x.val = val;
+            } else {
+                int son = key < x.key ? 0 : 1;
+                insert(x.ch[son], key, val, x, son);
+                if (x.wht < x.ch[son].wht) {
+                    rotate(x, son, px, pt);
+                }
+            }
+            update(x);
+        }
+
+        private void remove(TreapNode x, int key, TreapNode px, int pt) {
+            if (x == leaf) {
+                return;
+            }
+            if (x.key == key) {
+                if (x.ch[0] == leaf && x.ch[1] == leaf) {
+                    if (px == null) {
+                        root = leaf;
+                    } else {
+                        px.ch[pt] = leaf;
+                    }
+                    return;
+                }
+                int son = x.ch[0].wht > x.ch[1].wht ? 0 : 1;
+                rotate(x, son, px, pt);
+                remove(x, key, px == null ? root : px.ch[pt], son ^ 1);
+            } else {
+                int son = key < x.key ? 0 : 1;
+                remove(x.ch[son], key, x, son);
+            }
+            update(x);
+        }
+
+        private int find(TreapNode x, int key) {
+            if (x == leaf) {
+                return -1;
+            }
+            if (x.key == key) {
+                return x.val;
+            }
+            return find(x.ch[key < x.key ? 0 : 1], key);
+        }
+
+        private TreapNode findLowerOrEqual(TreapNode x, int key) {
+            if (x == leaf) {
+                return leaf;
+            }
+            if (x.key == key) {
+                return x;
+            }
+            if (x.key > key) {
+                return findLowerOrEqual(x.ch[0], key);
+            }
+            TreapNode lv = findLowerOrEqual(x.ch[1], key);
+            if (lv == leaf || lv.key > key) {
+                return x;
+            } else {
+                return lv;
             }
         }
-        return i >= c.length();
+
+        private TreapNode findUpperOrEqual(TreapNode x, int key) {
+            if (x == leaf) {
+                return leaf;
+            }
+            if (x.key == key) {
+                return x;
+            }
+            if (x.key < key) {
+                return findUpperOrEqual(x.ch[1], key);
+            }
+            TreapNode lv = findUpperOrEqual(x.ch[0], key);
+            if (lv == leaf || lv.key < key) {
+                return x;
+            } else {
+                return lv;
+            }
+        }
+
+        private void update(TreapNode t) {
+            t.sz = 1 + t.ch[0].sz + t.ch[1].sz;
+        }
+
+        private void rotate(TreapNode x, int t, TreapNode px, int pt) {
+            TreapNode s = x.ch[t];
+            x.ch[t] = s.ch[t ^ 1];
+            s.ch[t ^ 1] = x;
+            update(x);
+            update(s);
+            if (px != null) {
+                px.ch[pt] = s;
+            } else {
+                root = s;
+            }
+        }
+    }
+
+    static class SegmentTree {
+        public int[] tr;
+        public int[] lzy;
+
+        public SegmentTree(int n) {
+            tr = new int[n << 1];
+            lzy = new int[n << 1];
+        }
+
+        public int idx(int l, int r) {
+            return (l + r) | (l != r ? 1 : 0);
+        }
+
+        public void pushdown(int l, int r, int mid) {
+        }
+
+        public void pushup(int l, int r, int mid) {
+        }
     }
 }
