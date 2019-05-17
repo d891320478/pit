@@ -13,44 +13,19 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int m = in.nextInt();
-        Treap t1 = new Treap();
-        Treap t2 = new Treap();
-        for (int i = 0; i < n; ++i) {
-            int a = in.nextInt();
-            t1.insert(i, a);
-            t2.insert(a, i);
-        }
-        int[] ans = new int[n];
-        int v = 1;
-        while (t2.size() > 0) {
-            int key = t2.maxKey();
-            int val = t2.find(key);
-            ans[val] = v;
-            t1.remove(val);
-            t2.remove(key);
-            for (int i = 0; i < m; ++i) {
-                int k = t1.findLowerOrEqual(val);
-                if (k != -1) {
-                    ans[k] = v;
-                    t2.remove(t1.find(k));
-                    t1.remove(k);
-                }
-                k = t1.findUpperOrEqual(val);
-                if (k != -1) {
-                    ans[k] = v;
-                    t2.remove(t1.find(k));
-                    t1.remove(k);
-                }
-            }
-            v = 3 - v;
-        }
-        for (int i = 0; i < n; ++i) {
-            System.out.print(ans[i]);
-        }
-        System.out.println();
         in.close();
+    }
+
+    public static long pow(long a, int n, long mod) {
+        long ans = 1;
+        while (n > 0) {
+            if ((n & 1) > 0) {
+                ans = ans * a % mod;
+            }
+            a = a * a & mod;
+            n >>= 1;
+        }
+        return ans;
     }
 
     static class TreapNode {

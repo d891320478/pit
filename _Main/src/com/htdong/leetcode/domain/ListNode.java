@@ -13,4 +13,8 @@ public class ListNode {
     public ListNode(int x) {
         val = x;
     }
+
+    public String toString() {
+        return val + (next != null ? "->" + next.toString() : "");
+    }
 }
