@@ -11,16 +11,16 @@ public class Graph {
         }
     }
 
-    int[] head;
-    Edge[] e;
-    int cnt;
+    public int[] head;
+    public Edge[] e;
+    public int cnt;
 
-    public void init(int n) {
+    public void init(int n, int m) {
         head = new int[n];
         for (int i = 0; i < n; ++i) {
             head[i] = -1;
         }
-        e = new Edge[n << 1];
+        e = new Edge[m];
         cnt = 0;
     }
 

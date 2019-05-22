@@ -1,5 +1,7 @@
 import java.io.IOException;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * 
@@ -9,7 +11,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Scanner in = new Scanner(System.in);
-        in.close();
+        System.out.println(LocalDateTime.ofInstant(new Date(1558253324000L).toInstant(), ZoneId.systemDefault()));
     }
 }
