@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.htdong</groupId>
-    <artifactId>mainMaven</artifactId>
+    <artifactId>_mainMaven</artifactId>
     <version>1.0.0</version>
 
     <packaging>jar</packaging>
-    <name>mainMaven</name>
+    <name>_mainMaven</name>
 
     <properties>
         <project-encoding>UTF-8</project-encoding>
@@ -69,7 +69,7 @@
     </dependencies>
 
     <build>
-        <finalName>mainMaven</finalName>
+        <finalName>_mainMaven</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
