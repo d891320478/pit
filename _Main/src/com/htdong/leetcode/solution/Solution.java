@@ -7,26 +7,6 @@ package com.htdong.leetcode.solution;
 
 public class Solution {
 
-    public String orderlyQueue(String s, int k) {
-        String ans = s;
-        while (true) {
-            boolean flag = false;
-            for (int i = 0; i < k; ++i) {
-                String t = s.substring(0, i) + s.substring(i + 1) + s.substring(i, i + 1);
-                if (t.compareTo(ans) < 0) {
-                    ans = t;
-                    flag = true;
-                }
-            }
-            if (flag) {
-                s = ans;
-            } else {
-                break;
-            }
-        }
-        return ans;
-    }
-
     public int maxProfit(int[] p, int fee) {
         int[] d = new int[p.length];
         int[] e = new int[p.length];
@@ -40,5 +20,74 @@ public class Solution {
             // d[i] = max(d[i], p[i]-p[k]-fee+d[k-1])
         }
         return d[p.length - 1];
+    }
+}
+
+class MyCalendarThree {
+
+    class TreeNode {
+        int mx;
+        int lzy;
+        int l, r;
+        TreeNode ls, rs;
+
+        public TreeNode(int l, int r) {
+            mx = lzy = 0;
+            this.l = l;
+            this.r = r;
+        }
+
+        @Override
+        public String toString() {
+            return "mx = " + mx + ", lzy = " + lzy + ", l = " + l + ", r = " + r;
+        }
+    }
+
+    TreeNode rt;
+
+    public MyCalendarThree() {
+        rt = new TreeNode(0, 1000000000);
+    }
+
+    public int book(int s, int t) {
+        --t;
+        add(s, t, rt);
+        return rt.mx;
+    }
+
+    private void pushdown(TreeNode t) {
+        int mid = t.l + t.r >> 1;
+        if (t.ls == null) {
+            t.ls = new TreeNode(t.l, mid);
+        }
+        if (t.rs == null) {
+            t.rs = new TreeNode(mid + 1, t.r);
+        }
+        t.ls.lzy += t.lzy;
+        t.rs.lzy += t.lzy;
+        t.ls.mx += t.lzy;
+        t.rs.mx += t.lzy;
+        t.lzy = 0;
+    }
+
+    private void pushup(TreeNode t) {
+        t.mx = Math.max(t.ls.mx, t.rs.mx);
+    }
+
+    private void add(int l, int r, TreeNode t) {
+        if (l <= t.l && r >= t.r) {
+            ++t.mx;
+            ++t.lzy;
+            return;
+        }
+        int mid = t.l + t.r >> 1;
+        pushdown(t);
+        if (l <= mid) {
+            add(l, r, t.ls);
+        }
+        if (r > mid) {
+            add(l, r, t.rs);
+        }
+        pushup(t);
     }
 }

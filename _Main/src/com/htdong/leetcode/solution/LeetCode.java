@@ -1,6 +1,4 @@
-package com.htdong.leetcode.main;
-
-import com.htdong.leetcode.solution.Solution;
+package com.htdong.leetcode.solution;
 
 /**
  * @author htdong
@@ -9,6 +7,5 @@ import com.htdong.leetcode.solution.Solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        System.out.println(new Solution());
     }
 }
