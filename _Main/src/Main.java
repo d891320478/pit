@@ -9,14 +9,8 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Pattern p = Pattern.compile("共\\d+页");
-        Pattern p1 = Pattern.compile("\\d+");
-        Matcher m = p.matcher("共18页");
-        m.find();
-        String b = m.group();
-        Matcher m1 = p1.matcher(b);
-        m1.find();
-        int a = Integer.parseInt(m1.group());
-        System.out.println(a);
+        Long x = Long.valueOf(123213123);
+        Long y = Long.valueOf(123213123);
+        System.out.println(x != y);
     }
 }
