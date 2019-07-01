@@ -1,7 +1,6 @@
-import java.io.File;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.TreeMap;
 
 /**
  * @author htdong
@@ -9,8 +8,10 @@ import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Long x = Long.valueOf(123213123);
-        Long y = Long.valueOf(123213123);
-        System.out.println(x != y);
+        TreeMap<String,String> map = new TreeMap<>();
+        map.put("2", "2");
+        map.put("1", "1");
+        map.put("3", "3");
+        System.out.println(new ArrayList<>(map.values()));
     }
 }
