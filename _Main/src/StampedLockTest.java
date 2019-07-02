@@ -3,10 +3,10 @@ import java.util.concurrent.locks.StampedLock;
 public class StampedLockTest {
     public static void main(String[] args) {
         final Point p = new Point();
+        new Thread(() -> System.out.println("1_" + p.distanceFromOrigin())).start();
         new Thread(() -> p.move1(1.0, 2.0)).start();
         new Thread(() -> p.move2(2.0, 3.0)).start();
         new Thread(() -> p.move3(0.0, 0.0)).start();
-        new Thread(() -> System.out.println("1_" + p.distanceFromOrigin())).start();
         new Thread(() -> p.moveIfAtOrigin(5.0, 5.0)).start();
     }
 }
