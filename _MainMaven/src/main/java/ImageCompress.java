@@ -1,43 +1,29 @@
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
-
-@SuppressWarnings("restriction")
 public class ImageCompress {
 
     public static void main(String[] args) throws IOException {
-        reduceImgAll(600, 600);
-    }
-
-    public static void reduceImgAll(int widthdist, int heightdist) {
-        try {
-            File[] srcfile = new File[] { new File("E:/1.gif") };
-            if (srcfile != null) {
-                for (int i = 0; i < srcfile.length; i++) {
-                    if (srcfile[i].isFile() && (srcfile[i].getName().endsWith(".jpg")
-                            || srcfile[i].getName().endsWith(".JPG") || srcfile[i].getName().endsWith(".gif")
-                            || srcfile[i].getName().endsWith(".gif"))) {
-                        Image src = javax.imageio.ImageIO.read(srcfile[i]);
-                        BufferedImage tag = new BufferedImage((int) widthdist, (int) heightdist,
-                                BufferedImage.TYPE_INT_RGB);
-                        tag.getGraphics().drawImage(src.getScaledInstance(widthdist, heightdist, Image.SCALE_SMOOTH), 0,
-                                0, null);
-                        FileOutputStream out = new FileOutputStream("E:/temp_gif/" + srcfile[i].getName());
-                        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
-                        System.out.println(srcfile[i].getName());
-                        encoder.encode(tag);
-                        out.close();
-                    }
+        try (ZipInputStream zip = new ZipInputStream(new FileInputStream(new File("E:/1.zip")))) {
+            ZipEntry entry;
+            while ((entry = zip.getNextEntry()) != null) {
+                byte[] buf = new byte[1024];
+                int num = -1;
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                while ((num = zip.read(buf, 0, buf.length)) != -1) {
+                    baos.write(buf, 0, num);
                 }
+                String picName = entry.getName().trim();
+                FileOutputStream out = new FileOutputStream(new File("E:/" + picName));
+                out.write(baos.toByteArray());
+                out.flush();
+                out.close();
             }
-        } catch (IOException ex) {
-            ex.printStackTrace();
         }
     }
-
 }
