@@ -66,6 +66,11 @@
             <artifactId>cglib</artifactId>
             <version>3.2.4</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.junrar</groupId>
+            <artifactId>junrar</artifactId>
+            <version>4.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

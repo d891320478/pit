@@ -2,8 +2,6 @@ package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
 
-import com.htdong.leetcode.domain.ListNode;
-
 /**
  * @author htdong
  * @date 2018年4月8日 下午2:35:54
