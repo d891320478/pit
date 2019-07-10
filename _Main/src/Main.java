@@ -1,17 +1,16 @@
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * @author htdong
  */
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        List<Integer> list = new LinkedList<>();
-        list.add(0, 1);
-        list.add(0, 2);
-        list.add(0, 3);
-        System.out.println(list);
+    public static void main(String[] args) throws IOException, ParseException {
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date d = f.parse("1900-01-01 00:00:00");
+        System.out.println(d.getTime() < 0);
     }
 }
