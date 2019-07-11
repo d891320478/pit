@@ -1,16 +1,22 @@
 import java.io.IOException;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
 
 /**
  * @author htdong
  */
 
 public class Main {
-    public static void main(String[] args) throws IOException, ParseException {
-        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date d = f.parse("1900-01-01 00:00:00");
-        System.out.println(d.getTime() < 0);
+    public static void main(String[] args) throws IOException {
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 1; i <= 10000; ++i) {
+            q.add(i);
+        }
+        q = null;
+        System.gc();
+        Scanner in = new Scanner(System.in);
+        in.nextLine();
+        in.close();
     }
 }

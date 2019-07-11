@@ -4,6 +4,8 @@ StampedLock
 ThreadLocal
 LockSupport
 线程池
+引用类型
+WeakHashMap
 ==========done==========
 HashMap
 ConcurrentHashMap
