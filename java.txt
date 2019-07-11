@@ -11,6 +11,10 @@ WeakReference
 PhantomReference
 WeakHashMap
 servlet
+guava
+dubbo
+tomcat
+spring
 ==========done==========
 HashMap
 ConcurrentHashMap
