@@ -5,6 +5,10 @@ ThreadLocal
 LockSupport
 线程池
 引用类型
+ReferenceQueue
+SoftReference
+WeakReference
+PhantomReference
 WeakHashMap
 ==========done==========
 HashMap
