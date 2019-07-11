@@ -10,6 +10,7 @@ SoftReference
 WeakReference
 PhantomReference
 WeakHashMap
+servlet
 ==========done==========
 HashMap
 ConcurrentHashMap
