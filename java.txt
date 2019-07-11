@@ -16,3 +16,4 @@ ConcurrentHashMap
 CountDownLatch
 ReentrantLock
 ReentrantReadWriteLock
+ConcurrentLinkedQueue
