@@ -1,6 +1,11 @@
 package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * @author htdong
@@ -8,6 +13,48 @@ import java.util.Arrays;
  */
 
 public class Solution {
+
+    public List<String> findItinerary(List<List<String>> tickets) {
+        // TODO https://leetcode.com/problems/reconstruct-itinerary/submissions/
+        TreeMap<String, TreeSet<String>> gra = new TreeMap<>();
+        HashSet<String> all = new HashSet<>();
+        for (List<String> list : tickets) {
+            all.add(list.get(0));
+            all.add(list.get(1));
+            TreeSet<String> set = gra.get(list.get(0));
+            if (set == null) {
+                set = new TreeSet<>();
+                gra.put(list.get(0), set);
+            }
+            set.add(list.get(1));
+            if (!gra.containsKey(list.get(1))) {
+                gra.put(list.get(1), new TreeSet<>());
+            }
+        }
+        List<String> ans = new LinkedList<>();
+        HashSet<String> vis = new HashSet<>();
+        dfs("JFK", gra, vis, all.size(), ans);
+        return ans;
+    }
+
+    private boolean dfs(String u, TreeMap<String, TreeSet<String>> gra, HashSet<String> vis, int n, List<String> ans) {
+        vis.add(u);
+        ans.add(u);
+        if (ans.size() == n) {
+            return true;
+        }
+        for (String iter : gra.get(u)) {
+            if (!vis.contains(iter)) {
+                boolean flag = dfs(iter, gra, vis, n, ans);
+                if (flag) {
+                    return true;
+                }
+            }
+        }
+        ans.remove(ans.size() - 1);
+        vis.remove(u);
+        return false;
+    }
 
     public int[] deckRevealedIncreasing(int[] deck) {
         Arrays.sort(deck);
