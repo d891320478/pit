@@ -23,3 +23,5 @@ CountDownLatch
 ReentrantLock
 ReentrantReadWriteLock
 ConcurrentLinkedQueue
+LinkedBlockingQueue
+ArrayBlockingQueue

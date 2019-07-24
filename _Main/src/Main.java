@@ -1,7 +1,5 @@
 import java.io.IOException;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.time.LocalDate;
 
 /**
  * @author htdong
@@ -9,14 +7,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Queue<Integer> q = new LinkedList<>();
-        for (int i = 1; i <= 10000; ++i) {
-            q.add(i);
-        }
-        q = null;
-        System.gc();
-        Scanner in = new Scanner(System.in);
-        in.nextLine();
-        in.close();
+        System.out.println(System.currentTimeMillis() - 86400000 * 2);
     }
 }
