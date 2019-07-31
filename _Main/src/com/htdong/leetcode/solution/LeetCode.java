@@ -7,5 +7,7 @@ package com.htdong.leetcode.solution;
 
 public class LeetCode {
     public static void main(String[] args) {
+        System.out.println(new Solution());
+        // System.out.println(System.currentTimeMillis());
     }
 }
