@@ -1,3 +1,4 @@
+package com.htdong.juc.test;
 import java.util.concurrent.CountDownLatch;
 
 public class CountDownLatchTest {
