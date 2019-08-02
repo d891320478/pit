@@ -13,7 +13,6 @@ public class ThreadPool {
     private static Thread threadCoolRun = null;
 
     public static void main(String[] args) {
-        // 1核心线程，最多3线程，多余线程空闲5秒回收，等待队列有界
         ThreadPoolExecutor pool = new ThreadPoolExecutor(1, 1, 5, TimeUnit.SECONDS, new LinkedBlockingQueue<>(2));
         pool.execute(new CoolRun());
         pool.execute(new Run1());
