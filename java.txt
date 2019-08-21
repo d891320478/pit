@@ -20,6 +20,7 @@ spring
 SynchronousQueue
 SecurityManager
 io/nio
+虚拟机
 ==========done==========
 HashMap
 ConcurrentHashMap

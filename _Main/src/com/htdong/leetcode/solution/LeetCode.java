@@ -7,7 +7,10 @@ package com.htdong.leetcode.solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        System.out.println(new Solution());
-        // System.out.println(System.currentTimeMillis());
+        double[] d = new Solution().medianSlidingWindow(new int[] { 1, 3, -1, -3, 5, 3, 6, 7 }, 3);
+        for (double i : d) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
     }
 }
