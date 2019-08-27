@@ -27,7 +27,7 @@ ConcurrentHashMap
 CountDownLatch
 ReentrantLock
 ReentrantReadWriteLock
-ConcurrentLinkedQueue
+ConcurrentLinkedQueue--不懂设计原理
 LinkedBlockingQueue
 ArrayBlockingQueue
 PriorityBlockingQueue
