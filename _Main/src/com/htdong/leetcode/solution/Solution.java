@@ -1,10 +1,11 @@
 package com.htdong.leetcode.solution;
 
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Queue;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * @author htdong
@@ -174,63 +175,30 @@ class Treap {
 
 public class Solution {
 
-    public List<Integer> largestDivisibleSubset(int[] a) {
-        int n = a.length;
-        if (n == 0) {
-            return new LinkedList<>();
-        }
-        int[][] d = new int[n][n];
-        for (int i = 0; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (i != j) {
-                    if (a[i] % a[j] == 0) {
-                        d[i][j] = 1;
-                    }
-                    if (a[j] % a[i] == 0) {
-                        d[j][i] = 1;
-                    }
+    public int longestSubstring(String s, int k) {
+        // TODO
+        // https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
+        int[][] a = new int[26][s.length() + 1];
+        for (int i = 1; i <= s.length(); ++i) {
+            for (int j = 0; j < 26; ++j) {
+                a[j][i] = a[j][i - 1];
+                if (j == s.charAt(i - 1) - 'a') {
+                    ++a[j][i];
                 }
             }
         }
-        int[][] dis = new int[n][n];
-        Queue<Integer> q = new LinkedList<>();
         int ans = 0;
-        int s = 0, t = 0;
-        for (int i = 0; i < n; ++i) {
-            boolean[] vis = new boolean[n];
-            q.add(i);
-            vis[i] = true;
-            while (!q.isEmpty()) {
-                int u = q.poll();
-                vis[u] = false;
-                for (int j = 0; j < n; ++j) {
-                    if (d[u][j] == 1 && dis[i][j] < dis[i][u] + 1) {
-                        if (!vis[j]) {
-                            q.add(j);
-                            vis[j] = true;
-                        }
-                        dis[i][j] = dis[i][u] + 1;
-                        if (dis[i][j] > ans) {
-                            ans = dis[i][j];
-                            s = i;
-                            t = j;
-                        }
-                    }
+        for (int i = 1; i <= s.length(); ++i) {
+            int n = s.length();
+            int ll = n, rr = 0;
+            for (int j = 0; j < 26; ++j) {
+                if (a[j][s.length()] == a[j][i - 1]) {
+                    continue;
                 }
             }
+            ans = Math.max(ans, n - i + 1);
         }
-        List<Integer> list = new LinkedList<>();
-        list.add(a[t]);
-        while (t != s) {
-            for (int i = 0; i < n; ++i) {
-                if (dis[s][i] + 1 == dis[s][t] && d[i][t] == 1) {
-                    t = i;
-                    break;
-                }
-            }
-            list.add(a[t]);
-        }
-        return list;
+        return ans;
     }
 
     public double[] medianSlidingWindow(int[] a, int k) {
