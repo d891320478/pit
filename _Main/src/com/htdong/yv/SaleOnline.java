@@ -2,6 +2,7 @@ package com.htdong.yv;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
@@ -29,6 +30,14 @@ public class SaleOnline {
         in.close();
         list.sort(String::compareTo);
         list.forEach(System.err::println);
+        
+        in = new Scanner(new File("E:/mail.txt"));
+        BigDecimal bd = BigDecimal.ZERO;
+        while (in.hasNextLine()) {
+            bd = bd.add(new BigDecimal(in.nextLine()));
+        }
+        in.close();
+        System.out.println(bd);
     }
 
 }
