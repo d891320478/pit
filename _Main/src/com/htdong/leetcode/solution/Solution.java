@@ -1,8 +1,6 @@
 package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 /**
@@ -173,30 +171,6 @@ class Treap {
 
 public class Solution {
 
-    public boolean isBipartite(int[][] g) {
-        int n = g.length;
-        int[] vis = new int[n];
-        Queue<Integer> q = new LinkedList<>();
-        for (int i = 0; i < n; ++i) {
-            if (vis[i] == 0) {
-                q.add(i);
-                vis[i] = 1;
-                while (!q.isEmpty()) {
-                    int u = q.poll();
-                    for (int j = 0; j < g[u].length; ++j) {
-                        if (vis[g[u][j]] == 0) {
-                            vis[g[u][j]] = 3 - vis[u];
-                            q.add(g[u][j]);
-                        } else if (vis[g[u][j]] == vis[u]) {
-                            return false;
-                        }
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
     public int longestSubstring(String s, int k) {
         // TODO
         // https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
@@ -219,26 +193,6 @@ public class Solution {
                 }
             }
             ans = Math.max(ans, n - i + 1);
-        }
-        return ans;
-    }
-
-    public double[] medianSlidingWindow(int[] a, int k) {
-        Treap tr = new Treap();
-        double[] ans = new double[a.length - k + 1];
-        for (int i = 0; i < k; ++i) {
-            tr.insert(a[i], 0);
-        }
-        for (int i = 0, l = 0, r = k; i < ans.length; ++i, ++l, ++r) {
-            if (k % 2 == 0) {
-                ans[i] = (tr.getKey(k / 2) + 0.0 + tr.getKey(k / 2 + 1)) * 0.5;
-            } else {
-                ans[i] = tr.getKey((k + 1) / 2);
-            }
-            tr.remove(a[l]);
-            if (r < a.length) {
-                tr.insert(a[r], 0);
-            }
         }
         return ans;
     }
