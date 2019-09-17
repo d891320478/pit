@@ -2,9 +2,6 @@ package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
 import java.util.Random;
-import java.util.TreeMap;
-
-import com.htdong.leetcode.domain.TreeNode;
 
 /**
  * @author htdong
@@ -174,22 +171,21 @@ class Treap {
 }
 
 public class Solution {
+    private boolean f(String s, int l, int r) {
+        switch (s.charAt(l)) {
+        case '!':
+            break;
+        case '|':
+            break;
+        case '&':
+            break;
+        }
+        return false;
+    }
 
-    public int maxProfit(int k, int[] p) {
-        int n = p.length;
-        if (k > n / 2) {
-            k = n / 2;
-        }
-        int[][] d = new int[k + 1][n + 1];
-        for (int i = 1; i <= k; ++i) {
-            for (int j = 1; j <= n; ++j) {
-                d[i][j] = Math.max(d[i - 1][j], d[i][j - 1]);
-                for (int l = 0; l + 1 <= j; ++l) {
-                    d[i][j] = Math.max(d[i][j], d[i - 1][l] + p[j - 1] - p[l]);
-                }
-            }
-        }
-        return d[k][n];
+    public boolean parseBoolExpr(String expression) {
+        // TODO https://leetcode.com/problems/parsing-a-boolean-expression/
+        return f(expression, 0, expression.length() - 1);
     }
 
     public int longestSubstring(String s, int k) {
