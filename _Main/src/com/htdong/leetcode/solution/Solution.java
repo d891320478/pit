@@ -2,6 +2,9 @@ package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.TreeMap;
+
+import com.htdong.leetcode.domain.TreeNode;
 
 /**
  * @author htdong
@@ -10,7 +13,7 @@ import java.util.Random;
 
 class TreapNode {
     int key, val;
-    int wht, sz;
+    int wht, sz, cnt;
     TreapNode[] ch;
     private static TreapNode LEAF = null;
     private static final Random RAND = new Random(System.currentTimeMillis());
@@ -23,6 +26,7 @@ class TreapNode {
         LEAF.ch = new TreapNode[2];
         LEAF.ch[0] = LEAF.ch[1] = LEAF;
         LEAF.sz = 0;
+        LEAF.cnt = 0;
         LEAF.key = -1;
         LEAF.val = -1;
         LEAF.wht = -2147483648;
@@ -37,7 +41,7 @@ class TreapNode {
         ch[0] = ch[1] = leaf();
         this.key = key;
         this.val = val;
-        this.sz = 1;
+        this.sz = this.cnt = 1;
         this.wht = RAND.nextInt(2147483647);
     }
 
@@ -111,7 +115,7 @@ class Treap {
             return;
         }
         if (key == x.key) {
-            ++x.sz;
+            ++x.cnt;
             x.val = val;
         } else {
             int son = key < x.key ? 0 : 1;
@@ -128,8 +132,8 @@ class Treap {
             return;
         }
         if (x.key == key) {
-            if (x.sz - x.ch[0].sz - x.ch[1].sz > 1) {
-                --x.sz;
+            if (x.cnt > 1) {
+                --x.cnt;
                 update(x);
                 return;
             }
@@ -152,7 +156,7 @@ class Treap {
     }
 
     private void update(TreapNode t) {
-        t.sz = 1 + t.ch[0].sz + t.ch[1].sz;
+        t.sz = t.cnt + t.ch[0].sz + t.ch[1].sz;
     }
 
     private void rotate(TreapNode x, int t, TreapNode px, int pt) {
@@ -170,6 +174,23 @@ class Treap {
 }
 
 public class Solution {
+
+    public int maxProfit(int k, int[] p) {
+        int n = p.length;
+        if (k > n / 2) {
+            k = n / 2;
+        }
+        int[][] d = new int[k + 1][n + 1];
+        for (int i = 1; i <= k; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                d[i][j] = Math.max(d[i - 1][j], d[i][j - 1]);
+                for (int l = 0; l + 1 <= j; ++l) {
+                    d[i][j] = Math.max(d[i][j], d[i - 1][l] + p[j - 1] - p[l]);
+                }
+            }
+        }
+        return d[k][n];
+    }
 
     public int longestSubstring(String s, int k) {
         // TODO
