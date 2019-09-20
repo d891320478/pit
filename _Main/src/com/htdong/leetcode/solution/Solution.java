@@ -1,6 +1,7 @@
 package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Random;
 
 /**
@@ -9,8 +10,8 @@ import java.util.Random;
  */
 
 class TreapNode {
-    int key, val;
-    int wht, sz, cnt;
+    long key, val;
+    long wht, sz, cnt;
     TreapNode[] ch;
     private static TreapNode LEAF = null;
     private static final Random RAND = new Random(System.currentTimeMillis());
@@ -33,7 +34,7 @@ class TreapNode {
     private TreapNode() {
     }
 
-    public TreapNode(int key, int val) {
+    public TreapNode(long key, long val) {
         ch = new TreapNode[2];
         ch[0] = ch[1] = leaf();
         this.key = key;
@@ -71,18 +72,18 @@ class Treap {
         dfs(rt.ch[0], sb);
         sb.append(")(");
         dfs(rt.ch[1], sb);
-        sb.append(" )");
+        sb.append(") ");
     }
 
-    public void insert(int key, int val) {
+    public void insert(long key, long val) {
         insert(root, key, val, null, 0);
     }
 
-    public void remove(int key) {
+    public void remove(long key) {
         remove(root, key, null, 0);
     }
 
-    public int getKey(int index) {
+    public long getKey(long index) {
         TreapNode rt = root;
         while (rt != leaf) {
             if (rt.sz - rt.ch[1].sz < index) {
@@ -97,11 +98,47 @@ class Treap {
         return 0;
     }
 
-    public int size() {
+    public Long getMinMoreOrEqual(long key) {
+        TreapNode rt = root;
+        Long ans = null;
+        while (rt != leaf) {
+            if (rt.key < key) {
+                rt = rt.ch[1];
+            } else {
+                if (rt.ch[0] == leaf) {
+                    return rt.key;
+                } else {
+                    ans = rt.key;
+                    rt = rt.ch[0];
+                }
+            }
+        }
+        return ans;
+    }
+
+    public Long getMaxLessOrEqual(long key) {
+        TreapNode rt = root;
+        Long ans = null;
+        while (rt != leaf) {
+            if (rt.key > key) {
+                rt = rt.ch[0];
+            } else {
+                if (rt.ch[1] == leaf) {
+                    return rt.key;
+                } else {
+                    ans = rt.key;
+                    rt = rt.ch[1];
+                }
+            }
+        }
+        return ans;
+    }
+
+    public long size() {
         return root.sz;
     }
 
-    private void insert(TreapNode x, int key, int val, TreapNode px, int pt) {
+    private void insert(TreapNode x, long key, long val, TreapNode px, int pt) {
         if (x == leaf) {
             x = new TreapNode(key, val);
             if (px != null) {
@@ -124,7 +161,7 @@ class Treap {
         update(x);
     }
 
-    private void remove(TreapNode x, int key, TreapNode px, int pt) {
+    private void remove(TreapNode x, long key, TreapNode px, int pt) {
         if (x == leaf) {
             return;
         }
@@ -171,6 +208,7 @@ class Treap {
 }
 
 public class Solution {
+
     private boolean f(String s, int l, int r) {
         switch (s.charAt(l)) {
         case '!':
