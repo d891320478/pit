@@ -1,7 +1,11 @@
 package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author htdong
@@ -207,6 +211,40 @@ class Treap {
 }
 
 public class Solution {
+
+    class Obj implements Comparable<Obj> {
+        int v;
+        int i;
+
+        public Obj(int v, int i) {
+            this.v = v;
+            this.i = i;
+        }
+
+        @Override
+        public int compareTo(Obj o) {
+            int cmp = Integer.compare(v, o.v);
+            if (cmp == 0) {
+                return Integer.compare(i, o.i);
+            }
+            return cmp;
+        }
+    }
+
+    public int[] prevPermOpt1(int[] a) {
+        // TODO https://leetcode.com/problems/previous-permutation-with-one-swap/
+        int n = a.length;
+        TreeSet<Obj> set = new TreeSet<>();
+        for (int i = n - 1; i >= 0; --i) {
+            if (set.isEmpty() || set.first().v >= a[i]) {
+                set.add(new Obj(a[i], i));
+                continue;
+            }
+
+            set.add(new Obj(a[i], i));
+        }
+        return a;
+    }
 
     private boolean f(String s, int l, int r) {
         switch (s.charAt(l)) {
