@@ -1,6 +1,8 @@
 package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author htdong
@@ -8,6 +10,108 @@ import java.util.Arrays;
  */
 
 public class Solution {
+
+    public static class Edge {
+        int next, v, w, c;
+
+        public Edge(int next, int v, int w, int c) {
+            this.next = next;
+            this.v = v;
+            this.w = w;
+            this.c = c;
+        }
+    }
+
+    public int[] head;
+    public Edge[] e;
+    public int cnt;
+
+    int[] d;
+    int[] pre;
+    boolean[] vis;
+
+    public void init(int n, int m) {
+        head = new int[n];
+        for (int i = 0; i < n; ++i) {
+            head[i] = -1;
+        }
+        e = new Edge[m];
+        cnt = 0;
+        d = new int[n];
+        pre = new int[n];
+        vis = new boolean[n];
+    }
+
+    public void addEdge(int u, int v, int w, int c) {
+        e[cnt] = new Edge(head[u], v, w, c);
+        head[u] = cnt++;
+        e[cnt] = new Edge(head[v], u, 0, -c);
+        head[v] = cnt++;
+    }
+
+    private boolean spfa(int s, int t, int n) {
+        Queue<Integer> q = new LinkedList<>();
+        for (int i = 0; i < n; ++i) {
+            pre[i] = -1;
+            d[i] = -1;
+        }
+        d[s] = 0;
+        q.add(s);
+        while (!q.isEmpty()) {
+            int u = q.poll();
+            vis[u] = false;
+            for (int i = head[u]; i != -1; i = e[i].next) {
+                if (e[i].w > 0) {
+                    if (d[e[i].v] == -1 || d[e[i].v] > d[u] + e[i].c) {
+                        d[e[i].v] = d[u] + e[i].c;
+                        pre[e[i].v] = i;
+                        if (!vis[e[i].v]) {
+                            q.add(e[i].v);
+                            vis[e[i].v] = true;
+                        }
+                    }
+                }
+            }
+        }
+        return d[t] != -1;
+    }
+
+    public int findMinMoves(int[] ma) {
+        int n = ma.length;
+        int sum = 0;
+        for (int i = 0; i < n; ++i) {
+            sum += ma[i];
+        }
+        if (sum % n > 0) {
+            return -1;
+        }
+        int s = n;
+        int t = s + 1;
+        init(t + 1, n * 10);
+        for (int i = 0; i < n; ++i) {
+            addEdge(s, i, ma[i], 0);
+            addEdge(i, t, sum / n, 0);
+            if (i - 1 >= 0) {
+                addEdge(i, i - 1, sum, 1);
+            }
+            if (i + 1 < n) {
+                addEdge(i, i + 1, sum, 1);
+            }
+        }
+        int ans = 0;
+        while (spfa(s, t, t + 1)) {
+            int u, mn = 1000000000;
+            for (u = t; u != s; u = e[pre[u] ^ 1].v) {
+                mn = Math.min(mn, e[pre[u]].w);
+            }
+            ans += mn * d[t];
+            for (u = t; u != s; u = e[pre[u] ^ 1].v) {
+                e[pre[u]].w -= mn;
+                e[pre[u] ^ 1].w += mn;
+            }
+        }
+        return ans;
+    }
 
     private boolean f(String s, int l, int r) {
         switch (s.charAt(l)) {
