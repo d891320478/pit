@@ -2,7 +2,9 @@ package com.htdong.leetcode.solution;
 
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
+import java.util.Random;
 
 /**
  * @author htdong
@@ -10,6 +12,19 @@ import java.util.Queue;
  */
 
 public class Solution {
+
+    public boolean canPartitionKSubsets(int[] c, int k) {
+        int n = c.length;
+        int sum = 0;
+        for (int i = 0; i < n; ++i) {
+            sum += c[i];
+        }
+        if (sum % k != 0) {
+            return false;
+        }
+        // TODO https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
+        return true;
+    }
 
     public static class Edge {
         int next, v, w, c;
@@ -154,13 +169,6 @@ public class Solution {
             ans = Math.max(ans, n - i + 1);
         }
         return ans;
-    }
-
-    public int[] deckRevealedIncreasing(int[] deck) {
-        Arrays.sort(deck);
-        int[] ret = new int[deck.length];
-        // TODO https://leetcode.com/problems/reveal-cards-in-increasing-order/
-        return ret;
     }
 
     public int maxProfit(int[] p, int fee) {
