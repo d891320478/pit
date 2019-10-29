@@ -12,7 +12,7 @@
     <name>_mainMaven</name>
 
     <properties>
-        <jackson-version>2.9.9.2</jackson-version>
+        <jackson-version>2.10.0</jackson-version>
         <project-encoding>UTF-8</project-encoding>
     </properties>
 
