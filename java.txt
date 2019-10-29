@@ -2,7 +2,6 @@
 正则表达式
 StampedLock
 Thread/ThreadLocal
-LockSupport
 线程池
 fork/join
 引用类型
@@ -20,6 +19,7 @@ SynchronousQueue
 SecurityManager
 io/nio
 虚拟机
+LockSupport
 ==========done==========
 HashMap
 ConcurrentHashMap
