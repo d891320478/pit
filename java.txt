@@ -3,7 +3,6 @@
 StampedLock
 Thread/ThreadLocal
 LockSupport
-FutureTask
 线程池
 fork/join
 引用类型
@@ -34,3 +33,4 @@ PriorityBlockingQueue
 DelayQueue
 CyclicBarrier
 Semaphore
+FutureTask
