@@ -3,8 +3,6 @@ package com.htdong.leetcode.solution;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import com.htdong.leetcode.domain.Node;
-
 /**
  * @author htdong
  * @date 2018年4月8日 下午2:35:54
@@ -12,17 +10,45 @@ import com.htdong.leetcode.domain.Node;
 
 public class Solution {
 
-    public boolean canPartitionKSubsets(int[] c, int k) {
-        int n = c.length;
-        int sum = 0;
-        for (int i = 0; i < n; ++i) {
-            sum += c[i];
+    public static class Node {
+        public int val;
+        public Node prev;
+        public Node next;
+        public Node child;
+
+        public Node() {
         }
-        if (sum % k != 0) {
-            return false;
+
+        public String toString() {
+            return val + "";
         }
-        // TODO https://leetcode.com/problems/partition-to-k-equal-sum-subsets/
-        return true;
+
+        public Node(int _val, Node _prev, Node _next, Node _child) {
+            val = _val;
+            prev = _prev;
+            next = _next;
+            child = _child;
+        }
+    }
+
+    public Node flatten(Node head) {
+        Node next = head;
+        while (next != null) {
+            if (next.child != null) {
+                Node nn = next.next;
+                next.next = flatten(next.child);
+                next.child = null;
+                while (next.next != null) {
+                    next = next.next;
+                }
+                next.next = nn;
+                nn.prev = next;
+                next = nn;
+            } else {
+                next = next.next;
+            }
+        }
+        return head;
     }
 
     public static class Edge {
