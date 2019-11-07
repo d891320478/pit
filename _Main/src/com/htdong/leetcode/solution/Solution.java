@@ -1,44 +1,10 @@
 package com.htdong.leetcode.solution;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
-import com.htdong.leetcode.algorithm.Graph.Edge;
-
 /**
  * @author htdong
- * @date 2018年4月8日 下午2:35:54
+ * @date 2019年11月7日 下午4:56:49
  */
-
 public class Solution {
-
-    class Edge {
-        int next, v, w;
-
-        public Edge(int next, int v, int w) {
-            this.next = next;
-            this.v = v;
-            this.w = w;
-        }
-    }
-
-    public int[] head;
-    public Edge[] e;
-    public int cnt;
-
-    public void init(int n, int m) {
-        head = new int[n];
-        for (int i = 0; i < n; ++i) {
-            head[i] = -1;
-        }
-        e = new Edge[m];
-        cnt = 0;
-    }
-
-    public void addEdge(int u, int v, int w) {
-        e[cnt] = new Edge(head[u], v, w);
-        head[u] = cnt++;
-    }
 
     public static class Node {
         public int val;
@@ -80,7 +46,6 @@ public class Solution {
         }
         return head;
     }
-
 
     private boolean f(String s, int l, int r) {
         switch (s.charAt(l)) {
