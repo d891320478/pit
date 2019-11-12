@@ -4,7 +4,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- *
  * @author htdong
  * @date 2018年4月20日 上午11:52:19
  */
@@ -13,7 +12,53 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int m = in.nextInt();
+        int[][] d = new int[n + 1][m + 1];
+        int[][] a = new int[n + 1][m + 1];
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= m; ++j) {
+                a[i][j] = in.nextInt();
+                d[i][j] = -2100000000;
+            }
+        }
+        for (int i = 1; i <= n; ++i) {
+            for (int j = 1; j <= m; ++j) {
+                for (int k = i - 1; k < j; ++k) {
+                    d[i][j] = Math.max(d[i][j], d[i - 1][k] + a[i][j]);
+                }
+            }
+        }
+        int ans = -2100000000;
+        int[] w = new int[n + 1];
+        for (int i = n; i <= m; ++i) {
+            if (ans < d[n][i]) {
+                ans = d[n][i];
+                w[n] = i;
+            }
+        }
+        for (int i = n - 1; i > 0; --i) {
+            for (int j = w[i + 1] - 1; j > 0; --j) {
+                if (d[i][j] == d[i + 1][w[i + 1]] - a[i + 1][w[i + 1]]) {
+                    w[i] = j;
+                    break;
+                }
+            }
+        }
+        System.out.println(ans);
+        for (int i = 1; i <= n; ++i) {
+            System.out.print(w[i]);
+            if (i == n) {
+                System.out.println();
+            } else {
+                System.out.print(" ");
+            }
+        }
         in.close();
+    }
+
+    public static int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
     }
 
     public static long pow(long a, int n, long mod) {
