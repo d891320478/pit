@@ -1,4 +1,4 @@
-絶景エピローグ：
+YVCDN0018 絶景エピローグ：
     01.絶景エピローグ
         科学世紀の少年少女 —— 科学世纪的少年少女
             梦违科学世纪
@@ -29,7 +29,7 @@
     09.星月トラジコメディー feat. tomoya
         月面ツアーへようこそ —— 欢迎来到月面旅行团
             大空魔术
-MARKS OF SIN：
+YVCDN0017 MARKS OF SIN：
     01.Marks of Sin
         遥か３８万キロのボヤージュ —— 遥遥38万公里的航程
             绀珠传五道中
@@ -49,7 +49,7 @@ MARKS OF SIN：
             幻想乡四面魔理沙BGM
     06.Bird's Letter
         Dreamy pilot
-蜃景3：
+YVCDN0016 蜃景3：
     01.Alice Maestera (cnsouka Remake)
         アリスマエステラ —— Alice Maestra
             幻想乡四道中
@@ -77,7 +77,7 @@ MARKS OF SIN：
     07.いつかどこかで...
         芙兰恋恋原创印象曲
     08.虚無の砂漠に堕ちた楽園
-星月トラジコメディー：
+YVCDN0015 星月トラジコメディー：
     01.星月トラジコメディー
         月面ツアーへようこそ —— 欢迎来到月面旅行团
             大空魔术
@@ -105,7 +105,7 @@ MARKS OF SIN：
         ネクロファンタジア —— Necro-Fantasia死亡幻想曲
             妖妖梦PH紫BGM
     08.星空の花束
-桜風の誓い：
+YVCDN0014 桜風の誓い：
     01.桜風の誓い
         広有射怪鳥事 ～ Till When? —— 广有射怪鸟事 ～ Till When?
             妖妖梦五面妖梦BGM
@@ -124,7 +124,7 @@ MARKS OF SIN：
     06.落砂
         Sailor of Time
             梦时空千面合BGM
-無名の楽園 〜 Piano Arrange Collection Vol.1：
+YVCDN0013 無名の楽園 〜 Piano Arrange Collection Vol.1：
     01.無名の楽園
         少女綺想曲　～ Dream Battle —— 少女绮想曲 ～ Dream Battle
             永夜抄四面灵梦BGM
@@ -146,7 +146,7 @@ MARKS OF SIN：
     07.埃に埋もれた詩
         Intermezzo
             	东方萃梦想博丽神社、白玉楼、红魔馆钟楼、魔法森林雾雨邸、墓地场景剧情主题曲
-奏穹のラプソディア：
+YVCDN0012 奏穹のラプソディア：
     01.奏穹のラプソディア
         有頂天変 ～ Wonderful Heaven —— 有顶天变 ～ Wonderful Heaven
             天子BGM，有顶天场景
@@ -168,7 +168,7 @@ MARKS OF SIN：
     07.玻璃の揺籠
         須臾はプランクを超えて —— 比普朗克更短的须臾
             燕石博物志
-秘封活動記録 -月- ORIGINAL SOUNDTRACK：
+YVCDN0011 秘封活動記録 -月- ORIGINAL SOUNDTRACK：
     01.決別の旅(TV-Size)
         少女秘封倶楽部
             蓮台野夜行
@@ -205,7 +205,7 @@ MARKS OF SIN：
     18.Lotussamen(未使用)
     19.Amie(未使用)
     20.Carnation
-千ノ縁：
+YVCDN0010 千ノ縁：
     01.千ノ縁
         ネクロファンタジア —— Necro-Fantasia死亡幻想曲
             妖妖梦PH紫BGM
@@ -224,7 +224,7 @@ MARKS OF SIN：
     06.神様のいない庭で
         神々が恋した幻想郷 —— 众神眷恋的幻想乡
             风神录三面道中
-雪幻：
+YVCDN0009 雪幻：
     01.雪幻ティルナノーグ
         おてんば恋娘 —— 活泼的纯情小姑娘
             红魔乡二面琪露诺BGM
@@ -241,7 +241,7 @@ MARKS OF SIN：
         エネルギー黎明 —— 能源黎明 ～ Future Dream...
             地灵殿结尾
     06.星空の花束
-蒼月の懺悔詩：
+YVCDN0008 蒼月の懺悔詩：
     01.蒼月の懺悔詩
         U.N.オーエンは彼女なのか？ —— U.N.OWEN就是她吗？
             红魔乡EX二小姐BGM
@@ -263,7 +263,7 @@ MARKS OF SIN：
     07.Field of God(2015 Remake)
         神さびた古戦場 —— 神圣庄严的古战场 ～ Suwa Foughten Field
             风神录六面神妈BGM
-霊桜に眠る：
+YVCDN0007 霊桜に眠る：
     01.霊桜に眠る
         幽雅に咲かせ、墨染の桜 —— 幽雅地绽放吧，墨染的樱花 ～ Border of Life
             妖妖梦六面幽幽子BGM
@@ -282,7 +282,7 @@ MARKS OF SIN：
     06.Maple Wind
         メイプルワイズ —— Maple Wise
             怪绮谈四面道中
-蜃景2：
+YVCDN0006 蜃景2：
     01.月に叢雲華に風
         ラストリモート —— Last Remote
             地灵殿EX道中
@@ -309,7 +309,7 @@ MARKS OF SIN：
     08.色は匂へど散りぬるを
         神々が恋した幻想郷 —— 众神眷恋的幻想乡
             风神录三面道中
-蜃景1：
+YVCDN0005 蜃景1：
     01.夜降り萃夢郷
         東方萃夢想 —— 东方萃梦想
             萃梦想OP
@@ -323,7 +323,7 @@ MARKS OF SIN：
             东方灵异传1至4面、地狱16至19面主题曲    
     06.floatness
     07.Cream Mushroom Soup
-花月夜：
+YVCDN0004 花月夜：
     01.花月夜
         砕月 —— 碎月
             萃梦想幻想乡场景剧情主题曲
@@ -343,7 +343,7 @@ MARKS OF SIN：
     06.闇海リグレット
         上海紅茶馆-Chinese Tea —— 上海红茶馆 ～ Chinese Tea
             红魔乡三面道中
-雨音クロスロード：
+YVCDN0003 雨音クロスロード：
     01.雨音クロスロード
         夜空のユーフォーロマンス —— 夜空中的UFO恋曲
             星莲船EX道中
@@ -362,7 +362,7 @@ MARKS OF SIN：
     06.紅き恋歌に染めた古戦場
         神さびた古戦場 —— 神圣庄严的古战场 ～ Suwa Foughten Field
             风神录六面神妈BGM
-迷走パラダイス：
+YVCDN0002 迷走パラダイス：
     01.失楽ノ園、傷ノ林檎
         Bad Apple!!
             幻想乡三面道中
@@ -384,7 +384,7 @@ MARKS OF SIN：
     07.In Actuality (2013 Remake)
         さくらさくら ～ Japanize Dream... —— 樱花樱花 ～ Japanize Dream...
             妖妖梦结尾
-Lunatic Heavens：
+YVCDN0001 Lunatic Heavens：
     01.星夜万華鏡
         恋色マスタースパーク —— 恋色Master spark
             永夜抄4B魔理沙BGM
@@ -405,7 +405,7 @@ Lunatic Heavens：
             永夜抄五面大兔子BGM
 
 
-蛍標：
+YVEPN0005 蛍標：
     01.蛍標
         幻視の夜 ～ Ghostly Eyes —— 幻视之夜 ～ Ghostly Eyes
             永夜抄一面道中
@@ -415,7 +415,7 @@ Lunatic Heavens：
     03.Solitaire
         今宵は飄逸なエゴイスト　～ Egoistic Flowers. —— 今宵是飘逸的自我主义者
             凭依华依神女苑&依神紫苑的主题曲、故事模式战斗曲、太阳花田的演奏舞台场景音乐
-白与黑ヴァイス・シュヴァルツ：
+YVEPN0004 白与黑ヴァイス・シュヴァルツ：
     01.Black or White
         霊知の太陽信仰 ～ Nuclear Fusion —— 灵知的太阳信仰 ～ Nuclear Fusion
             地灵殿六面阿空BGM
@@ -425,13 +425,13 @@ Lunatic Heavens：
     03.運命の憐月
         運命のダークサイド —— 命运的阴暗面
             风神录二面转转BGM
-砕夢：
+YVEPN0003 砕夢：
     01.Sink into Nightmare
     02.春の亡骸
         永遠の春夢 —— 永远的春梦
             绀珠传三面哆来咪BGM
     03.深海ノ光
-決別の旅：
+YVEPN0002 決別の旅：
     01.決別の旅
         少女秘封倶楽部
             蓮台野夜行
@@ -448,7 +448,7 @@ Lunatic Heavens：
         53 ミニッツの青い海 —— 53分钟的蓝色大海
         ヒロシゲ36号 ～ Neo Super-Express —— 广重36号 ～ Neo Super-Express
             卯酉東海道
-永遠と瞬息の放浪者：
+YVEPN0001 永遠と瞬息の放浪者：
     01.永遠と瞬息の放浪者
         竹取飛翔 —— 竹取飞翔 ～ Lunatic Princess
             永夜抄6B辉夜BGM
@@ -458,3 +458,8 @@ Lunatic Heavens：
     03.Shining Desire(cnsouka Mix)
         デザイアドライブ —— Desire Drive欲望加速
             神灵庙四面道中
+
+YVCD0004
+YVCD0003
+YVCD0002
+YVCD0001
