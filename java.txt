@@ -4,12 +4,7 @@ StampedLock
 Thread/ThreadLocal
 线程池
 fork/join
-引用类型
-ReferenceQueue
-SoftReference
-WeakReference
-PhantomReference
-WeakHashMap
+引用类型，虚拟机如何处理
 servlet
 guava
 dubbo
@@ -35,3 +30,4 @@ DelayQueue
 CyclicBarrier
 Semaphore
 FutureTask
+WeakHashMap
