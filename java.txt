@@ -2,7 +2,7 @@
 正则表达式
 StampedLock
 Thread/ThreadLocal
-线程池
+ScheduledThreadPoolExecutor
 fork/join
 引用类型，虚拟机如何处理
 servlet
@@ -31,3 +31,4 @@ CyclicBarrier
 Semaphore
 FutureTask
 WeakHashMap
+ThreadPoolExecutor
