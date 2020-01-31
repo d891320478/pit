@@ -2,13 +2,32 @@ package com.htdong.leetcode.solution;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.TreeSet;
 
 /**
  * @author htdong
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution {
+    public static int MOD = 1000000007;
+
+    public int numWays(int s, int t) {
+        if (t > s) {
+            t = s;
+        }
+        int[][] d = new int[s + 1][t + 1];
+        d[0][0] = 1;
+        for (int i = 1; i <= s; ++i) {
+            for (int j = 0; j <= t; ++j) {
+                d[i][j] = (d[i - 1][j] + (j - 1 >= 0 ? d[i - 1][j - 1] : 0)) % MOD + (j + 1 <= t ? d[i - 1][j + 1] : 0);
+                d[i][j] %= MOD;
+            }
+        }
+        return d[s][0];
+    }
+
+    public static int idx(int l, int r) {
+        return (l + r) | (l != r ? 1 : 0);
+    }
 
     public static class Node {
         public int val;
@@ -49,10 +68,6 @@ public class Solution {
             }
         }
         return head;
-    }
-
-    public static int idx(int l, int r) {
-        return (l + r) | (l != r ? 1 : 0);
     }
 
     private void pushup(int[] tr, int l, int mid, int r) {
