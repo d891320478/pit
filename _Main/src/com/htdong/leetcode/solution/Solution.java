@@ -8,6 +8,7 @@ import java.util.Queue;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution {
+
     public static int MOD = 1000000007;
 
     public int numWays(int s, int t) {
