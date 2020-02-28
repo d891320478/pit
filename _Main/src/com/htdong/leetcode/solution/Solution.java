@@ -1,6 +1,8 @@
 package com.htdong.leetcode.solution;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -8,6 +10,43 @@ import java.util.Queue;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution {
+
+    public static int idx(int l, int r) {
+        return (l + r) | (l != r ? 1 : 0);
+    }
+
+    public String largestMultipleOfThree(int[] d) {
+        // https://leetcode.com/problems/largest-multiple-of-three/submissions/
+        StringBuilder sb = new StringBuilder();
+        List<Integer> a = new ArrayList<>();
+        List<Integer> b = new ArrayList<>();
+        List<Integer> c = new ArrayList<>();
+        for (int i = 0; i < d.length; ++i) {
+            if (d[i] % 3 == 0) {
+                a.add(d[i]);
+            } else if (d[i] % 3 == 1) {
+                b.add(d[i]);
+            } else {
+                c.add(d[i]);
+            }
+        }
+        a.sort(Integer::compareTo);
+        b.sort(Integer::compareTo);
+        c.sort(Integer::compareTo);
+        if (b.size() == 0 && c.size() < 3 || c.size() == 0 && b.size() < 3) {
+            if (a.isEmpty()) {
+                return "";
+            } else if (a.get(a.size() - 1) == 0) {
+                return "0";
+            }
+        }
+
+        a.sort(Integer::compareTo);
+        for (int x = a.size() - 1; x >= 0; --x) {
+            sb.append(a.get(x));
+        }
+        return sb.toString();
+    }
 
     public static int MOD = 1000000007;
 
@@ -24,10 +63,6 @@ public class Solution {
             }
         }
         return d[s][0];
-    }
-
-    public static int idx(int l, int r) {
-        return (l + r) | (l != r ? 1 : 0);
     }
 
     public static class Node {
@@ -101,7 +136,6 @@ public class Solution {
     }
 
     public int longestSubstring(String s, int k) {
-        // TODO
         // https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters/
         int n = s.length();
         int[][] a = new int[26][n + 1];

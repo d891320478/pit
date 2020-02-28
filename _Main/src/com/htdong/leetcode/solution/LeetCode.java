@@ -7,6 +7,6 @@ package com.htdong.leetcode.solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        new Solution().numWays(4, 2);
+        new Solution();
     }
 }
