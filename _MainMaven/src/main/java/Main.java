@@ -1,16 +1,9 @@
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineFactory;
-import javax.script.ScriptEngineManager;
+import com.shinemo.client.util.AESUtil;
 
 public class Main {
 
     public static void main(String[] args) {
-        final ScriptEngineManager mgr = new ScriptEngineManager();
-        ScriptEngine engine = mgr.getEngineByName("groovy");
-        System.err.println(engine == null);
-        for (ScriptEngineFactory fac : mgr.getEngineFactories()) {
-            System.out.println(String.format("%s (%s), %s (%s), %s", fac.getEngineName(), fac.getEngineVersion(),
-                    fac.getLanguageName(), fac.getLanguageVersion(), fac.getParameter("THREADING")));
-        }
+        System.out.println(AESUtil.md5(
+                "{\"clientId\":\"123\",\"clientSecret\":\"clientSecret\",\"method\":\"method\",\"postBody\":{\"idCardNo\":\"123456\"},\"timeStamp\":1234,\"token\":\"token\"}").toLowerCase());
     }
 }
