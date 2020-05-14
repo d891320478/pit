@@ -14,6 +14,10 @@ import com.htdong.leetcode.domain.TreeNode;
  */
 public class Solution {
 
+    public static int idx(int l, int r) {
+        return (l + r) | (l != r ? 1 : 0);
+    }
+
     boolean flag;
 
     private void dfs(ListNode head, ListNode next, TreeNode root) {
@@ -39,10 +43,6 @@ public class Solution {
         flag = false;
         dfs(head, head, root);
         return flag;
-    }
-
-    public static int idx(int l, int r) {
-        return (l + r) | (l != r ? 1 : 0);
     }
 
     public String largestMultipleOfThree(int[] d) {
