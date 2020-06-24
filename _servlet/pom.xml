@@ -3,11 +3,11 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.htdong.servlet</groupId>
-    <artifactId>servlet</artifactId>
+    <artifactId>_servlet</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <packaging>jar</packaging>
-    <name>servlet-learn</name>
+    <name>_servlet</name>
 
     <properties>
         <project-encoding>UTF-8</project-encoding>

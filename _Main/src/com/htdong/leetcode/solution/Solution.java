@@ -14,6 +14,43 @@ import com.htdong.leetcode.domain.TreeNode;
  */
 public class Solution {
 
+    public int leastInterval(char[] t, int n) {
+        int nt = t.length;
+        char[] c = new char[nt * 100 + 5];
+        int[] cnt = new int[26];
+        for (char i : t) {
+            ++cnt[i - 'A'];
+        }
+        int max = 0;
+        for (int i = 0;;) {
+            int k = -1;
+            int mx = 0;
+            for (int j = 0; j < 26; ++j) {
+                if (cnt[j] > mx) {
+                    mx = cnt[j];
+                    k = j;
+                }
+            }
+            if (k == -1) {
+                break;
+            }
+            while (c[i] != 0) {
+                ++i;
+            }
+            for (int j = 0; j < cnt[k]; ++j) {
+                c[i + j * (n + 1)] = (char) ('A' + k);
+            }
+            max = Math.max(max, i + (cnt[k] - 1) * (n + 1));
+            cnt[k] = 0;
+        }
+        return max + 1;
+    }
+
+    public int mincostTickets(int[] days, int[] costs) {
+        // TODO https://leetcode.com/problems/minimum-cost-for-tickets/
+        return 0;
+    }
+
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
     }
