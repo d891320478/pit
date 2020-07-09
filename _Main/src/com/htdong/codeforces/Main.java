@@ -14,21 +14,14 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int _t = in.nextInt();
         while (_t-- > 0) {
+            int x = in.nextInt();
+            int y = in.nextInt();
             int n = in.nextInt();
-            int x = 0;
-            int y = 0;
-            while (n % 2 == 0) {
-                ++x;
-                n /= 2;
-            }
-            while (n % 3 == 0) {
-                ++y;
-                n /= 3;
-            }
-            if (n > 1 || x > y) {
-                System.out.println(-1);
+            int z = n / x * x;
+            if (z + y <= n) {
+                System.out.println(z + y);
             } else {
-                System.out.println(y + y - x);
+                System.out.println(z + y - x);
             }
         }
         in.close();

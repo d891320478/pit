@@ -1,9 +1,14 @@
 package com.htdong.leetcode.solution;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import com.htdong.leetcode.domain.ListNode;
 import com.htdong.leetcode.domain.TreeNode;
@@ -13,6 +18,75 @@ import com.htdong.leetcode.domain.TreeNode;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution {
+
+    public static int idx(int l, int r) {
+        return (l + r) | (l != r ? 1 : 0);
+    }
+
+    private String key(List<Integer> list) {
+        return String.join("_", list.stream().map(i -> i.toString()).collect(Collectors.toList()));
+    }
+
+    private List<Integer> fkey(String u) {
+        List<Integer> list = new ArrayList<>();
+        String[] s = u.split("_");
+        for (String i : s) {
+            list.add(Integer.parseInt(i));
+        }
+        return list;
+    }
+
+    private void dfs(Map<String, Integer> map, int n, List<Integer> p, List<Integer> needs, int j, Integer[] a) {
+        if (n == j) {
+            int sum = 0;
+            for (int i = 0; i < n; ++i) {
+                sum += p.get(i) * a[i];
+            }
+            map.put(key(Arrays.asList(a)), sum);
+            return;
+        }
+        for (int i = 0; i <= needs.get(j); ++i) {
+            a[j] = i;
+            dfs(map, n, p, needs, j + 1, a);
+        }
+    }
+
+    public int shoppingOffers(List<Integer> p, List<List<Integer>> special, List<Integer> needs) {
+        // https://leetcode.com/problems/shopping-offers/
+        int n = p.size();
+        Map<String, Integer> map = new HashMap<>();
+        dfs(map, n, p, needs, 0, new Integer[n]);
+        TreeSet<String> q = new TreeSet<>();
+        q.addAll(map.keySet());
+        while (!q.isEmpty()) {
+            String u = q.first();
+            q.remove(u);
+            int v = map.get(u);
+            List<Integer> list = fkey(u);
+            for (List<Integer> i : special) {
+                boolean flag = true;
+                for (int j = 0; j < n; ++j) {
+                    if (list.get(j) + i.get(j) > needs.get(j)) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
+                    v += i.get(n);
+                    List<Integer> ll = new ArrayList<>();
+                    for (int j = 0; j < n; ++j) {
+                        ll.add(list.get(j) + i.get(j));
+                    }
+                    String vk = key(ll);
+                    if (v < map.get(vk)) {
+                        map.put(vk, v);
+                        q.add(vk);
+                    }
+                }
+            }
+        }
+        return map.get(key(needs));
+    }
 
     public int leastInterval(char[] t, int n) {
         int nt = t.length;
@@ -49,10 +123,6 @@ public class Solution {
     public int mincostTickets(int[] days, int[] costs) {
         // TODO https://leetcode.com/problems/minimum-cost-for-tickets/
         return 0;
-    }
-
-    public static int idx(int l, int r) {
-        return (l + r) | (l != r ? 1 : 0);
     }
 
     boolean flag;
