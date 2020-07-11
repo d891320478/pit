@@ -10,4 +10,16 @@ public class Base {
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
     }
+
+    public static long power(long a, long b, long p) {
+        long ans = 1;
+        while (b > 0) {
+            if ((b & 1) > 0) {
+                ans = ans * a % p;
+            }
+            a = a * a % p;
+            b >>= 1;
+        }
+        return ans;
+    }
 }

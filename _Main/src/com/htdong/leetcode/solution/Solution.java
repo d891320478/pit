@@ -10,6 +10,7 @@ import java.util.Queue;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+import com.htdong.leetcode.algorithm.Base;
 import com.htdong.leetcode.domain.ListNode;
 import com.htdong.leetcode.domain.TreeNode;
 
@@ -17,6 +18,7 @@ import com.htdong.leetcode.domain.TreeNode;
  * @author htdong
  * @date 2019年11月7日 下午4:56:49
  */
+
 public class Solution {
 
     public static int idx(int l, int r) {
@@ -185,8 +187,6 @@ public class Solution {
         return sb.toString();
     }
 
-    public static int MOD = 1000000007;
-
     public int numWays(int s, int t) {
         if (t > s) {
             t = s;
@@ -195,8 +195,9 @@ public class Solution {
         d[0][0] = 1;
         for (int i = 1; i <= s; ++i) {
             for (int j = 0; j <= t; ++j) {
-                d[i][j] = (d[i - 1][j] + (j - 1 >= 0 ? d[i - 1][j - 1] : 0)) % MOD + (j + 1 <= t ? d[i - 1][j + 1] : 0);
-                d[i][j] %= MOD;
+                d[i][j] = (d[i - 1][j] + (j - 1 >= 0 ? d[i - 1][j - 1] : 0)) % Base.MOD
+                        + (j + 1 <= t ? d[i - 1][j + 1] : 0);
+                d[i][j] %= Base.MOD;
             }
         }
         return d[s][0];
