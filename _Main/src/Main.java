@@ -1,5 +1,3 @@
-import java.util.Date;
-
 /**
  * @author htdong
  */
@@ -21,7 +19,5 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Date(5983751901404394L));
-        System.out.println(singleNumber(new int[] { -1, 2, 3, -1, 2, 3, -1, -4, 2, 3 }));
     }
 }

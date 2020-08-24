@@ -10,20 +10,37 @@ import java.util.Scanner;
 
 public class Main {
 
+    public static double f(double m, int[] x, int[] p) {
+        double v = 0;
+        for (int i = 0; i < x.length; ++i) {
+            v += p[i] * Math.abs(x[i] - m);
+        }
+        return v;
+    }
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int _t = in.nextInt();
-        while (_t-- > 0) {
-            int x = in.nextInt();
-            int y = in.nextInt();
-            int n = in.nextInt();
-            int z = n / x * x;
-            if (z + y <= n) {
-                System.out.println(z + y);
+        int n = in.nextInt();
+        double r = 0;
+        double l = 50000;
+        int[] x = new int[n];
+        int[] p = new int[n];
+        for (int i = 0; i < n; ++i) {
+            x[i] = in.nextInt();
+            p[i] = in.nextInt();
+            r = Math.max(x[i], r);
+            l = Math.min(x[i], l);
+        }
+        while (Math.abs(r - l) > 1e-8) {
+            double m1 = (l + r) / 2;
+            double m2 = (m1 + r) / 2;
+            if (f(m1, x, p) < f(m2, x, p)) {
+                r = m2;
             } else {
-                System.out.println(z + y - x);
+                l = m1;
             }
         }
+        System.out.println(l);
         in.close();
     }
 

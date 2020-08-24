@@ -7,6 +7,6 @@ package com.htdong.leetcode.solution;
 
 public class LeetCode {
     public static void main(String[] args) {
-        System.out.println(new Solution());
+        System.out.println(new Solution().longestMountain(new int[] { 0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0 }));
     }
 }

@@ -27,10 +27,14 @@ public class SaleOnline {
         for (Map.Entry<String, Integer> iter : map.entrySet()) {
             System.out.println(iter.getKey() + " " + iter.getValue());
         }
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+        }
         in.close();
         list.sort(String::compareTo);
         list.forEach(System.err::println);
-        
+
         in = new Scanner(new File("E:/mail.txt"));
         BigDecimal bd = BigDecimal.ZERO;
         while (in.hasNextLine()) {

@@ -25,6 +25,51 @@ public class Solution {
         return (l + r) | (l != r ? 1 : 0);
     }
 
+    public int longestMountain(int[] a) {
+        int[] b = new int[a.length - 1];
+        for (int i = 0; i + 1 < a.length; ++i) {
+            if (a[i] < a[i + 1]) {
+                b[i] = -1;
+            } else if (a[i] > a[i + 1]) {
+                b[i] = 1;
+            }
+            if (i > 0) {
+                b[i] += b[i - 1];
+            }
+        }
+        int ans = 0;
+        for (int i = 0; i + 2 < a.length; ++i) {
+            if (b[i] - (i - 1 >= 0 ? b[i - 1] : 0) != -1 || b[i + 1] - b[i] != 1) {
+                continue;
+            }
+            int l = 0, r = i;
+            while (l < r) {
+                int mid = l + r >> 1;
+                if (b[i] - (mid - 1 >= 0 ? b[mid - 1] : 0) != -(i - mid + 1)) {
+                    l = mid + 1;
+                } else {
+                    r = mid;
+                }
+            }
+            int ll = i - l + 2;
+            l = i + 1;
+            r = a.length - 2;
+            while (l < r) {
+                int mid = l + r + 1 >> 1;
+                if (b[mid] - b[i] == mid - i) {
+                    l = mid;
+                } else {
+                    r = mid - 1;
+                }
+            }
+            ll += l - i;
+            ans = Math.max(ll, ans);
+        }
+        return ans;
+    }
+
+    boolean flag;
+
     private String key(List<Integer> list) {
         return String.join("_", list.stream().map(i -> i.toString()).collect(Collectors.toList()));
     }
@@ -127,7 +172,7 @@ public class Solution {
         return 0;
     }
 
-    boolean flag;
+    // boolean flag;
 
     private void dfs(ListNode head, ListNode next, TreeNode root) {
         if (flag) {
