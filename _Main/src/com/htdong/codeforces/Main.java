@@ -1,6 +1,6 @@
 package com.htdong.codeforces;
 
-import java.util.Random;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -10,38 +10,16 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static double f(double m, int[] x, int[] p) {
-        double v = 0;
-        for (int i = 0; i < x.length; ++i) {
-            v += p[i] * Math.abs(x[i] - m);
-        }
-        return v;
-    }
-
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        double r = 0;
-        double l = 50000;
-        int[] x = new int[n];
-        int[] p = new int[n];
-        for (int i = 0; i < n; ++i) {
-            x[i] = in.nextInt();
-            p[i] = in.nextInt();
-            r = Math.max(x[i], r);
-            l = Math.min(x[i], l);
+        int _t = in.nextInt();
+        while (_t-- > 0) {
         }
-        while (Math.abs(r - l) > 1e-8) {
-            double m1 = (l + r) / 2;
-            double m2 = (m1 + r) / 2;
-            if (f(m1, x, p) < f(m2, x, p)) {
-                r = m2;
-            } else {
-                l = m1;
-            }
-        }
-        System.out.println(l);
         in.close();
+    }
+
+    public static int idx(int l, int r) {
+        return (l + r) | (l != r ? 1 : 0);
     }
 
     public static int gcd(int a, int b) {
@@ -54,7 +32,7 @@ public class Main {
             if ((n & 1) > 0) {
                 ans = ans * a % mod;
             }
-            a = a * a & mod;
+            a = a * a % mod;
             n >>= 1;
         }
         return ans;
@@ -65,7 +43,13 @@ public class Main {
         int wht, sz;
         TreapNode[] ch;
         private static TreapNode LEAF = null;
-        private static final Random RAND = new Random(System.currentTimeMillis());
+        // private static final Random RAND = new Random(System.currentTimeMillis());
+        private static int x = 1364684679;
+
+        static int rands() {
+            x += (x << 2) + 1;
+            return x;
+        }
 
         public static TreapNode leaf() {
             if (LEAF != null) {
@@ -90,7 +74,7 @@ public class Main {
             this.key = key;
             this.val = val;
             this.sz = 1;
-            this.wht = RAND.nextInt(2147483647);
+            this.wht = rands();
         }
 
         @Override
