@@ -1,6 +1,5 @@
 package com.htdong.codeforces;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -12,9 +11,9 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        int _t = in.nextInt();
-        while (_t-- > 0) {
-        }
+        // int _t = in.nextInt();
+        // while (_t-- > 0) {
+        // }
         in.close();
     }
 
@@ -232,26 +231,6 @@ public class Main {
             } else {
                 root = s;
             }
-        }
-    }
-
-    static class SegmentTree {
-        public int[] tr;
-        public int[] lzy;
-
-        public SegmentTree(int n) {
-            tr = new int[n << 1];
-            lzy = new int[n << 1];
-        }
-
-        public int idx(int l, int r) {
-            return (l + r) | (l != r ? 1 : 0);
-        }
-
-        public void pushdown(int l, int r, int mid) {
-        }
-
-        public void pushup(int l, int r, int mid) {
         }
     }
 }
