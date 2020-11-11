@@ -1,4 +1,4 @@
-import java.util.Date;
+import java.math.BigDecimal;
 
 /**
  * @author htdong
@@ -6,22 +6,8 @@ import java.util.Date;
 
 public class Main {
 
-    private static int singleNumber(int[] A) {
-        int ones = 0;
-        int twos = 0;
-        int xthrees = 0;
-        for (int i = 0; i < A.length; i++) {
-            twos ^= (ones & A[i]);
-            ones ^= A[i];
-            xthrees = ~(ones & twos);
-            twos &= xthrees;
-            ones &= xthrees;
-        }
-        return ones;
-    }
-
     public static void main(String[] args) {
-        System.out.println(new Date().getTime());
-        System.out.println(System.currentTimeMillis());
+        BigDecimal bd = new BigDecimal("12333333333333333333339.60");
+        System.out.println(bd.setScale(2, BigDecimal.ROUND_FLOOR).stripTrailingZeros().toPlainString());
     }
 }
