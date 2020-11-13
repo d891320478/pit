@@ -170,33 +170,6 @@ public class Solution {
         return 0;
     }
 
-    // boolean flag;
-
-    private void dfs(ListNode head, ListNode next, TreeNode root) {
-        if (flag) {
-            return;
-        }
-        if (next == null) {
-            flag = true;
-            return;
-        }
-        if (root == null) {
-            return;
-        }
-        if (root.val == next.val) {
-            dfs(head, next.next, root.left);
-            dfs(head, next.next, root.right);
-        }
-        dfs(head, head, root.left);
-        dfs(head, head, root.right);
-    }
-
-    public boolean isSubPath(ListNode head, TreeNode root) {
-        flag = false;
-        dfs(head, head, root);
-        return flag;
-    }
-
     public String largestMultipleOfThree(int[] d) {
         // https://leetcode.com/problems/largest-multiple-of-three/submissions/
         StringBuilder sb = new StringBuilder();
