@@ -5,12 +5,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import com.htdong.leetcode.algorithm.Base;
-import com.htdong.leetcode.domain.ListNode;
-import com.htdong.leetcode.domain.TreeNode;
 
 /**
  * @author htdong
@@ -18,6 +17,37 @@ import com.htdong.leetcode.domain.TreeNode;
  */
 
 public class Solution {
+
+    public static long MOD = 1000000007;
+
+    private long dfs(long[][] d, int n, int k) {
+        if (d[n][k] != -1) {
+            return d[n][k];
+        }
+        if (k > n - 1 || n == 0) {
+            return d[n][k] = 0;
+        }
+        if (k == 1 && n > 0) {
+            return d[n][k] = 1;
+        }
+        long sum = 0;
+        for (int i = 0; i < n; ++i) {
+
+        }
+        return d[n][k] = sum;
+    }
+
+    public int numberOfSets(int n, int k) {
+        // https://leetcode.com/problems/number-of-sets-of-k-non-overlapping-line-segments/
+        long[][] d = new long[n][n];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                d[i][j] = -1;
+            }
+        }
+        d[0][0] = 1;
+        return (int) dfs(d, n, k);
+    }
 
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
