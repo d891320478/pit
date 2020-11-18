@@ -9,11 +9,17 @@ import java.util.Scanner;
 
 public class Main {
 
+    static int[] a = new int[200010];
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        // int _t = in.nextInt();
-        // while (_t-- > 0) {
-        // }
+        int _t = in.nextInt();
+        while (_t-- > 0) {
+            int n = in.nextInt();
+            for (int i = 1; i <= n; ++i) {
+                a[i] = in.nextInt();
+            }
+        }
         in.close();
     }
 
