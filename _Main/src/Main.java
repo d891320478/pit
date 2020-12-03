@@ -1,7 +1,3 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * @author htdong
  */
@@ -9,7 +5,6 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        List<String> list = new ArrayList<>(Arrays.asList("123"));
-        System.out.println(list);
+        System.out.println(Integer.getInteger("1"));
     }
 }

@@ -1,18 +1,11 @@
 package com.htdong.test.json;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.TreeMap;
+import java.util.Map;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 /**
  * @author htdong
@@ -21,29 +14,30 @@ import lombok.Setter;
 
 public class JacksonTest {
 
-    public static final TypeReference<TreeMap<String, Object>> TREEMAP_TYPE = new TypeReference<TreeMap<String, Object>>() {
-    };
+    @Data
+    public static class ForwardRequest {
+
+        public static final String POST_METHOD = "post";
+        public static final String GET_METHOD = "get";
+        public static final String POST_FORM = "form";
+        public static final String POST_JSON = "json";
+
+        private String url;
+        private Map<String, Object> header;
+        private Map<String, Object> param;
+        private String method;
+        private String post;
+    }
 
     public static void main(String[] args) throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-        String json1 = "{\"test\":1541112900000}";
-        TreeMap<String, Object> bodyMap;
-        bodyMap = objectMapper.readValue(json1, TREEMAP_TYPE);
-        System.out.println(Long.parseLong(bodyMap.get("test").toString()));
-    }
-}
-
-class Aaa {
-    private @Setter @Getter Date test;
-
-    public Aaa() {
-    }
-
-    public Aaa(Date test) {
-        this.test = test;
+        String s = "{\r\n" + "    \"method\": \"POST\",\r\n" + "    \"post\": \"json\",\r\n"
+                + "    \"url\": \"http://10.183.80.193:8200/proxy?ProtocolType=002\",\r\n" + "    \"header\": {\r\n"
+                + "        \"OIP-Sender\": \"21.maintenance-service\",\r\n"
+                + "        \"OIP-Security\": \"da39a3ee5e6b4b0d3255bfef95601890afd80709\",\r\n"
+                + "        \"OIP-ServCode\": \"21.maintenance-service.custportraitdaiwei\"\r\n" + "    },\r\n"
+                + "    \"param\": {\r\n" + "        \"dw_phone\": \"18270361088\"\r\n" + "    }\r\n" + "}";
+        ForwardRequest f = objectMapper.readValue(s, ForwardRequest.class);
+        System.out.println(f);
     }
 }
