@@ -17,7 +17,11 @@ import com.htdong.leetcode.algorithm.Base;
 
 public class Solution {
 
-    public static long MOD = 1000000007;
+    public static int idx(int l, int r) {
+        return (l + r) | (l != r ? 1 : 0);
+    }
+
+    public static long MOD = 1000000007L;
 
     private long dfs(long[][] d, int n, int k) {
         if (d[n][k] != -1) {
@@ -46,10 +50,6 @@ public class Solution {
         }
         d[0][0] = 1;
         return (int) dfs(d, n, k);
-    }
-
-    public static int idx(int l, int r) {
-        return (l + r) | (l != r ? 1 : 0);
     }
 
     public int longestMountain(int[] a) {
