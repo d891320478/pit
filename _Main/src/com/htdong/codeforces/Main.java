@@ -1,7 +1,5 @@
 package com.htdong.codeforces;
 
-import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 /**
@@ -15,39 +13,6 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int _t = in.nextInt();
         while (_t-- > 0) {
-            int a = in.nextInt();
-            int b = in.nextInt();
-            in.nextLine();
-            String s = in.nextLine();
-            Deque<int[]> list = new LinkedList<>();
-            for (int i = 0; i < s.length(); ++i) {
-                if (s.charAt(i) == '1') {
-                    int j = i + 1;
-                    while (j < s.length() && s.charAt(j) == '1') {
-                        ++j;
-                    }
-                    list.add(new int[] { i, j - 1 });
-                    i = j - 1;
-                }
-            }
-            int ans = 0;
-            while (!list.isEmpty()) {
-                int[] u = list.pollFirst();
-                if (list.isEmpty()) {
-                    ans += a;
-                } else {
-                    int[] v = list.pollFirst();
-                    if (a > (v[0] - u[1] - 1) * b) {
-                        ans += (v[0] - u[1] - 1) * b;
-                        int[] w = new int[] { u[0], v[1] };
-                        list.addFirst(w);
-                    } else {
-                        list.addFirst(v);
-                        ans += a;
-                    }
-                }
-            }
-            System.out.println(ans);
         }
         in.close();
     }
