@@ -3,6 +3,8 @@ package com.htdong.sgu;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /**
@@ -15,6 +17,7 @@ public class Main {
 
         public BufferedReader in;
         public StringTokenizer st;
+        public static final PrintWriter out = new PrintWriter(System.out);
 
         public Fastget() {
             in = new BufferedReader(new InputStreamReader(System.in));
@@ -22,6 +25,8 @@ public class Main {
 
         public void close() {
             try {
+                out.flush();
+                out.close();
                 in.close();
             } catch (IOException e) {
             }
@@ -44,7 +49,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Fastget in = new Fastget();
+        // Fastget in = new Fastget();
+        Scanner in = new Scanner(System.in);
         in.close();
     }
 }
