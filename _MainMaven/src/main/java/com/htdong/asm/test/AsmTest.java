@@ -40,7 +40,7 @@ public class AsmTest {
         mw.visitEnd();
         byte[] code = cw.toByteArray();
         classLoader = new MemoryClassLoader();
-        Object obj = classLoader.defineClass(TestClass.class, code).getDeclaredConstructor(byte[].class).newInstance();
+        Object obj = classLoader.defineClass(TestClass.class, code).getDeclaredConstructor(String.class).newInstance();
         Method m = obj.getClass().getMethod("add", String.class);
         for (int i = 0; i < m.getParameterTypes().length; ++i) {
             System.out.println(m.getParameterTypes()[i].getName());
