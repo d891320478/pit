@@ -1,7 +1,6 @@
 package com.htdong.leetcode.solution;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,14 +13,11 @@ import com.htdong.leetcode.algorithm.Base;
  * @author htdong
  * @date 2019年11月7日 下午4:56:49
  */
-
 public class Solution {
 
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
     }
-
-    public static long MOD = 1000000007L;
 
     private long dfs(long[][] d, int n, int k) {
         if (d[n][k] != -1) {
@@ -110,26 +106,23 @@ public class Solution {
         return list;
     }
 
-    private void dfs(Map<String, Integer> map, int n, List<Integer> p, List<Integer> needs, int j, Integer[] a) {
-        if (n == j) {
-            int sum = 0;
-            for (int i = 0; i < n; ++i) {
-                sum += p.get(i) * a[i];
-            }
-            map.put(key(Arrays.asList(a)), sum);
-            return;
-        }
-        for (int i = 0; i <= needs.get(j); ++i) {
-            a[j] = i;
-            dfs(map, n, p, needs, j + 1, a);
-        }
-    }
-
     public int shoppingOffers(List<Integer> p, List<List<Integer>> special, List<Integer> needs) {
         // https://leetcode.com/problems/shopping-offers/
         int n = p.size();
+        for (int i = 0; i < n; ++i) {
+            List<Integer> list = new ArrayList<>();
+            for (int j = 0; j < n; ++j) {
+                list.add(j == i ? 1 : 0);
+            }
+            list.add(p.get(i));
+            special.add(list);
+        }
         Map<String, Integer> map = new HashMap<>();
-        dfs(map, n, p, needs, 0, new Integer[n]);
+        List<Integer> lll = new ArrayList<>();
+        for (int i = 0; i < n; ++i) {
+            lll.add(0);
+        }
+        map.put(key(lll), 0);
         TreeSet<String> q = new TreeSet<>();
         q.addAll(map.keySet());
         while (!q.isEmpty()) {
@@ -146,14 +139,14 @@ public class Solution {
                     }
                 }
                 if (flag) {
-                    v += i.get(n);
+                    int vv = v + i.get(n);
                     List<Integer> ll = new ArrayList<>();
                     for (int j = 0; j < n; ++j) {
                         ll.add(list.get(j) + i.get(j));
                     }
                     String vk = key(ll);
-                    if (v < map.get(vk)) {
-                        map.put(vk, v);
+                    if (!map.containsKey(vk) || vv < map.get(vk)) {
+                        map.put(vk, vv);
                         q.add(vk);
                     }
                 }
@@ -246,46 +239,5 @@ public class Solution {
             }
         }
         return d[s][0];
-    }
-
-    public static class Node {
-        public int val;
-        public Node prev;
-        public Node next;
-        public Node child;
-
-        public Node() {
-        }
-
-        public String toString() {
-            return val + "";
-        }
-
-        public Node(int _val, Node _prev, Node _next, Node _child) {
-            val = _val;
-            prev = _prev;
-            next = _next;
-            child = _child;
-        }
-    }
-
-    public Node flatten(Node head) {
-        Node next = head;
-        while (next != null) {
-            if (next.child != null) {
-                Node nn = next.next;
-                next.next = flatten(next.child);
-                next.child = null;
-                while (next.next != null) {
-                    next = next.next;
-                }
-                next.next = nn;
-                nn.prev = next;
-                next = nn;
-            } else {
-                next = next.next;
-            }
-        }
-        return head;
     }
 }

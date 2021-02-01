@@ -29,5 +29,4 @@ public class DelImg {
         File ff = new File("D:\\TIMRecord\\312687042\\Image\\Group2");
         dfs(ff);
     }
-
 }

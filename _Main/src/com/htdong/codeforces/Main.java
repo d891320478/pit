@@ -1,6 +1,10 @@
 package com.htdong.codeforces;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
 /**
  * @author htdong
@@ -10,12 +14,49 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
+        Fastget in = new Fastget();
         int _t = in.nextInt();
         while (_t-- > 0) {
         }
         in.close();
     }
+
+    static class Fastget {
+
+        public BufferedReader in;
+        public StringTokenizer st;
+        public static final PrintWriter out = new PrintWriter(System.out);
+
+        public Fastget() {
+            in = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        public void close() {
+            try {
+                out.flush();
+                out.close();
+                in.close();
+            } catch (IOException e) {
+            }
+        }
+
+        private String next() {
+            while (st == null || !st.hasMoreTokens()) {
+                try {
+                    st = new StringTokenizer(in.readLine());
+                } catch (Exception e) {
+                }
+            }
+            return st.nextToken();
+        }
+
+        public int nextInt() {
+            String s = next();
+            return Integer.parseInt(s);
+        }
+    }
+
+    public static int MOD = 1000000007;
 
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);

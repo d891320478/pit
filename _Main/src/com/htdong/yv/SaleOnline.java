@@ -43,5 +43,4 @@ public class SaleOnline {
         in.close();
         System.out.println(bd);
     }
-
 }
