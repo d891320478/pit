@@ -15,6 +15,10 @@ import com.htdong.leetcode.algorithm.Base;
  */
 public class Solution {
 
+    public int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
     }

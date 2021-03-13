@@ -48,9 +48,46 @@ public class Main {
         }
     }
 
+    public static class Edge {
+        int next, v, w;
+
+        public Edge(int next, int v, int w) {
+            this.next = next;
+            this.v = v;
+            this.w = w;
+        }
+    }
+
+    public static int[] head;
+    public static Edge[] e;
+    public static int cnt;
+
+    public static void init(int n, int m) {
+        head = new int[n];
+        for (int i = 0; i < n; ++i) {
+            head[i] = -1;
+        }
+        e = new Edge[m];
+        cnt = 0;
+    }
+
+    public static void addEdge(int u, int v, int w) {
+        e[cnt] = new Edge(head[u], v, w);
+        head[u] = cnt++;
+    }
+
     public static void main(String[] args) {
         // Fastget in = new Fastget();
         Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        int[][] a = new int[s.length()][s.length()];
+        for (int i = 0; i < s.length(); ++i) {
+            long v = s.charAt(i) - '0';
+            for (int j = 0; j < s.length(); ++j) {
+                a[i][j] = (int) (v % 17);
+                v *= 10;
+            }
+        }
         in.close();
     }
 }
