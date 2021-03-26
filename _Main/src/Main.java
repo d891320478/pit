@@ -1,4 +1,5 @@
-import java.util.Date;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * @author htdong
@@ -6,7 +7,6 @@ import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println(new Date(1615017599000L));
+    public static void main(String[] args) throws UnsupportedEncodingException, IOException {
     }
 }

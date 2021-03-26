@@ -1,12 +1,13 @@
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.TreeMap;
 
-import javax.sql.DataSource;
-
-import com.alibaba.druid.pool.DruidDataSource;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.json.JsonReadFeature;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.google.gson.reflect.TypeToken;
+import com.shinemo.client.util.GsonUtil;
 
 /**
  * @author htdong
@@ -14,51 +15,49 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 public class Main {
 
-    public static void main(String[] args) throws Exception {
-        String sql = "select * from t_baas_ops_log where id = 2;";
-        DataSource ds = getds();
-        Statement stat = ds.getConnection().createStatement();
-        stat.setQueryTimeout(60);
-        stat.setMaxRows(200);
-        ResultSet rlt = stat.executeQuery(sql);
-        ResultSetMetaData meta = rlt.getMetaData();
+    private static TypeToken<TreeMap<String, Object>> type = new TypeToken<TreeMap<String, Object>>() {
+    };
 
-        List<List<String>> list = new ArrayList<>();
+    public static void main(String[] args) throws JsonProcessingException {
+        TreeMap<String, Object> m1 = GsonUtil.fromGson2Obj(
+                "{\"appointTime\":null,\"appointTimeSecond\":null,\"broadBandStatus\":null,\"id\":\"fc58471f4a8c412e8ec25d79def37d6d\",\"ifWaitForSubTask\":\"false\",\"isAppointTimeSecond\":null,\"linkReplyedResults\":null,\"mainAccessNumber\":\"18797801018\",\"mainAccessType\":\"FTTH接入\",\"mainAccessTypeId\":\"mainAccessType\\u003d\\u003d32\",\"mainBookingStartDate\":\"2021-03-26 13:00:00\",\"mainCity\":\"鹰潭市\",\"mainCityId\":\"701\",\"mainCountry\":\"贵溪市\",\"mainCountryId\":\"7011\",\"mainCoverAreaName\":null,\"mainCustomerLevel\":\"四星\",\"mainCustomerLevelId\":\"mainCustLevel\\u003d\\u003d4\",\"mainCustomerName\":\"倪后胜\",\"mainInstallLocation\":\"鹰潭贵溪市塘湾镇塘湾集镇塘湾集镇南25栋39号箱2层203();\",\"mainLinkmanNumbers1\":\"15970285249\",\"mainLinkmanNumbers2\":null,\"mainMyRemark\":null,\"mainPbossOrderType\":\"移机\",\"mainPbossOrderTypeId\":\"mainOrderType\\u003d\\u003d3\",\"mainPbossProductType\":\"有线宽带\",\"mainPbossProductTypeId\":\"mainProdType\\u003d\\u003d19\",\"mainPbossSheetType\":\"外线施工\",\"mainPbossSheetTypeId\":\"mainSheetType\\u003d\\u003d8\",\"mainRemindCount\":null,\"mainReplyInstall\":\"否\",\"mainReplyInstallId\":\"mainReplyInstall\\u003d\\u003d2\",\"mainResponseLevel\":\"1\",\"mainUpdateAppointCount\":null,\"operateRoleId\":\"1\",\"overtimeType\":null,\"preLinkId\":\"db7e1686e7b64105b996549966b75f86\",\"processId\":\"db7e1686e7b64105b996549966b75f86\",\"sendTime\":\"2021-03-26 11:07:02\",\"sheetAcceptLimit\":\"2021-03-26 12:07:02\",\"sheetCompleteLimit\":\"2021-03-29 11:02:39\",\"sheetId\":\"JX-201-210326-00094\",\"sheetKey\":\"db7e1686e7b64105b996549966b75f86\",\"subTaskFlag\":\"false\",\"taskDisplayName\":\"上门施工\",\"taskName\":\"InstallTask\",\"taskOwner\":\"廖志诚\",\"taskStatus\":\"22\",\"title\":\"18797801018有线宽带四星鹰潭贵溪市塘湾镇塘湾集镇塘湾集镇南25栋39号箱2层203();【需正装机】\"}",
+                type);
+        TreeMap<String, Object> m2 = GsonUtil.fromGson2Obj("{\r\n" + "\"appointTimeSecond\": \"\",\r\n"
+                + "\"mainPbossOrderType\": \"新装\",\r\n" + "\"ifWaitForSubTask\": \"false\",\r\n"
+                + "\"preLinkId\": \"5a5703c710894d8da3d3860c0f74b713\",\r\n" + "\"taskDisplayName\": \"工单受理\",\r\n"
+                + "\"subTaskFlag\": \"false\",\r\n" + "\"mainBookingStartDate\": \"2021-03-26 11:00:00\",\r\n"
+                + "\"mainCustomerName\": \"倪后胜\",\r\n" + "\"sheetAcceptLimit\": \"2021-03-26 12:06:05\",\r\n"
+                + "\"id\": \"3d09c4d14008450293319ef1a8a3cc67\",\r\n" + "\"linkReplyedResults\": \"\",\r\n"
+                + "\"taskStatus\": \"22\",\r\n" + "\"mainCountryId\": \"7011\",\r\n"
+                + "\"mainAccessType\": \"FTTH接入\",\r\n" + "\"appointTime\": \"\",\r\n"
+                + "\"mainCustomerLevel\": \"四星\",\r\n" + "\"mainRemindCount\": \"\",\r\n"
+                + "\"operateRoleId\": \"1\",\r\n" + "\"mainMyRemark\": \"\",\r\n"
+                + "\"sendTime\": \"2021-03-26 11:06:05\",\r\n" + "\"mainCityId\": \"701\",\r\n"
+                + "\"mainCity\": \"鹰潭市\",\r\n" + "\"mainLinkmanNumbers2\": \"\",\r\n"
+                + "\"mainPbossProductType\": \"安防产品\",\r\n" + "\"mainLinkmanNumbers1\": \"18797801018\",\r\n"
+                + "\"operateUserId\": \"liaozhicheng1\",\r\n" + "\"taskName\": \"AcceptTask\",\r\n"
+                + "\"isAppointTimeSecond\": \"\",\r\n" + "\"taskOwner\": \"廖志诚\",\r\n"
+                + "\"mainPbossSheetType\": \"外线施工\",\r\n" + "\"mainCountry\": \"贵溪市\",\r\n"
+                + "\"title\": \"18797801018安防产品四星鹰潭贵溪市塘湾镇塘湾集镇塘湾集镇农村46号箱李五奥()\",\r\n"
+                + "\"mainCoverAreaName\": \"\",\r\n" + "\"sheetKey\": \"5a5703c710894d8da3d3860c0f74b713\",\r\n"
+                + "\"operaterContact\": \"152****2205\",\r\n" + "\"broadBandStatus\": \"\",\r\n"
+                + "\"mainReplyInstall\": \"\",\r\n" + "\"mainPbossProductTypeId\": \"mainProdType==42\",\r\n"
+                + "\"processId\": \"5a5703c710894d8da3d3860c0f74b713\",\r\n"
+                + "\"mainPbossOrderTypeId\": \"mainOrderType==1\",\r\n"
+                + "\"sheetCompleteLimit\": \"2021-03-29 11:05:59\",\r\n" + "\"mainAccessNumber\": \"18797801018\",\r\n"
+                + "\"mainInstallLocation\": \"鹰潭贵溪市塘湾镇塘湾集镇塘湾集镇农村46号箱李五奥()\",\r\n" + "\"mainResponseLevel\": \"1\",\r\n"
+                + "\"overtimeType\": \"\",\r\n" + "\"mainAccessTypeId\": \"mainAccessType==32\",\r\n"
+                + "\"mainCustomerLevelId\": \"mainCustLevel==4\",\r\n" + "\"mainUpdateAppointCount\": \"\",\r\n"
+                + "\"sheetId\": \"JX-201-210326-00091\",\r\n" + "\"mainPbossSheetTypeId\": \"mainSheetType==8\"\r\n"
+                + "}", type);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.enable(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature());
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
-        List<String> columns = new ArrayList<>();
-        for (int i = 1; i <= meta.getColumnCount(); ++i) {
-            columns.add(meta.getColumnName(i));
-        }
-        list.add(columns);
+        System.out.println(objectMapper.writeValueAsString(m1));
+        System.out.println(objectMapper.writeValueAsString(m2));
 
-        while (rlt.next()) {
-            List<String> row = new ArrayList<>();
-            for (String iter : columns) {
-                row.add(rlt.getString(iter));
-            }
-            list.add(row);
-        }
-        System.out.println(list);
-    }
-
-    private static DataSource getds() {
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setUsername("root");
-        dataSource.setPassword("shinemo123");
-        dataSource.setUrl(
-                "jdbc:mysql://10.0.10.41:3306/shinemo_im?autoReconnect=true&amp;failOverReadOnly=false&amp;maxReconnects=10&amp;characterEncoding=UTF8&amp;allowMultiQueries=true");
-        dataSource.setInitialSize(5);
-        dataSource.setMinIdle(5);
-        dataSource.setMaxActive(50);
-        dataSource.setMaxWait(60000);
-        dataSource.setTimeBetweenEvictionRunsMillis(60000);
-        dataSource.setMinEvictableIdleTimeMillis(300000);
-        dataSource.setValidationQuery("SELECT 'x'");
-        dataSource.setTestWhileIdle(true);
-        dataSource.setTestOnBorrow(false);
-        dataSource.setTestOnReturn(false);
-        dataSource.setPoolPreparedStatements(true);
-        dataSource.setMaxPoolPreparedStatementPerConnectionSize(20);
-        return dataSource;
     }
 }
