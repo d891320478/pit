@@ -15,6 +15,8 @@ import com.htdong.leetcode.algorithm.Base;
  */
 public class Solution {
 
+    public static int MOD = 1000000007;
+
     public int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
     }
