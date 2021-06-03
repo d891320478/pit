@@ -15,6 +15,25 @@ import com.htdong.leetcode.algorithm.Base;
  */
 public class Solution {
 
+    public int maxDistance(int[] a, int[] b) {
+        int ans = 0;
+        for (int i = 0; i < Math.min(a.length, b.length); ++i) {
+            int l = i, r = b.length - 1;
+            while (l < r) {
+                int mid = l + r + 1 >> 1;
+                if (b[mid] >= a[i]) {
+                    l = mid;
+                } else {
+                    r = mid - 1;
+                }
+            }
+            if (b[l] >= a[i]) {
+                ans = Math.max(ans, l - i);
+            }
+        }
+        return ans;
+    }
+
     public static int MOD = 1000000007;
 
     public int gcd(int a, int b) {
