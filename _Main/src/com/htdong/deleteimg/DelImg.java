@@ -10,7 +10,7 @@ public class DelImg {
 
     private static void dfs(File f) {
         if (f.isFile()) {
-            if (f.lastModified() + 86400000 * 30 < System.currentTimeMillis()) {
+            if (f.lastModified() + 86400000L * 30 < System.currentTimeMillis()) {
                 f.delete();
             }
         } else if (f.isDirectory()) {
