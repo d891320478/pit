@@ -22,4 +22,8 @@ public class Base {
         }
         return ans;
     }
+
+    public int lowbit(int x) {
+        return x & (-x);
+    }
 }

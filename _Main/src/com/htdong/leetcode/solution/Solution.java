@@ -40,10 +40,6 @@ public class Solution {
         return b == 0 ? a : gcd(b, a % b);
     }
 
-    public static int idx(int l, int r) {
-        return (l + r) | (l != r ? 1 : 0);
-    }
-
     private long dfs(long[][] d, int n, int k) {
         if (d[n][k] != -1) {
             return d[n][k];
