@@ -6,27 +6,29 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
         new Thread(Main::f1).start();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         new Thread(Main::f2).start();
     }
 
-    private static Object lock = new Object();
+    static Object lock = new Object();
 
     public static void f1() {
         synchronized (lock) {
+            System.out.println("f11");
             try {
                 lock.wait();
-                System.out.println("1");
             } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+            System.out.println("f12");
         }
     }
 
     public static void f2() {
         synchronized (lock) {
+            System.out.println("f21");
+            lock = new Object();
             lock.notifyAll();
-            System.out.println("2");
+            System.out.println("f22");
         }
     }
 }

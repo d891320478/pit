@@ -14,6 +14,24 @@ import com.htdong.leetcode.algorithm.Base;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution {
+    public int maxProductPath(int[][] a) {
+        // TODO https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/
+        int n = a.length;
+        int m = a[0].length;
+        Long[][][] b = new Long[n][m][2];
+        for (int j = 0; j < m; ++j) {
+            if (a[0][j] >= 0)
+                b[0][j][0] = (long) a[0][j];
+            else
+                b[0][j][1] = (long) a[0][j];
+        }
+        for (int i = 1; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+
+            }
+        }
+        return -1;
+    }
 
     public int maxDistance(int[] a, int[] b) {
         int ans = 0;
