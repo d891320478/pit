@@ -4,10 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
-import java.util.TreeMap;
 
 /**
  * @author htdong
@@ -18,33 +17,11 @@ public class Main {
 
     public static void main(String[] args) {
         Fastget in = new Fastget();
-        int _t = in.nextInt();
-        while (_t-- > 0) {
-            int n = in.nextInt();
-            Map<Integer, Integer> m1 = new HashMap<>();
-            for (int i = 0; i < n; ++i) {
-                int a = in.nextInt();
-                m1.put(a, m1.getOrDefault(a, 0) + 1);
-            }
-            TreeMap<Integer, Integer> m2 = new TreeMap<>();
-            for (Map.Entry<Integer, Integer> iter : m1.entrySet()) {
-                m2.put(iter.getValue(), m2.getOrDefault(iter.getValue(), 0) + 1);
-            }
-            int ans = n;
-            while (!m2.isEmpty()) {
-                int u = m2.lastKey();
-                int v = m2.get(u);
-                m2.remove(u);
-                ans = Math.min(ans, n - u * v);
-                if (!m2.isEmpty()) {
-                    int w = m2.lastKey();
-                    m2.put(w, m2.get(w) + v);
-                }
-            }
-            System.out.println(ans);
-        }
         in.close();
     }
+
+    public static int[] dx = { 0, 1, 0, -1 };
+    public static int[] dy = { -1, 0, 1, 0 };
 
     static class Fastget {
 
