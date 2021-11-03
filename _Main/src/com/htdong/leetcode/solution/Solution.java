@@ -14,6 +14,7 @@ import com.htdong.leetcode.algorithm.Base;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution {
+
     public int maxProductPath(int[][] a) {
         // TODO https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/
         int n = a.length;
