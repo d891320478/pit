@@ -2,8 +2,10 @@ package com.htdong.leetcode.solution;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -14,6 +16,91 @@ import com.htdong.leetcode.algorithm.Base;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution {
+
+    public static final int N = 30;
+    public static final int M = 2010;
+    public static final int INF = (1 << 30);
+    private int cnt, s, t, ans;
+    private int[] head = new int[N], d = new int[N], pre = new int[N];
+    private boolean[] vis = new boolean[N];
+
+    private static class Edge {
+        int v, w, c, next;
+
+        public Edge(int v, int w, int c, int next) {
+            this.v = v;
+            this.w = w;
+            this.c = c;
+            this.next = next;
+        }
+
+    }
+
+    Edge[] e = new Edge[M];
+
+    void addEdge(int u, int v, int w, int c) {
+        e[cnt] = new Edge(v, w, c, head[u]);
+        head[u] = cnt++;
+        e[cnt] = new Edge(u, 0, -c, head[v]);
+        head[v] = cnt++;
+    }
+
+    Queue<Integer> q = new LinkedList<>();
+
+    boolean spfa() {
+        for (int i = 0; i < N; ++i) {
+            pre[i] = d[i] = -1;
+            vis[i] = false;
+        }
+        d[s] = 0;
+        q.add(s);
+        while (!q.isEmpty()) {
+            int u = q.poll();
+            vis[u] = false;
+            for (int i = head[u]; i != -1; i = e[i].next)
+                if (e[i].w > 0)
+                    if (d[e[i].v] == -1 || d[e[i].v] > d[u] + e[i].c) {
+                        d[e[i].v] = d[u] + e[i].c;
+                        pre[e[i].v] = i;
+                        if (!vis[e[i].v]) {
+                            q.add(e[i].v);
+                            vis[e[i].v] = true;
+                        }
+                    }
+        }
+        return d[t] != -1;
+    }
+
+    int mcmf() {
+        ans = 0;
+        while (spfa()) {
+            int u, mn = INF;
+            for (u = t; u != s; u = e[pre[u] ^ 1].v)
+                mn = Math.min(mn, e[pre[u]].w);
+            ans += mn * d[t];
+            for (u = t; u != s; u = e[pre[u] ^ 1].v) {
+                e[pre[u]].w -= mn;
+                e[pre[u] ^ 1].w += mn;
+            }
+        }
+        return ans;
+    }
+
+    public int maximumRequests(int n, int[][] r) {
+        s = n;
+        t = n + 1;
+        cnt = 0;
+        for (int i = 0; i < N; ++i) {
+            head[i] = -1;
+        }
+        for (int[] a : r) {
+            addEdge(a[0], a[1], 1, 1);
+            addEdge(s, a[0], 1, 1);
+            addEdge(a[0], t, 1, 0);
+        }
+        return mcmf();
+    }
+
     public int maxProductPath(int[][] a) {
         // TODO https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/
         int n = a.length;
@@ -129,8 +216,6 @@ public class Solution {
         }
         return ans;
     }
-
-    boolean flag;
 
     private String key(List<Integer> list) {
         return String.join("_", list.stream().map(i -> i.toString()).collect(Collectors.toList()));
