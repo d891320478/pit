@@ -17,7 +17,6 @@ import com.htdong.leetcode.algorithm.Base;
  */
 public class Solution {
 
-<<<<<<< HEAD
     public static final int N = 30;
     public static final int M = 2010;
     public static final int INF = (1 << 30);
@@ -102,8 +101,6 @@ public class Solution {
         return mcmf();
     }
 
-=======
->>>>>>> a8f954f3e09834305ee874b0bf811d7090e95191
     public int maxProductPath(int[][] a) {
         // TODO https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/
         int n = a.length;
