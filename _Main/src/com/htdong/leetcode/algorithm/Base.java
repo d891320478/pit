@@ -23,7 +23,11 @@ public class Base {
         return ans;
     }
 
-    public int lowbit(int x) {
+    public static int gcd(int a, int b) {
+        return b == 0 ? a : gcd(b, a % b);
+    }
+
+    public static int lowbit(int x) {
         return x & (-x);
     }
 }
