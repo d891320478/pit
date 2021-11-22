@@ -1,7 +1,6 @@
 ==========todo==========
 正则表达式
 StampedLock
-Thread/ThreadLocal
 ScheduledThreadPoolExecutor
 fork/join
 引用类型，虚拟机如何处理
@@ -18,8 +17,10 @@ LockSupport
 常量池
 jdbc
 cglib
+classloader
 ==========done==========
 HashMap
+Thread/ThreadLocal
 ConcurrentHashMap
 CountDownLatch
 ReentrantLock
