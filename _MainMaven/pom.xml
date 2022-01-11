@@ -19,14 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.shinemo.jce</groupId>
-            <artifactId>jce</artifactId>
-            <version>5.1.5-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.16.18</version>
+            <version>1.18.20</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -49,11 +44,6 @@
             <version>${jackson-version}</version>
         </dependency>
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
-            <version>1.2.75</version>
-        </dependency>
-        <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
             <version>2.6</version>
@@ -61,7 +51,7 @@
         <dependency>
             <groupId>com.shinemo</groupId>
             <artifactId>common-client</artifactId>
-            <version>1.4.2-SNAPSHOT</version>
+            <version>1.4.3-SNAPSHOT</version>
             <exclusions>
                 <exclusion>
                     <groupId>*</groupId>
@@ -121,25 +111,9 @@
             <version>1.1.21</version>
         </dependency>
         <dependency>
-            <groupId>com.shinemo</groupId>
-            <artifactId>netbridge-client</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>io.netty</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>[4.1.42,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.shinemo</groupId>
-            <artifactId>netbridge-server</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>[4.1.70,)</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -163,10 +137,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.8.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <release>11</release>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
