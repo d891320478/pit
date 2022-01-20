@@ -15,7 +15,7 @@ import com.htdong.leetcode.algorithm.Base;
  * @author htdong
  * @date 2019年11月7日 下午4:56:49
  */
-public class Solution {
+public class Solution extends Base {
 
     public static final int N = 30;
     public static final int M = 2010;
@@ -137,12 +137,6 @@ public class Solution {
             }
         }
         return ans;
-    }
-
-    public static int MOD = 1000000007;
-
-    public int gcd(int a, int b) {
-        return b == 0 ? a : gcd(b, a % b);
     }
 
     private long dfs(long[][] d, int n, int k) {
