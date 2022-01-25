@@ -1,12 +1,13 @@
-死笑白版       LV123无EX         Rosa【烈火】
-死笑黑版       LV123无EX         Sakura【steam】
-虫1            O模式             S枪【steam】
-虫1            M模式             W枪【steam】
-黑往生         一周              AEX【MAME】
-白往生         一周              AEX【MAME】
-虫2白版        O模式             palmAB【MAME】
-虫2黑版        O模式             palm【MAME】
-DBAC           表ADH线           传奇【steam】
-大复活白版     表二              B-S【steam】
-CCWI           O模式             Z'机【steam】
-G1                               A机【MAME】
+死笑白版       LV123无EX          Rosa【烈火】
+死笑黑版       LV123无EX          Sakura【steam】
+虫1            O模式              S枪【steam】
+虫1            M模式              W枪【steam】
+黑往生         一周               AEX【MAME】
+白往生         一周               AEX【MAME】
+虫2白版        O模式              palmAB【MAME】
+虫2黑版        O模式              palm【MAME】
+DBAC           表ADH线            传奇【steam】
+大复活白版     表二               B-S【steam】
+CCWI           O模式              Z'机【steam】
+CCWEX          Arrange-O模式      C机【steam】
+G1                                A机【MAME】
