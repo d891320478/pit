@@ -10,12 +10,28 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import com.htdong.leetcode.algorithm.Base;
+import com.htdong.leetcode.algorithm.Treap;
 
 /**
  * @author htdong
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution extends Base {
+
+    public int kIncreasing(int[] arr, int k) {
+        int n = arr.length;
+        int v = 0;
+        for (int i = n - 1; i + k >= n; --i) {
+            Treap tr = new Treap();
+            int ans = 0;
+            for (int j = i; j - k >= 0; j -= k) {
+                tr.insert(arr[j], 0);
+                ans = Math.max(ans, tr.rank(arr[j - k]));
+            }
+            v += ans;
+        }
+        return v;
+    }
 
     public static final int N = 30;
     public static final int M = 2010;
