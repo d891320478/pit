@@ -27,6 +27,6 @@ public class LeetCode {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().kIncreasing(new int[] { 4, 1, 5, 2, 6, 2 }, 2));
+        System.out.println(new Solution());
     }
 }
