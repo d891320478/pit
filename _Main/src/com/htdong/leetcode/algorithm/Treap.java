@@ -2,49 +2,49 @@ package com.htdong.leetcode.algorithm;
 
 import java.util.Random;
 
-class TreapNode {
-    int key, val;
-    int wht, sz, cnt;
-    TreapNode[] ch;
-    private static TreapNode LEAF = null;
-    private static final Random RAND = new Random(System.currentTimeMillis());
+public class Treap {
+    
+    public static class TreapNode {
+        public int key, val;
+        int wht, sz, cnt;
+        public TreapNode[] ch;
+        private static TreapNode LEAF = null;
+        private static final Random RAND = new Random(System.currentTimeMillis());
 
-    public static TreapNode leaf() {
-        if (LEAF != null) {
+        public static TreapNode leaf() {
+            if (LEAF != null) {
+                return LEAF;
+            }
+            LEAF = new TreapNode();
+            LEAF.ch = new TreapNode[2];
+            LEAF.ch[0] = LEAF.ch[1] = LEAF;
+            LEAF.sz = 0;
+            LEAF.cnt = 0;
+            LEAF.key = -1;
+            LEAF.val = -1;
+            LEAF.wht = -2147483648;
             return LEAF;
         }
-        LEAF = new TreapNode();
-        LEAF.ch = new TreapNode[2];
-        LEAF.ch[0] = LEAF.ch[1] = LEAF;
-        LEAF.sz = 0;
-        LEAF.cnt = 0;
-        LEAF.key = -1;
-        LEAF.val = -1;
-        LEAF.wht = -2147483648;
-        return LEAF;
+
+        private TreapNode() {
+        }
+
+        public TreapNode(int key, int val) {
+            ch = new TreapNode[2];
+            ch[0] = ch[1] = leaf();
+            this.key = key;
+            this.val = val;
+            this.sz = this.cnt = 1;
+            this.wht = RAND.nextInt(2147483647);
+        }
+
+        @Override
+        public String toString() {
+            return "key= " + key + ", val = " + val;
+        }
     }
 
-    private TreapNode() {
-    }
-
-    public TreapNode(int key, int val) {
-        ch = new TreapNode[2];
-        ch[0] = ch[1] = leaf();
-        this.key = key;
-        this.val = val;
-        this.sz = this.cnt = 1;
-        this.wht = RAND.nextInt(2147483647);
-    }
-
-    @Override
-    public String toString() {
-        return "key= " + key + ", val = " + val;
-    }
-}
-
-public class Treap {
-
-    private TreapNode root, leaf;
+    public TreapNode root, leaf;
 
     public Treap() {
         leaf = TreapNode.leaf();
