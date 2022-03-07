@@ -4,9 +4,10 @@
 public class Main {
 
     public static void main(String[] args) {
-        long[] uids = new long[] { 99812416L, 10101001231961896L, 10101001228401944L, 10101001231981344L, 106104L,
-                10101001229324392L, 10101001232145560L, 10101001231307328L, 10101001232668320L, 10101001232528920L };
-        long[] menus = new long[] { 344, 357, 359, 365, 371, 378, 379, 383, 391, 392, 396, 382, 384, 385, 387, 388 };
+        long[] uids = new long[] { 84231840L, 10101001216628952L, 10101001230103296L, 10101001232215496L,
+                10101001232341720L, 10101001232770760L, 10101001232871688L, 10101001232917072L, 10101001233076680L,
+                10101001233077880L, 10101001233316544L, 10101001233797032L };
+        long[] menus = new long[] { 391 };
         // String ins = "insert into user_menu (site_id, uid, app_id, menu_id, stat,
         // gmt_create, kind) values (0, %s, 7, 377, 1, now(), 0);\n";
         String sql = "insert into user_menu (site_id, uid, app_id, menu_id, stat, gmt_create, kind) values (0, %s, 7, %s, 1, now(), 0);\n";
