@@ -1,7 +1,7 @@
 /**
  * @author htdong
  */
-public class Main {
+public class CaMenu {
 
     public static void main(String[] args) {
         long[] uids = new long[] { 22830064L, 24784720L, 44443472L, 85945784L, 10101001191758352L, 10101001194858984L,
