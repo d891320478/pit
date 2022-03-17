@@ -17,6 +17,37 @@ import com.htdong.leetcode.algorithm.Treap;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution extends Base {
+    public int minMovesToMakePalindrome(String s) {
+        char[] a = s.toCharArray();
+        int ans = 0;
+        int n = s.length();
+        for (int i = 0, j = n - 1; i < j; ++i, --j) {
+            int k = j;
+            for (; k > i; --k) {
+                if (a[i] == a[k]) {
+                    break;
+                }
+            }
+            if (k == i) {
+                for (k = i; k < n / 2; ++k) {
+                    char tmp = a[k];
+                    a[k] = a[k + 1];
+                    a[k + 1] = tmp;
+                    ++ans;
+                }
+                --i;
+                ++j;
+            } else {
+                for (; k < j; ++k) {
+                    char tmp = a[k];
+                    a[k] = a[k + 1];
+                    a[k + 1] = tmp;
+                    ++ans;
+                }
+            }
+        }
+        return ans;
+    }
 
     public int kIncreasing(int[] arr, int k) {
         int n = arr.length;
