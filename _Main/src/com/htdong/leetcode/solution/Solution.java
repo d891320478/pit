@@ -17,42 +17,6 @@ import com.htdong.leetcode.algorithm.Treap;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution extends Base {
-    Map<String, Integer> map = new HashMap<>();
-
-    public int minMovesToMakePalindrome(String s) {
-        if (s.length() < 3) {
-            map.put(s, 0);
-        }
-        if (map.containsKey(s)) {
-            return map.get(s);
-        }
-        int j = s.length() - 1;
-        for (; j > 0; --j) {
-            if (s.charAt(j) == s.charAt(0)) {
-                break;
-            }
-        }
-        int v;
-        if (j == 0) {
-            v = s.length() / 2 + minMovesToMakePalindrome(s.substring(1));
-        } else {
-            v = s.length() - j - 1 + minMovesToMakePalindrome(s.substring(1, j) + s.substring(j + 1));
-        }
-        j = 0;
-        for (; j < s.length() - 1; ++j) {
-            if (s.charAt(j) == s.charAt(s.length() - 1)) {
-                break;
-            }
-        }
-        int w;
-        if (j == s.length() - 1) {
-            w = s.length() / 2 + minMovesToMakePalindrome(s.substring(0, s.length() - 1));
-        } else {
-            w = j + minMovesToMakePalindrome(s.substring(0, j) + s.substring(j + 1, s.length() - 1));
-        }
-        map.put(s, Math.min(v, w));
-        return map.get(s);
-    }
 
     public int kIncreasing(int[] arr, int k) {
         int n = arr.length;
