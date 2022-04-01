@@ -19,6 +19,7 @@ LockSupport
 jdbc
 cglib
 classloader
+HttpClientApi vs ApacheHttpClient
 ==========done==========
 HashMap
 Thread/ThreadLocal
