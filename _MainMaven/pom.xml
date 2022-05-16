@@ -12,7 +12,7 @@
     <name>_mainMaven</name>
 
     <properties>
-        <jackson-version>2.10.0</jackson-version>
+        <jackson-version>2.13.2</jackson-version>
         <groovy-version>3.0.7</groovy-version>
         <project-encoding>UTF-8</project-encoding>
     </properties>

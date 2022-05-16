@@ -1,8 +1,8 @@
+import com.shinemo.client.util.AESUtil;
 
 public class Main {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
+        System.err.println(AESUtil.generateSeed());
     }
 }
