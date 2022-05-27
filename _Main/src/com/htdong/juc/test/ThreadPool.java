@@ -25,6 +25,7 @@ public class ThreadPool {
     }
 
     static class CoolRun implements Runnable {
+        @Override
         public void run() {
             threadCoolRun = Thread.currentThread();
             while (!Thread.interrupted()) {
@@ -33,6 +34,7 @@ public class ThreadPool {
     }
 
     static class Run1 implements Runnable {
+        @Override
         public void run() {
             System.out.println(Thread.currentThread().getName() + "Run1");
         }

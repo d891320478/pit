@@ -73,8 +73,8 @@ public class Solution extends Base {
         while (!q.isEmpty()) {
             int u = q.poll();
             vis[u] = false;
-            for (int i = head[u]; i != -1; i = e[i].next)
-                if (e[i].w > 0)
+            for (int i = head[u]; i != -1; i = e[i].next) {
+                if (e[i].w > 0) {
                     if (d[e[i].v] == -1 || d[e[i].v] > d[u] + e[i].c) {
                         d[e[i].v] = d[u] + e[i].c;
                         pre[e[i].v] = i;
@@ -83,6 +83,8 @@ public class Solution extends Base {
                             vis[e[i].v] = true;
                         }
                     }
+                }
+            }
         }
         return d[t] != -1;
     }
@@ -91,8 +93,9 @@ public class Solution extends Base {
         ans = 0;
         while (spfa()) {
             int u, mn = INF;
-            for (u = t; u != s; u = e[pre[u] ^ 1].v)
+            for (u = t; u != s; u = e[pre[u] ^ 1].v) {
                 mn = Math.min(mn, e[pre[u]].w);
+            }
             ans += mn * d[t];
             for (u = t; u != s; u = e[pre[u] ^ 1].v) {
                 e[pre[u]].w -= mn;
@@ -123,10 +126,11 @@ public class Solution extends Base {
         int m = a[0].length;
         Long[][][] b = new Long[n][m][2];
         for (int j = 0; j < m; ++j) {
-            if (a[0][j] >= 0)
-                b[0][j][0] = (long) a[0][j];
-            else
-                b[0][j][1] = (long) a[0][j];
+            if (a[0][j] >= 0) {
+                b[0][j][0] = (long)a[0][j];
+            } else {
+                b[0][j][1] = (long)a[0][j];
+            }
         }
         for (int i = 1; i < n; ++i) {
             for (int j = 0; j < m; ++j) {
@@ -181,7 +185,7 @@ public class Solution extends Base {
             }
         }
         d[0][0] = 1;
-        return (int) dfs(d, n, k);
+        return (int)dfs(d, n, k);
     }
 
     public int longestMountain(int[] a) {
@@ -313,7 +317,7 @@ public class Solution extends Base {
                 ++i;
             }
             for (int j = 0; j < cnt[k]; ++j) {
-                c[i + j * (n + 1)] = (char) ('A' + k);
+                c[i + j * (n + 1)] = (char)('A' + k);
             }
             max = Math.max(max, i + (cnt[k] - 1) * (n + 1));
             cnt[k] = 0;
@@ -367,8 +371,8 @@ public class Solution extends Base {
         d[0][0] = 1;
         for (int i = 1; i <= s; ++i) {
             for (int j = 0; j <= t; ++j) {
-                d[i][j] = (d[i - 1][j] + (j - 1 >= 0 ? d[i - 1][j - 1] : 0)) % Base.MOD
-                        + (j + 1 <= t ? d[i - 1][j + 1] : 0);
+                d[i][j] =
+                    (d[i - 1][j] + (j - 1 >= 0 ? d[i - 1][j - 1] : 0)) % Base.MOD + (j + 1 <= t ? d[i - 1][j + 1] : 0);
                 d[i][j] %= Base.MOD;
             }
         }

@@ -51,6 +51,7 @@ public class Treap {
         root = leaf;
     }
 
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         dfs(root, sb);
