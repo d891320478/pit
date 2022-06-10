@@ -1,4 +1,4 @@
-import java.io.IOException;
+import java.io.File;
 
 /**
  * 
@@ -7,7 +7,8 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(System.currentTimeMillis());
+    public static void main(String[] args) {
+        String s = "abc";
+        System.err.println(s.substring(s.length(), s.length()));
     }
 }
