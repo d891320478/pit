@@ -1,4 +1,5 @@
 import java.io.File;
+import java.net.URLEncoder;
 
 /**
  * 
@@ -8,7 +9,6 @@ import java.io.File;
 public class Main {
 
     public static void main(String[] args) {
-        String s = "abc";
-        System.err.println(s.substring(s.length(), s.length()));
+        System.err.println(URLEncoder.encode("企管后台-服务器端"));
     }
 }
