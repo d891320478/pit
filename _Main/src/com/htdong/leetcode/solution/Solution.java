@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -18,6 +17,7 @@ import com.htdong.leetcode.algorithm.Treap;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution extends Base {
+
     public long maximumBeauty(int[] flowers, long newFlowers, int target, int full, int partial) {
         long ans = 0;
         int r = target - 1, l = target;
