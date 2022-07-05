@@ -22,25 +22,23 @@ public class RedBlackTree {
         insert(root, node);
     }
 
-    private void insert(TreeNode rt, TreeNode node) {
-        if (rt.key == node.key) {
-            rt.val = node.val;
+    private void insert(TreeNode p, TreeNode node) {
+        if (p.key == node.key) {
+            p.val = node.val;
             return;
         }
-        int childNode = node.key < rt.key ? 0 : 1;
-        if (rt.ch[childNode] == TreeNode.leaf()) {
-            addLeaf(rt, node, childNode);
+        int child = node.key < p.key ? 0 : 1;
+        if (p.ch[child] == TreeNode.leaf()) {
+            p.ch[child] = node;
+            node.p = p;
+            p.sz = p.ch[0].sz + 1 + p.ch[1].sz;
         } else {
-            insert(rt.ch[childNode], node);
+            insert(p.ch[child], node);
         }
-        rt.sz = rt.ch[0].sz + 1 + rt.ch[1].sz;
-    }
-
-    private void addLeaf(TreeNode rt, TreeNode node, int child) {
-        rt.ch[child] = node;
-        node.p = rt;
-        rt.sz = rt.ch[0].sz + 1 + rt.ch[1].sz;
-        handle(node);
+        p.sz = p.ch[0].sz + 1 + p.ch[1].sz;
+        if(p.red) {
+            
+        }
     }
 
     private void handle(TreeNode node) { // TODO
@@ -55,7 +53,6 @@ public class RedBlackTree {
             rt.p.ch[1].red = false;
             if (rt.p != root) {
                 rt.p.red = true;
-                handle(rt.p);
             }
         } else {
 
