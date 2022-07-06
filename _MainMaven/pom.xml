@@ -11,7 +11,7 @@
     <name>_mainMaven</name>
 
     <properties>
-        <jackson-version>2.13.2</jackson-version>
+        <jackson-version>2.13.3</jackson-version>
         <groovy-version>3.0.7</groovy-version>
         <project-encoding>UTF-8</project-encoding>
     </properties>
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson-version}.1</version>
+            <version>${jackson-version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -118,6 +118,11 @@
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.shinemo.aace</groupId>
+            <artifactId>aace</artifactId>
+            <version>4.0.8-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
