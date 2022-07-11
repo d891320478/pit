@@ -17,6 +17,22 @@ import com.htdong.leetcode.algorithm.Treap;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution extends Base {
+    public String makeGood(String s) {
+        char[] a = new char[s.length()];
+        int la = 0;
+        for (int i = 0; i < s.length(); ++i) {
+            if (la > 0 && Math.abs(a[la - 1] - s.charAt(i)) == Math.abs('a' - 'A')) {
+                --la;
+            } else {
+                a[la++] = s.charAt(i);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < la; ++i) {
+            sb.append(a[i]);
+        }
+        return sb.toString();
+    }
 
     public long maximumBeauty(int[] flowers, long newFlowers, int target, int full, int partial) {
         long ans = 0;

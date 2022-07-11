@@ -1,4 +1,4 @@
-public class Main {
+public class ThreadMain {
 
     public static Object lock = new Object();
 
