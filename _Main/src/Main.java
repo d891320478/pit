@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
@@ -48,7 +47,7 @@ public class Main {
             for (Map.Entry<String, Integer> iter : map.entrySet()) {
                 out.write(iter.getKey());
                 out.write(",");
-                out.write(iter.getValue().intValue());
+                out.write(iter.getValue().toString());
                 out.write("\n");
                 System.out.println(iter.getKey() + "," + iter.getValue());
             }
