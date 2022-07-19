@@ -20,8 +20,10 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        new Thread(() -> f1()).start();
-        new Thread(() -> f2()).start();
+        Thread t1 = new Thread(() -> f1());
+        Thread t2 = new Thread(() -> f2());
+        t2.start();
+        t1.start();
         Thread.sleep(10000);
     }
 }

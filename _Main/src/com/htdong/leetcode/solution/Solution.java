@@ -1,6 +1,8 @@
 package com.htdong.leetcode.solution;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,21 +19,38 @@ import com.htdong.leetcode.algorithm.Treap;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution extends Base {
-    public String makeGood(String s) {
-        char[] a = new char[s.length()];
-        int la = 0;
-        for (int i = 0; i < s.length(); ++i) {
-            if (la > 0 && Math.abs(a[la - 1] - s.charAt(i)) == Math.abs('a' - 'A')) {
-                --la;
-            } else {
-                a[la++] = s.charAt(i);
+    public String sortSentence(String s) {
+        String[] a = s.split(" ");
+        Arrays.sort(a, new Comparator<String>() {
+
+            @Override
+            public int compare(String a, String b) {
+                int x = 0;
+                int y = 0;
+                for (int i = 0; i < a.length(); ++i) {
+                    if (a.charAt(i) >= '0' && a.charAt(i) <= '9') {
+                        x = x * 10 + a.charAt(i) - '0';
+                    }
+                }
+                for (int i = 0; i < b.length(); ++i) {
+                    if (b.charAt(i) >= '0' && b.charAt(i) <= '9') {
+                        y = y * 10 + b.charAt(i) - '0';
+                    }
+                }
+                return Integer.compare(x, y);
             }
+        });
+        for (int i = 0; i < a.length; ++i) {
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < a[i].length(); ++j) {
+                if (a[i].charAt(j) >= '0' && a[i].charAt(j) <= '9') {
+                    continue;
+                }
+                sb.append(a[i].charAt(j));
+            }
+            a[i] = sb.toString();
         }
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < la; ++i) {
-            sb.append(a[i]);
-        }
-        return sb.toString();
+        return String.join(" ", a);
     }
 
     public long maximumBeauty(int[] flowers, long newFlowers, int target, int full, int partial) {
