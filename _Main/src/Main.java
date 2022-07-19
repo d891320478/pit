@@ -48,8 +48,9 @@ public class Main {
             for (Map.Entry<String, Integer> iter : map.entrySet()) {
                 out.write(iter.getKey());
                 out.write(",");
-                out.write(iter.getValue());
+                out.write(iter.getValue().intValue());
                 out.write("\n");
+                System.out.println(iter.getKey() + "," + iter.getValue());
             }
             out.flush();
         } catch (IOException e1) {
