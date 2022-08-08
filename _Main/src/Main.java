@@ -1,9 +1,7 @@
-import java.io.File;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.Base64;
 
 public class Main {
 
@@ -26,33 +24,17 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         // Thread t1 = new Thread(() -> f1());
         // Thread t2 = new Thread(() -> f2());
         // t2.start();
         // t1.start();
         // Thread.sleep(10000);
-        Map<String, Integer> map = new HashMap<>();
-        try (Scanner in1 = new Scanner(new File("/Users/dht31261/Desktop/mobile.txt"));
-            Scanner in2 = new Scanner(new File("/Users/dht31261/Desktop/mobile1.txt"));
-            FileWriter out = new FileWriter(new File("/Users/dht31261/Desktop/out.txt"));) {
-            while (in1.hasNextLine()) {
-                String s = in1.nextLine();
-                map.put(s, 1 + (map.containsKey(s) ? map.get(s) : 0));
-            }
-            while (in2.hasNextLine()) {
-                String s = in2.nextLine();
-                map.put(s, 1 + (map.containsKey(s) ? map.get(s) : 0));
-            }
-            for (Map.Entry<String, Integer> iter : map.entrySet()) {
-                out.write(iter.getKey());
-                out.write(",");
-                out.write(iter.getValue().toString());
-                out.write("\n");
-                System.out.println(iter.getKey() + "," + iter.getValue());
-            }
-            out.flush();
-        } catch (IOException e1) {
+        byte[] b = Base64.getDecoder().decode(
+            "ZGVmIGh0dHAoYXBwLCB1cmwsIHBhcmFtcywgaGVhZGVyKSB7CiAgICBkZWYgaHR0cCA9IG5ldyBVUkwodXJsKS5vcGVuQ29ubmVjdGlvbigpIGFzIEh0dHBVUkxDb25uZWN0aW9uCiAgICBodHRwLmNvbm5lY3QoKQogICAgaWYgKGh0dHAucmVzcG9uc2VDb2RlID09IDIwMCkgewogICAgICAgIHJldHVybiBodHRwLmlucHV0U3RyZWFtLmdldFRleHQoJ1VURi04JykgPT0gInN1Y2Nlc3MiID8gInN1Y2Nlc3MiIDogImZhaWwiCiAgICB9CiAgICByZXR1cm4gImZhaWwiCn0KCmh0dHAoYXBwLCB1cmwsIHBhcmFtcywgaGVhZGVyKQ==");
+        try (FileOutputStream write = new FileOutputStream("/Users/dht31261/Desktop/1.txt")) {
+            write.write(b);
+            write.flush();
         }
     }
 }
