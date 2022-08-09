@@ -30,11 +30,6 @@ public class Main {
         // t2.start();
         // t1.start();
         // Thread.sleep(10000);
-        byte[] b = Base64.getDecoder().decode(
-            "ZGVmIGh0dHAoYXBwLCB1cmwsIHBhcmFtcywgaGVhZGVyKSB7CiAgICBkZWYgaHR0cCA9IG5ldyBVUkwodXJsKS5vcGVuQ29ubmVjdGlvbigpIGFzIEh0dHBVUkxDb25uZWN0aW9uCiAgICBodHRwLmNvbm5lY3QoKQogICAgaWYgKGh0dHAucmVzcG9uc2VDb2RlID09IDIwMCkgewogICAgICAgIHJldHVybiBodHRwLmlucHV0U3RyZWFtLmdldFRleHQoJ1VURi04JykgPT0gInN1Y2Nlc3MiID8gInN1Y2Nlc3MiIDogImZhaWwiCiAgICB9CiAgICByZXR1cm4gImZhaWwiCn0KCmh0dHAoYXBwLCB1cmwsIHBhcmFtcywgaGVhZGVyKQ==");
-        try (FileOutputStream write = new FileOutputStream("/Users/dht31261/Desktop/1.txt")) {
-            write.write(b);
-            write.flush();
-        }
+        System.out.println(System.currentTimeMillis());
     }
 }
