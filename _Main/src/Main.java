@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Base64;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 
 public class Main {
 
@@ -23,6 +23,7 @@ public class Main {
             System.out.println("f2");
         }
     }
+    // count_over_time(checkStatus{appName="czt_openapi", ip="cztapp.scdzzw.cn", job="checkStatus", result="fail"}[5m])
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         // Thread t1 = new Thread(() -> f1());
@@ -30,6 +31,6 @@ public class Main {
         // t2.start();
         // t1.start();
         // Thread.sleep(10000);
-        System.out.println(System.currentTimeMillis());
+        System.out.print(URLEncoder.encode("https://www.urlencoder.org/", Charset.defaultCharset()));
     }
 }
