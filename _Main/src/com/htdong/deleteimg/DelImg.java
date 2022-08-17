@@ -26,7 +26,9 @@ public class DelImg {
     }
 
     public static void main(String[] args) {
+        long t1 = System.currentTimeMillis();
         File ff = new File("D:\\TIMRecord\\312687042\\Image\\Group2");
         dfs(ff);
+        System.out.println(System.currentTimeMillis() - t1);
     }
 }

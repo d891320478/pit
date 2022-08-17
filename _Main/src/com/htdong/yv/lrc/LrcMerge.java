@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class LrcMerge {
 
     public static void main(String[] args) throws FileNotFoundException {
-        String path = "E:\\YV\\live素材\\2016-08-13 - YVCDN0012 - 奏穹のラプソディア\\01-奏穹のラプソディア\\";
-        String f = "奏穹";
+        String path = "E:\\YV\\live素材\\YVCDN0010 - 千ノ縁\\01-千ノ縁\\";
+        String f = "千ノ縁";
         try (Scanner in1 = new Scanner(new File(path + f + ".lrc"));
                 Scanner in2 = new Scanner(new File(path + f + "（翻译）.lrc"));) {
             while (in1.hasNextLine()) {
@@ -25,7 +25,7 @@ public class LrcMerge {
                     continue;
                 }
                 System.err.println(s1);
-                System.err.println("（" + s2 + "）");
+                System.err.println("[" + s2 + "]");
             }
         }
     }
