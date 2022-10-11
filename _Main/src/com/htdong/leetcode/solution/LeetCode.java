@@ -28,7 +28,7 @@ public class LeetCode {
 
     public static void main(String[] args) {
         long t1 = System.currentTimeMillis();
-        System.out.println(new Solution());
+        System.out.println(new Solution().longestNiceSubarray(new int[] {1, 3, 8, 48, 10}));
         System.out.println("time = " + (System.currentTimeMillis() - t1));
     }
 }

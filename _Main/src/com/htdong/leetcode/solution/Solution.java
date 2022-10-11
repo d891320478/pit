@@ -18,6 +18,41 @@ import com.htdong.leetcode.algorithm.Treap;
  */
 public class Solution extends Base {
 
+    public int longestNiceSubarray(int[] a) {
+        int ans = 0;
+        int[] x = new int[32];
+        for (int u = 0, v = 0; u < a.length; ++v) {
+            for (boolean flag = true; v < a.length && flag;) {
+                for (int i = 0, j = a[v]; j > 0; j >>= 1, ++i) {
+                    if (j % 2 == 1) {
+                        ++x[i];
+                    }
+                    if (x[i] > 1) {
+                        flag = false;
+                    }
+                }
+                if (flag) {
+                    ++v;
+                }
+            }
+            ans = Math.max(ans, v - u);
+            for (boolean flag = true; u < v && flag; ++u) {
+                for (int i = 0, j = a[u]; j > 0; j >>= 1, ++i) {
+                    if (j % 2 == 1) {
+                        --x[i];
+                    }
+                }
+                flag = false;
+                for (int i = 0; i < 32 && !flag; ++i) {
+                    if (x[i] > 1) {
+                        flag = true;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
     public long maximumBeauty(int[] flowers, long newFlowers, int target, int full, int partial) {
         long ans = 0;
         int r = target - 1, l = target;

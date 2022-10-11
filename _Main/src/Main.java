@@ -1,10 +1,9 @@
-
-import java.io.IOException;
-import java.net.URLEncoder;
+import java.util.Date;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(URLEncoder.encode("docker ps -a"));
+    public static void main(String[] args) {
+        System.out.println(new Date(1663221112649L));
+        System.out.println(new Date(1665277871000L));
     }
 }
