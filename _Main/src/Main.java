@@ -1,9 +1,10 @@
-import java.util.Date;
+import java.net.URLEncoder;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(new Date(1663221112649L));
-        System.out.println(new Date(1665277871000L));
+        System.out.println(System.currentTimeMillis());
+        System.out.println(System.currentTimeMillis() - 1000 * 60 * 5);
+        System.out.println(URLEncoder.encode("docker ps -a"));
     }
 }
