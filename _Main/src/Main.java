@@ -1,26 +1,12 @@
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.Enumeration;
+import java.util.Base64;
 
 public class Main {
 
-    public static void main(String[] args) throws SocketException {
-        Enumeration<NetworkInterface> allNetInterfaces = NetworkInterface.getNetworkInterfaces();
-        while (allNetInterfaces.hasMoreElements()) {
-            NetworkInterface net = allNetInterfaces.nextElement();
-            System.out.println(net.getDisplayName());
-            if (net.isLoopback() || net.isVirtual() || !net.isUp()) {
-                continue;
-            }
-            Enumeration<InetAddress> addresses = net.getInetAddresses();
-            while (addresses.hasMoreElements()) {
-                InetAddress ip = addresses.nextElement();
-                if (ip != null && ip instanceof Inet4Address) {
-                    System.out.println(ip.getHostAddress());
-                }
-            }
-        }
+    public static void main(String[] args) {
+        String s = "{\"command\":\"ps\", \"args\":[\"-ef\"]}";
+        System.out.println(s);
+        System.out.println(Base64.getEncoder().encodeToString(s.getBytes()));
+        String t = "eyJjb21tYW5kIjogInNoIiwgImFyZ3MiOiBbIi9ob21lL2FkbWluL3dhdGNoZG9nL2Jpbi9jaGVja3NlLnNoIl19";
+        System.err.println(new String(Base64.getDecoder().decode(t)));
     }
 }
