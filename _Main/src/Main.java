@@ -9,8 +9,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(URLEncoder.encode(
-            "{\"archiveGroup\":\"OneMoblie\",\"branch\":\"prebaseline\",\"versionCode\":\"22.11.04-SNAPSHOT\",\"arch\":\"x86_64\"}"));
+        System.out.println(URLEncoder.encode("ls -lh /data/configproxy"));
+        System.out.println(URLEncoder.encode("mkdir -p /data/configproxy"));
         String s = "{\"command\":\"ps\", \"args\":[\"-ef\"]}";
         System.out.println(s);
         System.out.println(Base64.getEncoder().encodeToString(s.getBytes()));
@@ -21,5 +21,7 @@ public class Main {
         System.out.println(list);
         System.out.println(list.subList(1, 1));
         System.out.println(LocalDateTime.ofInstant(new Date(1667917203000L).toInstant(), ZoneId.systemDefault()));
+        LocalDateTime ldt = LocalDateTime.now();
+        System.out.println(ldt.plusMonths(-2));
     }
 }
