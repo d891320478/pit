@@ -1,9 +1,6 @@
-import java.io.File;
-
 public class Main {
 
     public static void main(String[] args) {
-        File path = new File("/Users/dht31261/Desktop/apaas-北京4-miyao.csv");
-        System.out.println(path.getAbsolutePath());
+        System.out.println("KooMail现网第一个组织_5004d4158e31449281f942894308ee42负载率".getBytes().length);
     }
 }
