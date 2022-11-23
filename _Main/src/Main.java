@@ -1,6 +1,9 @@
+import java.net.URLEncoder;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("KooMail现网第一个组织_5004d4158e31449281f942894308ee42负载率".getBytes().length);
+        System.out.println(URLEncoder.encode(
+            "100 - (avg(rate(node_cpu_seconds_total{instance=\"10.185.56.176:9100\",mode=\"idle\"}[1m])) * 100)"));
     }
 }
