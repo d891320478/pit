@@ -1,9 +1,14 @@
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(URLEncoder.encode(
-            "100 - (avg(rate(node_cpu_seconds_total{instance=\"10.185.56.176:9100\",mode=\"idle\"}[1m])) * 100)"));
+        String s = URLEncoder.encode("mysqld");
+        System.out.println(URLDecoder.decode(s));
+        System.out.println(URLEncoder.encode("curl \"http://172.168.214.45:9090/api/v1/query?query=" + s + "\""));
+        String b =
+            "eyJiX25hbWUiOiLokaPmtanlpKkiLCJiX21vYmlsZSI6IjE1OTU3MTkzMTIwIiwiYl9kZXYiOiJ0cnVlIiwiZXhwIjoxNjY5MjA0MTExLCJiX3VzZXJJZCI6IjIwMiJ9";
+        System.out.println(System.currentTimeMillis());
     }
 }
