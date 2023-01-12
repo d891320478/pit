@@ -1,12 +1,9 @@
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
+import java.util.Base64;
 
 public class Main {
 
-    public static void main(String[] args) throws UnsupportedEncodingException {
-        System.out.println(URLEncoder.encode("+", "utf-8"));
-        System.out.println(URLDecoder.decode("%2F%20", "utf-8"));
+    public static void main(String[] args) {
+        Base64.getDecoder().decode(
+            "nKhs3-0EjkGbtviUpEtWyB_noY4Iq16lyVIY3E6iEPxl46Wjv8kyANjAZXMTKqbd9x8yei3ikVogxkzpbYuIVtQE_-5dj3ZxfuLpAnnE");
     }
 }
