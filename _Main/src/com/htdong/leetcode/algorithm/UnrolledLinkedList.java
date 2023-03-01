@@ -78,6 +78,19 @@ public class UnrolledLinkedList {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        Node next = head;
+        while (next != null) {
+            for (Character i : next.list) {
+                sb.append(i);
+            }
+            next = next.next;
+        }
+        return sb.toString();
+    }
+
     private void add(Node next, char ch, int idx) {
         if (idx > next.getSize()) {
             next.add(ch);
@@ -133,6 +146,7 @@ public class UnrolledLinkedList {
                 int idx = in.nextInt();
                 ull.add(sc.charAt(0), idx);
             }
+            System.out.println(ull);
         }
     }
 }
