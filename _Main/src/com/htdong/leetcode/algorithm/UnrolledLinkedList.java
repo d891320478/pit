@@ -146,7 +146,7 @@ public class UnrolledLinkedList {
                 int idx = in.nextInt();
                 ull.add(sc.charAt(0), idx);
             }
-            System.out.println(ull);
+            System.err.println(ull);
         }
     }
 }
