@@ -27,6 +27,22 @@ public class UnrolledLinkedList {
         }
     }
 
+    public char get(int i) {
+        Node next = head;
+        for (;;) {
+            if (next.getSize() >= i) {
+                return next.list.get(i - 1);
+            } else {
+                i -= next.getSize();
+                next = next.next;
+            }
+        }
+    }
+
+    public int getSize() {
+        return size;
+    }
+
     public void add(char ch, int i) {
         Node next = head;
         for (;;) {
@@ -43,20 +59,16 @@ public class UnrolledLinkedList {
         }
     }
 
-    public char get(int i) {
+    public void remove(int i) {
         Node next = head;
-        for (;;) {
+        for (; next != null;) {
             if (next.getSize() >= i) {
-                return next.list.get(i - 1);
-            } else {
-                i -= next.getSize();
-                next = next.next;
+                next.list.remove(i - 1);
+                return;
             }
+            i -= next.getSize();
+            next = next.next;
         }
-    }
-
-    public int getSize() {
-        return size;
     }
 
     private void add(Node next, char ch, int idx) {
