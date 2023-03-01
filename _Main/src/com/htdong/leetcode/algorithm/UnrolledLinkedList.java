@@ -13,6 +13,7 @@ public class UnrolledLinkedList {
         sqrtn = Math.max(1, (int)Math.sqrt(maxSize));
         head = new Node();
         head.next = new Node();
+        head.next.pre = head;
         size = 0;
     }
 
@@ -22,6 +23,7 @@ public class UnrolledLinkedList {
             if (next.getSize() > sqrtn) {
                 next = next.next;
                 next.next = new Node();
+                next.next.pre = next;
             }
             next.add(s.charAt(i));
         }
@@ -64,6 +66,11 @@ public class UnrolledLinkedList {
         for (; next != null;) {
             if (next.getSize() >= i) {
                 next.list.remove(i - 1);
+                --size;
+                if (next.getSize() == 0) {
+                    next.pre.next = next.next;
+                    next.next.pre = next.pre;
+                }
                 return;
             }
             i -= next.getSize();
@@ -90,7 +97,7 @@ public class UnrolledLinkedList {
     }
 
     private class Node {
-        private Node next;
+        private Node pre, next;
         private LinkedList<Character> list = new LinkedList<Character>();
 
         public int getSize() {
