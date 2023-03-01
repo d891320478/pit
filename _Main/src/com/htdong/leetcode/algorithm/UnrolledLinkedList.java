@@ -88,7 +88,9 @@ public class UnrolledLinkedList {
         if (next.getSize() > 2 * sqrtn) {
             Node nn = new Node();
             nn.next = next.next;
+            nn.next.pre = nn;
             next.next = nn;
+            nn.pre = next;
             while (next.getSize() > sqrtn) {
                 nn.addFirst(next.list.getLast());
                 next.list.removeLast();
