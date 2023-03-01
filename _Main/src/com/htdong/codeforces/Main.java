@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 /**
@@ -20,8 +18,8 @@ public class Main {
         in.close();
     }
 
-    public static int[] dx = { 0, 1, 0, -1 };
-    public static int[] dy = { -1, 0, 1, 0 };
+    public static int[] dx = {0, 1, 0, -1};
+    public static int[] dy = {-1, 0, 1, 0};
 
     static class Fastget {
 
@@ -107,8 +105,7 @@ public class Main {
             return LEAF;
         }
 
-        private TreapNode() {
-        }
+        private TreapNode() {}
 
         public TreapNode(int key, int val) {
             ch = new TreapNode[2];
