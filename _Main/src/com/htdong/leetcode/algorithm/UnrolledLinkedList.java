@@ -50,7 +50,7 @@ public class UnrolledLinkedList {
         for (;;) {
             if (next.getSize() + 1 >= i) {
                 add(next, ch, i);
-                break;
+                return;
             } else {
                 i -= next.getSize();
                 if (next.next == null) {
