@@ -55,6 +55,7 @@ public class UnrolledLinkedList {
                 i -= next.getSize();
                 if (next.next == null) {
                     next.next = new Node();
+                    next.next.pre = next;
                 }
                 next = next.next;
             }
@@ -68,8 +69,10 @@ public class UnrolledLinkedList {
                 next.list.remove(i - 1);
                 --size;
                 if (next.getSize() == 0) {
-                    next.pre.next = next.next;
-                    next.next.pre = next.pre;
+                    if (next != head) {
+                        next.pre.next = next.next;
+                        next.next.pre = next.pre;
+                    }
                 }
                 return;
             }
