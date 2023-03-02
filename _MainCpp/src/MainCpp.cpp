@@ -7,19 +7,17 @@
 
 using namespace std;
 
-#define idx(l,r) ((l)+(r) | (l)!=(r))
-
 class Solution {
 public:
-}a;
+} a;
 
 int main() {
-    timeb t;
-    ftime(&t);
-    long t1 = t.time * 1000 + t.millitm;
-    cout << &a << endl;
-    ftime(&t);
-    long t2 = t.time * 1000 + t.millitm;
-    cout << "time = " << t2 - t1 << endl;
-    return 0;
+	timeb t;
+	ftime(&t);
+	long t1 = t.time * 1000 + t.millitm;
+	cout << &a << endl;
+	ftime(&t);
+	long t2 = t.time * 1000 + t.millitm;
+	cout << "time = " << t2 - t1 << endl;
+	return 0;
 }

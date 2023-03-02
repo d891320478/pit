@@ -1,79 +1,74 @@
 package com.htdong.leetcode.algorithm;
 
-import java.util.LinkedList;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * TODO https://codeforces.com/contest/455/problem/D
+ * @author htdong
+ * @date 2023-03-02 20:16:52
+ */
 public class UnrolledLinkedList {
 
     private int sqrtn;
-    private Node head;
+    private ListNode head;
     private int size;
 
     public UnrolledLinkedList(int maxSize) {
         sqrtn = Math.max(1, (int)Math.sqrt(maxSize));
-        head = new Node();
-        head.next = new Node();
-        head.next.pre = head;
+        head = new ListNode();
         size = 0;
     }
 
-    public void init(String s) {
-        Node next = head;
-        for (int i = 0; i < s.length(); ++i) {
+    public void init(int[] s) {
+        ListNode next = head;
+        size = s.length;
+        for (int i = 0; i < s.length; ++i) {
             if (next.getSize() > sqrtn) {
+                next.next = new ListNode();
                 next = next.next;
-                next.next = new Node();
-                next.next.pre = next;
             }
-            next.add(s.charAt(i));
+            next.add(s[i]);
         }
     }
 
-    public char get(int i) {
-        Node next = head;
-        for (;;) {
+    public int get(int i) {
+        ListNode next = head;
+        for (; next != null;) {
             if (next.getSize() >= i) {
-                return next.list.get(i - 1);
+                return next.get(i - 1);
             } else {
                 i -= next.getSize();
                 next = next.next;
             }
         }
+        return 0;
     }
 
     public int getSize() {
         return size;
     }
 
-    public void add(char ch, int i) {
-        Node next = head;
-        for (;;) {
+    public void add(int ch, int i) {
+        ListNode next = head;
+        for (; next != null;) {
             if (next.getSize() + 1 >= i) {
-                add(next, ch, i);
+                next.add(i - 1, ch);
+                ++size;
                 return;
             } else {
                 i -= next.getSize();
-                if (next.next == null) {
-                    next.next = new Node();
-                    next.next.pre = next;
-                }
                 next = next.next;
             }
         }
     }
 
     public void remove(int i) {
-        Node next = head;
+        ListNode next = head;
         for (; next != null;) {
             if (next.getSize() >= i) {
-                next.list.remove(i - 1);
+                next.remove(i - 1);
                 --size;
-                if (next.getSize() == 0) {
-                    if (next != head) {
-                        next.pre.next = next.next;
-                        next.next.pre = next.pre;
-                    }
-                }
                 return;
             }
             i -= next.getSize();
@@ -81,75 +76,85 @@ public class UnrolledLinkedList {
         }
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        Node next = head;
-        while (next != null) {
-            for (Character i : next.list) {
-                sb.append(i);
-            }
-            next = next.next;
+    public int count(int m, int v) {
+        ListNode next = head;
+        int cnt = 0;
+        for (; next != null && next.getSize() <= m; next = next.next) {
+            m -= next.getSize();
+            cnt += next.map.getOrDefault(v, 0);
         }
-        return sb.toString();
-    }
-
-    private void add(Node next, char ch, int idx) {
-        if (idx > next.getSize()) {
-            next.add(ch);
-        } else {
-            next.add(idx - 1, ch);
-        }
-        ++size;
-        if (next.getSize() > 2 * sqrtn) {
-            Node nn = new Node();
-            nn.next = next.next;
-            nn.next.pre = nn;
-            next.next = nn;
-            nn.pre = next;
-            while (next.getSize() > sqrtn) {
-                nn.addFirst(next.list.getLast());
-                next.list.removeLast();
+        for (int i = 0; i < m; ++i) {
+            if (next.get(i) == v) {
+                ++cnt;
             }
         }
+        return cnt;
     }
 
-    private class Node {
-        private Node pre, next;
-        private LinkedList<Character> list = new LinkedList<Character>();
+    private class ListNode {
+        private ListNode next;
+        private Map<Integer, Integer> map = new HashMap<>();
+        private int[] list = new int[sqrtn * 2 + 5];
+        private int size;
 
         public int getSize() {
-            return list.size();
+            return size;
         }
 
-        public void addFirst(Character ch) {
-            list.addFirst(ch);
+        public int get(int i) {
+            return list[i];
         }
 
-        public void add(Character ch) {
-            list.add(ch);
+        public void remove(int i) {
+            int v = get(i);
+            map.put(v, map.get(v) - 1);
+            for (; i + 1 < size; ++i) {
+                list[i] = list[i + 1];
+            }
+            --size;
+            merge();
         }
 
-        public void add(int idx, Character ch) {
-            list.add(idx, ch);
+        public void add(Integer ch) {
+            add(size, ch);
+        }
+
+        public void add(int idx, Integer ch) {
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            for (int i = size; i > idx; --i) {
+                list[i] = list[i - 1];
+            }
+            list[idx] = ch;
+            ++size;
+            split();
+        }
+
+        private void merge() {
+            if (next != null && size + next.size <= sqrtn) {
+                ListNode nn = next;
+                for (int i = 0; i < nn.getSize(); ++i) {
+                    add(nn.get(i));
+                }
+                next = nn.next;
+            }
+            split();
+        }
+
+        private void split() {
+            if (size > 2 * sqrtn) {
+                ListNode nn = new ListNode();
+                next = nn;
+                nn.next = next;
+                for (int i = sqrtn + 1; i < next.getSize(); ++i) {
+                    nn.add(list[i]);
+                }
+                size -= nn.getSize();
+            }
         }
     }
-
-    public static void main(String[] args) {
-        UnrolledLinkedList ull = new UnrolledLinkedList(1000000);
-        Scanner in = new Scanner(System.in);
-        ull.init(in.next());
-        int _t = in.nextInt();
-        while (_t-- > 0) {
-            String op = in.next();
-            if (op.equals("Q")) {
-                System.out.println(ull.get(in.nextInt()));
-            } else {
-                String sc = in.next();
-                int idx = in.nextInt();
-                ull.add(sc.charAt(0), idx);
-            }
-            System.err.println(ull);
-        }
+    
+    private class Node {
+        private int val;
+        private Node next;
     }
 }
