@@ -12,32 +12,10 @@ import java.util.StringTokenizer;
  * @date 2018年4月20日 上午11:52:19
  */
 public class Main {
-    // https://codeforces.com/problemset/problem/1802/B
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         int _t = in.nextInt();
         while (_t-- > 0) {
-            int n = in.nextInt();
-            int ans = 0;
-            int not = 0;
-            int sure = 0;
-            int none = 0;
-            for (int i = 0; i < n; ++i) {
-                int a = in.nextInt();
-                if (a == 1) {
-                    if (none == 0) {
-                        ++ans;
-                    } else {
-                        --none;
-                    }
-                    ++not;
-                } else {
-                    none += (not + sure) / 2;
-                    sure = (not + sure) % 2;
-                    not = 0;
-                }
-            }
-            System.out.println(ans);
         }
         in.close();
     }
