@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 /**
@@ -13,21 +12,11 @@ import java.util.StringTokenizer;
  */
 public class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        // Fastget in = new Fastget();
+        // Scanner in = new Scanner(System.in);
+        Fastget in = new Fastget();
         int _t = in.nextInt();
         while (_t-- > 0) {
-            int n = in.nextInt();
-            boolean flag = false;
-            for (int i = 1; i <= n; ++i) {
-                int a = in.nextInt();
-                if (a <= i) {
-                    flag = true;
-                }
-            }
-            System.out.println(flag ? "YES" : "NO");
         }
-        in.close();
     }
 
     public static int[] dx = {0, 1, 0, -1};
