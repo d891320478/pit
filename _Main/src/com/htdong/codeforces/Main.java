@@ -12,9 +12,11 @@ import java.util.StringTokenizer;
  * @date 2018年4月20日 上午11:52:19
  */
 public class Main {
+
+    static Scanner in = new Scanner(System.in);
+//    static Fastget in = new Fastget();
+
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        // Fastget in = new Fastget();
         // int _t = in.nextInt();
         // while (_t-- > 0) {
         // }
