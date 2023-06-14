@@ -12,12 +12,63 @@ import java.util.StringTokenizer;
  * @date 2018年4月20日 上午11:52:19
  */
 public class Main {
+
+    static Scanner in = new Scanner(System.in);
+//    static Fastget in = new Fastget();
+
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int _t = in.nextInt();
-        while (_t-- > 0) {
+        // int _t = in.nextInt();
+        // while (_t-- > 0) {
+        // }
+    }
+
+    static class Point implements Comparable<Point> {
+        long x, y;
+
+        static Point init(Scanner in) {
+            Point p = new Point();
+            p.x = in.nextLong();
+            p.y = in.nextLong();
+            return p;
         }
-        in.close();
+
+        @Override
+        public int compareTo(Point o) {
+            if (x < o.x) {
+                return -1;
+            }
+            if (x > o.x) {
+                return 1;
+            }
+            return Long.compare(y, o.y);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (!(o instanceof Point)) {
+                return false;
+            }
+            return compareTo((Point)o) == 0;
+        }
+    }
+
+    static class Line {
+        Point a, b;
+
+        public Line(Point a, Point b) {
+            this.a = a;
+            this.b = b;
+        }
+    }
+
+    static long xmult(Point p0, Point p1, Point p2) {
+        return (p1.x - p0.x) * (p2.y - p0.y) - (p2.x - p0.x) * (p1.y - p0.y);
+    }
+
+    static boolean intersect(Point u1, Point u2, Point v1, Point v2) {
+        return (Math.max(u1.x, u2.x) >= Math.min(v1.x, v2.x)) && (Math.max(v1.x, v2.x) >= Math.min(u1.x, u2.x))
+            && (Math.max(u1.y, u2.y) >= Math.min(v1.y, v2.y)) && (Math.max(v1.y, v2.y) >= Math.min(u1.y, u2.y))
+            && (xmult(u1, v1, u2) * xmult(u1, u2, v2) >= 0) && (xmult(v1, u1, v2) * xmult(v1, v2, u2) >= 0);
     }
 
     public static int[] dx = {0, 1, 0, -1};
@@ -55,6 +106,11 @@ public class Main {
         public int nextInt() {
             String s = next();
             return Integer.parseInt(s);
+        }
+
+        public long nextLong() {
+            String s = next();
+            return Long.parseLong(s);
         }
     }
 
