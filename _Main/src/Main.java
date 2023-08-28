@@ -1,18 +1,15 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.util.TreeSet;
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 public class Main {
 
-    public static void main(String[] args) throws FileNotFoundException {
-        try (Scanner in = new Scanner(new File("/Users/dht31261/Desktop/1.txt"))) {
-            TreeSet<String> set = new TreeSet<>();
-            while (in.hasNextLine()) {
-                set.add(in.nextLine());
-            }
-            for (String git : set) {
-                System.out.println(git);
+    public static void main(String[] args) throws IOException {
+        try (DatagramSocket ds = new DatagramSocket(23456)) {
+            DatagramPacket p = new DatagramPacket(new byte[256], 256);
+            for (int i = 0; i < 10; ++i) {
+                ds.receive(p);
+                System.out.println(new String(p.getData()));
             }
         }
     }

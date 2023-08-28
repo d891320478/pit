@@ -14,12 +14,12 @@ import java.util.StringTokenizer;
 public class Main {
 
     static Scanner in = new Scanner(System.in);
-//    static Fastget in = new Fastget();
+    // static Fastget in = new Fastget();
 
     public static void main(String[] args) {
-        // int _t = in.nextInt();
-        // while (_t-- > 0) {
-        // }
+        int _t = in.nextInt();
+        while (_t-- > 0) {
+        }
     }
 
     static class Point implements Comparable<Point> {
