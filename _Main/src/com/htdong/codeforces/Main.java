@@ -7,19 +7,15 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-/**
- * @author htdong
- * @date 2018年4月20日 上午11:52:19
- */
 public class Main {
 
     static Scanner in = new Scanner(System.in);
     // static Fastget in = new Fastget();
 
     public static void main(String[] args) {
-        int _t = in.nextInt();
-        while (_t-- > 0) {
-        }
+        // int _t = in.nextInt();
+        // while (_t-- > 0) {
+        // }
     }
 
     static class Point implements Comparable<Point> {
