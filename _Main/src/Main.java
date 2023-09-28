@@ -1,10 +1,9 @@
 import java.io.IOException;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
+import java.util.Date;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        System.out.println(URLEncoder.encode("build/178_240", Charset.defaultCharset()));
+        System.out.println(new Date(1695886532787L));
     }
 }

@@ -4,48 +4,18 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.StringTokenizer;
-import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class Main {
 
-    // static Scanner in = new Scanner(System.in);
-    static Fastget in = new Fastget();
+    static Scanner in = new Scanner(System.in);
+    // static Fastget in = new Fastget();
 
     public static void main(String[] args) {
         // int _t = in.nextInt();
         // while (_t-- > 0) {
         // }
-        int n = in.nextInt();
-        TreeMap<Integer, TreeSet<Integer>> map = new TreeMap<>();
-        for (int i = 0; i < n; ++i) {
-            int a = in.nextInt();
-            int b = in.nextInt();
-            TreeSet<Integer> sa = map.getOrDefault(a, new TreeSet<>());
-            sa.add(b);
-            map.put(a, sa);
-            TreeSet<Integer> sb = map.getOrDefault(b, new TreeSet<>());
-            sb.add(a);
-            map.put(b, sb);
-        }
-        int head = 0;
-        for (Map.Entry<Integer, TreeSet<Integer>> iter : map.entrySet()) {
-            if (iter.getValue().size() == 1) {
-                System.out.print(iter.getKey());
-                head = iter.getKey();
-                break;
-            }
-        }
-        for (int i = 0; i < n; ++i) {
-            int next = map.get(head).first();
-            map.get(head).remove(next);
-            System.out.print(" " + next);
-            map.get(next).remove(head);
-            head = next;
-        }
     }
 
     static class Point implements Comparable<Point> {
