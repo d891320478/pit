@@ -13,9 +13,9 @@ public class Main {
     // static Fastget in = new Fastget();
 
     public static void main(String[] args) {
-        // int _t = in.nextInt();
-        // while (_t-- > 0) {
-        // }
+        int _t = in.nextInt();
+        while (_t-- > 0) {
+        }
     }
 
     static class Point implements Comparable<Point> {
