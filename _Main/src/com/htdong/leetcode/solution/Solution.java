@@ -8,6 +8,40 @@ import com.htdong.leetcode.algorithm.Base;
  */
 public class Solution extends Base {
 
+    static class Trie {
+        public int end;
+        public Trie[] next;
+        public int len;
+
+        public Trie(int len) {
+            this.end = 0;
+            this.next = new Trie[len];
+            this.len = len;
+        }
+
+        public static void insert(Trie node, String a) {
+            for (int i = 0; i < a.length(); ++i) {
+                int v = a.charAt(i) - 'a';
+                if (node.next[v] == null) {
+                    node.next[v] = new Trie(node.len);
+                }
+                node = node.next[v];
+            }
+            ++node.end;
+        }
+    }
+
+    public long countPrefixSuffixPairs(String[] w) {
+        Trie root = new Trie(26);
+        long ans = 0;
+        Trie.insert(root, w[0]);
+        for (int i = 1; i < w.length; ++i) {
+            int[] p = new int[w[i].length()];
+            p[0] = -1;
+        }
+        return ans;
+    }
+
     public int findNonMinOrMax(int[] a) {
         int mn = a[0];
         int mx = a[0];

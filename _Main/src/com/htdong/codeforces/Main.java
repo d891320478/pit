@@ -110,7 +110,7 @@ public class Main {
         }
     }
 
-    public static int MOD = 1000000007;
+    public static long MOD = 1000000007;
 
     public static int idx(int l, int r) {
         return (l + r) | (l != r ? 1 : 0);
