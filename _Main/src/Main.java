@@ -1,14 +1,8 @@
+import java.io.File;
+
 public class Main {
 
     public static void main(String[] args) {
-        int sum = 0;
-        for (int i = 1; i <= 12; ++i) {
-            int j = i;
-            while (j > 0) {
-                sum += j % 10;
-                j /= 10;
-            }
-        }
-        System.out.println(sum);
+        System.out.println("6836663332366967394d4c33434258554f434a57636754786d72523733464144".length());
     }
 }
