@@ -16,6 +16,22 @@ public class Main {
         // int _t = in.nextInt();
         // while (_t-- > 0) {
         // }
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = 6 - Math.max(a, b) + 1;
+        if (c == 1) {
+            System.out.println("1/6");
+        } else if (c == 2) {
+            System.out.println("1/3");
+        } else if (c == 3) {
+            System.out.println("1/2");
+        } else if (c == 4) {
+            System.out.println("2/3");
+        } else if (c == 5) {
+            System.out.println("5/6");
+        } else {
+            System.out.println("1/1");
+        }
     }
 
     // static class Point implements Comparable<Point> {

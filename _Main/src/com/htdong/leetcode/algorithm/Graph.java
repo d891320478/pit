@@ -2,9 +2,10 @@ package com.htdong.leetcode.algorithm;
 
 public class Graph {
     public static class Edge {
-        int next, v, w;
+        int next, v;
+        long w;
 
-        public Edge(int next, int v, int w) {
+        public Edge(int next, int v, long w) {
             this.next = next;
             this.v = v;
             this.w = w;
@@ -24,7 +25,7 @@ public class Graph {
         cnt = 0;
     }
 
-    public void addEdge(int u, int v, int w) {
+    public void addEdge(int u, int v, long w) {
         e[cnt] = new Edge(head[u], v, w);
         head[u] = cnt++;
     }
