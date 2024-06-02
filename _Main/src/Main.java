@@ -1,8 +1,23 @@
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println(
-            "b6f03f648fe2f726aa3070ab91d531fc7dd90bf83e6ecc1885504ff8e22a6518a7ecc2a8a41538e9f5ec752920cbcd4e2d1d8f7dcc07c99382208c1f4a7f76e75d06946a01d8d5187190919abd9c5743"
-                .length());
+        Scanner in = new Scanner(System.in);
+        while(in.hasNextLine()) {
+        	String a = in.nextLine();
+        	if(a.startsWith("[")) {
+        		int m = Integer.parseInt(a.substring(1, 3))+3;
+        		int s = Integer.parseInt(a.substring(4,6))+29;
+        		int z = Integer.parseInt(a.substring(7,9))+5;
+        		s+=z/100;
+        		z%=100;
+        		m+=s/60;
+        		s%=60;
+        		System.out.println("[0"+m+":"+(s>=10?"":"0")+s+"."+(z>=10?"":"0")+z+"]"+a.substring(10));
+        	} else {
+        		System.out.println(a);
+        	}
+        }
     }
 }
