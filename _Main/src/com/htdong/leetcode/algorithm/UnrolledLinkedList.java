@@ -152,9 +152,4 @@ public class UnrolledLinkedList {
             }
         }
     }
-    
-    private class Node {
-        private int val;
-        private Node next;
-    }
 }
