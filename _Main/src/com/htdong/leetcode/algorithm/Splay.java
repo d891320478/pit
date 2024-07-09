@@ -7,12 +7,45 @@ package com.htdong.leetcode.algorithm;
 public class Splay {
 
     public static class TreeNode {
-        public TreeNode ch[] = new TreeNode[2];
-        public TreeNode pre;
+
+        private static TreeNode LEAF = null;
+
+        // 以下不变
+        public TreeNode ch[] = new TreeNode[2], pre;
         public int sz;
+        // 以下字段需要自定义
+        public int val, sum, lzy;
+
+        private TreeNode() {}
+
+        public TreeNode(int val) {
+            this.ch[0] = this.ch[1] = this.pre = leaf();
+            this.sz = 1;
+            this.val = this.sum = val;
+            this.lzy = 0;
+        }
+
+        public static TreeNode leaf() {
+            if (LEAF != null) {
+                return LEAF;
+            }
+            LEAF = new TreeNode();
+            LEAF.ch[0] = LEAF.ch[1] = LEAF.pre = null;
+            LEAF.sz = 0;
+            return LEAF;
+        }
     }
 
-    private TreeNode root, leaf;
+    public Splay() {
+        leaf = TreeNode.leaf();
+        root = new TreeNode(0);
+        root.ch[0] = root.pre = leaf;
+        root.ch[1] = new TreeNode(0);
+        root.ch[1].pre = root;
+        root.sz = 2;
+    }
+
+    public TreeNode root, leaf;
 
     private void rotate(TreeNode x, int f) {
         TreeNode y = x.pre, z = y.pre;
@@ -29,7 +62,7 @@ public class Splay {
         pushup(y);
     }
 
-    private void splay(TreeNode x, TreeNode goal) {
+    public void splay(TreeNode x, TreeNode goal) {
         pushdown(x);
         while (x.pre != goal) {
             if (x.pre.pre == goal) {
@@ -51,8 +84,24 @@ public class Splay {
         }
     }
 
-    public void pushup(TreeNode x) {
+    public void rotateTo(int k, TreeNode goal) {
+        TreeNode x = root;
+        pushdown(x);
+        while (x.ch[0].sz != k) {
+            if (k < x.ch[0].sz) {
+                x = x.ch[0];
+            } else {
+                k -= x.ch[0].sz + 1;
+                x = x.ch[1];
+            }
+            pushdown(x);
+        }
+        splay(x, goal);
+    }
 
+    public void pushup(TreeNode x) {
+        x.sz = x.ch[0].sz + 1 + x.ch[1].sz;
+        x.sum = x.ch[0].sum + x.val + x.ch[1].sum;
     }
 
     public void pushdown(TreeNode x) {
