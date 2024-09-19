@@ -1,7 +1,7 @@
 package com.htdong.leetcode.algorithm;
 
 public class Point {
-    int x, y;
+    public int x, y;
 
     public Point(int[] o) {
         this.x = o[0];
