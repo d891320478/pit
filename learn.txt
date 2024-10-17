@@ -1,4 +1,3 @@
-==========todo==========
 stride威胁模型
 socket
 正则表达式
@@ -21,20 +20,3 @@ jdbc
 cglib
 classloader
 HttpClientApi vs ApacheHttpClient
-==========done==========
-HashMap
-Thread/ThreadLocal
-ConcurrentHashMap
-CountDownLatch
-ReentrantLock
-ReentrantReadWriteLock
-ConcurrentLinkedQueue--不懂设计原理
-LinkedBlockingQueue
-ArrayBlockingQueue
-PriorityBlockingQueue
-DelayQueue
-CyclicBarrier
-Semaphore
-FutureTask
-WeakHashMap
-ThreadPoolExecutor
