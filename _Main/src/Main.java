@@ -1,22 +1,14 @@
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 public class Main {
 
     public static void main(String[] args) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日HH时");
-        System.out.println(format.format(new Date()));
-        System.out.println(TimeUnit.HOURS.toSeconds(1));
-        List<String> list = Arrays.asList("123", "qwef", "easdf");
-        System.out.println(list.toString());
-        LocalDate d1 = LocalDate.parse("2025-10-10");
-        LocalDate d2 = LocalDate.now();
-        System.out.println(ChronoUnit.DAYS.between(d1, d2));
-        System.out.println(ChronoUnit.DAYS.between(d2, d1));
+        String[] a = {"bidding:feeds_key:8712c5e3ba5f2af63a57f771b464b08e",
+            "bidding:feeds_key:f1b211ee776f7fe4dc214eff748056a5_total",
+            "bidding:feeds_key:8712c5e3ba5f2af63a57f771b464b08e_total",
+            "bidding:feeds_key:9d47efdfc23b7929594a44f158ffb71f",
+            "bidding:feeds_key:9d47efdfc23b7929594a44f158ffb71f_total",
+            "bidding:feeds_key:f1b211ee776f7fe4dc214eff748056a5"};
+        for (String iter : a) {
+            System.out.println("del " + "\"" + iter + "\"");
+        }
     }
 }
