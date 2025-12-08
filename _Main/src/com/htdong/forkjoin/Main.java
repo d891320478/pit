@@ -43,22 +43,20 @@ public class Main {
 
         long t1 = System.currentTimeMillis();
 
-        try (ForkJoinPool fjp = new ForkJoinPool(4);) {
-            Long ans = fjp.invoke(new Task(s, t));
-            System.out.println(ans);
-            long t2 = System.currentTimeMillis();
+        ForkJoinPool fjp = new ForkJoinPool(4);
+        Long ans = fjp.invoke(new Task(s, t));
+        System.out.println(ans);
+        long t2 = System.currentTimeMillis();
 
-            Long sum = 0L;
-            for (long i = s; i <= t; ++i) {
-                sum += i;
-            }
-            System.out.println(sum);
-
-            long t3 = System.currentTimeMillis();
-
-            System.err.println(t2 - t1);
-            System.err.println(t3 - t2);
+        Long sum = 0L;
+        for (long i = s; i <= t; ++i) {
+            sum += i;
         }
+        System.out.println(sum);
 
+        long t3 = System.currentTimeMillis();
+
+        System.err.println(t2 - t1);
+        System.err.println(t3 - t2);
     }
 }

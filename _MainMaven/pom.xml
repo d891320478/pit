@@ -203,6 +203,18 @@
             <artifactId>fastjson2</artifactId>
             <version>2.0.25</version>
         </dependency>
+        <dependency>
+            <groupId>org.conductoross</groupId>
+            <artifactId>conductor-common</artifactId>
+            <version>3.21.5</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.conductoross</groupId>
+            <artifactId>conductor-core</artifactId>
+            <version>3.21.5</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>

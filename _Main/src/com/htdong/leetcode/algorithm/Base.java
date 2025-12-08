@@ -32,4 +32,33 @@ public class Base {
     public static int lowbit(int x) {
         return x & (-x);
     }
+
+    public static class Pair implements Comparable<Pair> {
+        public int a, b;
+
+        public Pair(int a, int b) {
+            this.a = a;
+            this.b = b;
+        }
+
+        @Override
+        public int hashCode() {
+            return Integer.hashCode(a) ^ Integer.hashCode(b);
+        }
+
+        @Override
+        public boolean equals(Object p) {
+            if (p == null || !(p instanceof Pair)) {
+                return false;
+            }
+            Pair pp = (Pair)p;
+            return a == pp.a && b == pp.b;
+        }
+
+        @Override
+        public int compareTo(Pair o) {
+            int v = Integer.compare(a, o.a);
+            return v == 0 ? Integer.compare(b, o.b) : v;
+        }
+    }
 }
