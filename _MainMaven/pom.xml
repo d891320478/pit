@@ -246,6 +246,10 @@
             <artifactId>fastjson2</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.conductoross</groupId>
             <artifactId>conductor-common</artifactId>
             <version>3.21.5</version>
