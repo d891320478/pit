@@ -11,6 +11,6 @@ fi
 echo "$pods" | while read pod; do
     if [ -n "$pod" ]; then
         echo "=== $pod ==="
-        kubectl logs -n ${namespace} "$pod" | grep -i "$2"
+        kubectl logs -n ${namespace} "$pod" | grep -i -C 20 "$2"
     fi
 done
