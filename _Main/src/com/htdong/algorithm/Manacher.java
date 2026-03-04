@@ -1,5 +1,10 @@
 package com.htdong.algorithm;
 
+/**
+ * TODO
+ * @author dht31261
+ * @date 2026年3月4日 15:48:13
+ */
 public class Manacher {
     public static int lpd(String s) {
         byte[] a = new byte[s.length() * 2 + 5];
