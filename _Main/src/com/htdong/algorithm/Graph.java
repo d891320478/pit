@@ -1,4 +1,4 @@
-package com.htdong.leetcode.algorithm;
+package com.htdong.algorithm;
 
 public class Graph {
     public static class Edge {

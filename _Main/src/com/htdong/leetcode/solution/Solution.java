@@ -2,8 +2,8 @@ package com.htdong.leetcode.solution;
 
 import java.util.TreeSet;
 
+import com.htdong.algorithm.Base;
 import com.htdong.algorithm.Rmq;
-import com.htdong.leetcode.algorithm.Base;
 
 /**
  * @author htdong

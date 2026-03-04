@@ -1,4 +1,4 @@
-package com.htdong.leetcode.algorithm;
+package com.htdong.algorithm;
 
 import java.util.LinkedList;
 import java.util.Queue;
