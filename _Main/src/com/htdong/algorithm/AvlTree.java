@@ -1,4 +1,4 @@
-package com.htdong.algorithm.avl;
+package com.htdong.algorithm;
 
 public class AvlTree {
 
@@ -34,10 +34,11 @@ public class AvlTree {
 
     public AvlTree() {
         leaf = AvlNode.leaf;
+        root = AvlNode.leaf;
     }
 
     public void insert(int k, int v) {
-        if (root == null) {
+        if (root == leaf) {
             root = new AvlNode(k, v);
             return;
         }
@@ -60,18 +61,18 @@ public class AvlTree {
         if (pre.ch[0].height - pre.ch[1].height == 2) {
             AvlNode left = pre.ch[0];
             if (left.ch[0].height - left.ch[1].height >= 0) {
-                return rotate(pre, 0);
+                return rotate(pre, 0); // LL：单次右旋
             } else {
-                pre.ch[0] = rotate(pre.ch[0], 1);
-                return rotate(pre, 1);
+                pre.ch[0] = rotate(pre.ch[0], 1); // LR：先左子左旋，再当前节点右旋
+                return rotate(pre, 0);
             }
         } else if (pre.ch[1].height - pre.ch[0].height == 2) {
             AvlNode right = pre.ch[1];
             if (right.ch[1].height - right.ch[0].height >= 0) {
-                return rotate(pre, 1);
+                return rotate(pre, 1); // RR：单次左旋
             } else {
-                pre.ch[1] = rotate(pre.ch[1], 0);
-                return rotate(pre, 0);
+                pre.ch[1] = rotate(pre.ch[1], 0); // RL：先右子右旋，再当前节点左旋
+                return rotate(pre, 1);
             }
         }
         return pre;
@@ -112,16 +113,21 @@ public class AvlTree {
             if (pre.ch[0] == leaf && pre.ch[1] == leaf) {
                 return leaf;
             } else if (pre.ch[0] == leaf) {
-                AvlNode preRight = pre.ch[1];
-                pre.ch[1] = null;
-                pre = preRight;
+                pre = pre.ch[1];
             } else if (pre.ch[1] == leaf) {
-                AvlNode preLeft = pre.ch[0];
-                pre.ch[0] = null;
-                pre = preLeft;
+                pre = pre.ch[0];
             } else {
-                // TODO
+                AvlNode minInRight = pre.ch[1];
+                while (minInRight.ch[0] != leaf) {
+                    minInRight = minInRight.ch[0];
+                }
+                pre.key = minInRight.key;
+                pre.value = minInRight.value;
+                pre.ch[1] = remove(pre.ch[1], minInRight.key);
             }
+        }
+        if (pre == leaf) {
+            return pre;
         }
         pre.height = Math.max(pre.ch[0].height, pre.ch[1].height) + 1;
         pre.size = pre.ch[0].size + pre.ch[1].size + 1;
@@ -129,7 +135,7 @@ public class AvlTree {
     }
 
     public void remove(int k) {
-        if (root == null) {
+        if (root == leaf) {
             return;
         }
         root = remove(root, k);

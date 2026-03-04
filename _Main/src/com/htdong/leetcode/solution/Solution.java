@@ -2,6 +2,7 @@ package com.htdong.leetcode.solution;
 
 import java.util.TreeSet;
 
+import com.htdong.algorithm.Rmq;
 import com.htdong.leetcode.algorithm.Base;
 
 /**
@@ -9,6 +10,27 @@ import com.htdong.leetcode.algorithm.Base;
  * @date 2019年11月7日 下午4:56:49
  */
 public class Solution extends Base {
+
+    private Rmq rmq = new Rmq(100010);
+
+    public long countSubarrays(int[] a, long k) {
+        int n = a.length;
+        rmq.init(a);
+        long ans = 0;
+        for (int i = 0; i < n; ++i) {
+            int l = i, r = n - 1;
+            while (l < r) {
+                int mid = l + r + 1 >> 1;
+                if ((rmq.max(i, mid) - rmq.min(i, mid)) * (mid - i + 1L) <= k) {
+                    l = mid;
+                } else {
+                    r = mid - 1;
+                }
+            }
+            ans += l - i + 1;
+        }
+        return ans;
+    }
 
     public int minLengthAfterRemovals(String s) {
         int n = s.length();
