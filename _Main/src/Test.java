@@ -1,6 +1,6 @@
 public class Test {
 
     public static void main(String[] args) {
-        String s = "";
+        System.out.println(System.getenv("env"));
     }
 }
