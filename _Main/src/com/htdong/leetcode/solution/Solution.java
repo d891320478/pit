@@ -1,7 +1,5 @@
 package com.htdong.leetcode.solution;
 
-import java.util.Arrays;
-
 import com.htdong.algorithm.Base;
 
 /**
@@ -10,21 +8,17 @@ import com.htdong.algorithm.Base;
  */
 public class Solution extends Base {
 
-    private double f(int a, int b, int c) {
-        double d = Math.acos((b * b + c * c - a * a) * 1.0 / (2.0 * b * c));
-        return d * 180.0 / Math.PI;
-    }
-
-    public double[] internalAngles(int[] a) {
-        Arrays.sort(a);
-        if (a[0] + a[1] <= a[2]) {
-            return new double[0];
+    public int maxValidPairSum(int[] a, int k) {
+        int n = a.length;
+        int[] b = new int[n];
+        b[n - 1] = a[n - 1];
+        for (int i = n - 2; i >= 0; --i) {
+            b[i] = Math.max(b[i + 1], a[i]);
         }
-        double[] b = new double[3];
-        b[0] = f(a[0], a[1], a[2]);
-        b[1] = f(a[1], a[0], a[2]);
-        b[2] = f(a[2], a[1], a[0]);
-        Arrays.sort(b);
-        return b;
+        int mx = 0;
+        for (int i = 0; i + k < n; ++i) {
+            mx = Math.max(mx, a[i] + b[i + k]);
+        }
+        return mx;
     }
 }

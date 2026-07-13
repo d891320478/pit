@@ -20,3 +20,6 @@ asm
 cglib
 classloader
 HttpClientApi vs ApacheHttpClient
+数据库事务、锁、log
+分布式事务
+
