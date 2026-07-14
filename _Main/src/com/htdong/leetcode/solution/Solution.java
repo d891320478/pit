@@ -8,17 +8,38 @@ import com.htdong.algorithm.Base;
  */
 public class Solution extends Base {
 
-    public int maxValidPairSum(int[] a, int k) {
-        int n = a.length;
-        int[] b = new int[n];
-        b[n - 1] = a[n - 1];
-        for (int i = n - 2; i >= 0; --i) {
-            b[i] = Math.max(b[i + 1], a[i]);
+    public String[] createGrid(int n, int m, int k) {
+        char[][] g = new char[n][m];
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < m; ++j) {
+                g[i][j] = '#';
+            }
         }
-        int mx = 0;
-        for (int i = 0; i + k < n; ++i) {
-            mx = Math.max(mx, a[i] + b[i + k]);
+        for (int i = 0; i < n; ++i) {
+            g[i][0] = '.';
         }
-        return mx;
+        for (int i = 0; i < m; ++i) {
+            g[n - 1][i] = '.';
+        }
+        for (int i = 2; i <= k; ++i) {
+            if (n == 1) {
+                return new String[0];
+            }
+            int j = 0;
+            for (; j < m; ++j) {
+                if (g[n - 2][j] == '#') {
+                    g[n - 2][j] = '.';
+                    break;
+                }
+            }
+            if (j == m) {
+                return new String[0];
+            }
+        }
+        String[] s = new String[n];
+        for (int i = 0; i < n; ++i) {
+            s[i] = new String(g[i]);
+        }
+        return s;
     }
 }
